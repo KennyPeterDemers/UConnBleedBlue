@@ -1,0 +1,55 @@
+﻿@page "/playersAttending"
+
+@using UConnBleedBlue.Data
+
+@inject PlayerService PlayerService
+
+<PageTitle>Players Attending</PageTitle>
+
+<h1>Players Planning To Attend : @attending</h1>
+
+@if (players == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Final Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var player in players)
+            {
+                <tr>
+                    <td>@player.playerId</td>
+                    <td>@player.playerName</td>
+                    <td>@player.playerFinalYear</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private int attending = 0;
+    public List<Player>? players = new List<Player>();
+    private List<Player>? ReadExcel()
+    {
+        players = PlayerService.GetPlayers();
+        if (players != null)
+        {
+            attending = players.Count;
+        }
+        return players;
+    }
+    protected override void OnInitialized()
+    {
+        ReadExcel();
+        base.OnInitialized();
+    }
+}

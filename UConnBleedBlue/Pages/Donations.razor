@@ -1,0 +1,41 @@
+﻿@page "/Donations"
+
+<div class="boxSmall">
+    <p style ="color: blue;"><b><font size="6">Donation instructions coming soon</font></b></p>
+    <p style ="color: blue;"><b><font size="6">Donations are encouraged to offset tailgate cost and add money to Andy's Football Alumni Fund & Mike Burton's Football NIL fund!</font></b></p>
+    <p style="color: blue;"><b><font size="6">This year, we hope to raise more than the 44K we raised last year!</font></b></p>
+</div>
+
+@code {
+    public string? img { get; set; }
+    List<string> fileList = new List<string>();
+    string path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images"}";
+    int index = 0;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+    }
+    public void LoadImages()
+    {
+        string[] files;
+        files = Directory.GetFiles(path);
+        foreach (var file in files)
+        {
+            if (Path.GetFileName(file) == "Andy1.jpg")
+            {
+                continue;
+            }
+            fileList.Add("images/" + Path.GetFileName(file));
+        }
+    }
+    private void OnTimerEvent(object? state)
+    {
+        img = fileList[index++];
+        if (index >= fileList.Count)
+        {
+            index = 0;
+        }
+        InvokeAsync(StateHasChanged);
+    }
+}
