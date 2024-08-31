@@ -50,7 +50,13 @@
         background-color: lightgray;
     }
 
-</style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        border: 2px solid blue;
+    }</style>
 
 <PageTitle>Football Alumni News</PageTitle>
 
@@ -59,7 +65,7 @@
 @if (imageSource is not null)
 {
     <div>
-        <img src="@imageSource" asp-append-version="true" style="width:1300px;height:800px;" />
+        <img src="@imageSource" asp-append-version="true" class="center" />
     </div>
 }
 <body>
@@ -104,6 +110,9 @@
             <h1><b>Similar to last year featuring Hotdogs, Hamburgers, Sausage & Peppers, Water, Soda, and Beer. I will again be grilling with last year's master chef 'Seamus Donagher'</b></h1>
         </aside>
     </div>
+    <div> 
+        <img src="images1/seamus.jpg" class="center">
+    </div>
     <div class="boxLarge">
         <section class="leftSmall">
             <h1>Notes:</h1>
@@ -128,7 +137,7 @@
 </body>
 
 @code {
-    private string imageSource = $"images/Andy1.jpg";
+    private string imageSource = $"images1/Andy1.jpg";
 
     protected override void OnInitialized()
     {
