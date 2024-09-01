@@ -1,0 +1,123 @@
+﻿@page "/videoGallery"
+
+<style>
+    .wrapper {
+        max-height: 2000px;
+        display: flex;
+        gap: 20px;
+    }
+
+    .box {
+        border: 5px solid blue;
+    }
+
+    .box img {
+        width: 100%;
+        height: 100%;
+    }
+
+    .box img {
+        object-fit: cover;
+    }
+</style>
+
+<video controls="controls">
+    <source src="/video/mikey@2-bullets.mp4" type="video/mp4" />
+</video>
+<video controls="controls">
+    <source src="/video/mikey@5-catchthrow.mp4" type="video/mp4" />
+</video>
+<video controls="controls">
+    <source src="/video/mikeyat5-td1.mp4" type="video/mp4" />
+</video>
+<video controls="controls">
+    <source src="/video/mikeyat5-td2.mp4" type="video/mp4" />
+</video>
+<video controls="controls">
+    <source src="/video/mikeyat6-biggain.mp4" type="video/mp4" />
+</video>
+
+<video controls="controls">
+    <source src="/video/mikeyat6-defense.mp4" type="video/mp4" />
+</video>
+<video controls="controls">
+    <source src="/video/mikeyat7-catchrun.mp4" type="video/mp4" />
+</video>
+<video controls="controls">
+    <source src="/video/mikeyat7-longrun.mp4" type="video/mp4" />
+</video>
+<video controls="controls">
+    <source src="/video/mikeyat7-tdpass-1.mp4" type="video/mp4" />
+</video>
+
+<video controls="controls" height="500">
+    <source src="/video/mikeylongrun.mov" type="video/quicktime" />
+</video>
+<video controls="controls" height="500">
+    <source src="/video/mikeygoodtackle.mov" type="video/quicktime" />
+</video>
+<video controls="controls" height="500">
+    <source src="/video/catchinacrowd.mov" type="video/quicktime" />
+</video>
+<video controls="controls" height="500">
+    <source src="/video/weeklyaward.mov" type="video/quicktime" />
+</video>
+<video controls="controls" height="500">
+    <source src="/video/sweepleft.mov" type="video/quicktime" />
+</video>
+
+
+
+
+@code {
+    // public string? img1 { get; set; }
+    // List<string> fileList1 = new List<string>();
+    // string path1 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images1"}";
+    // string path2 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images2"}";
+    // int index = 0;
+    // Timer? timer;
+
+    // protected override void OnInitialized()
+    // {
+    //     LoadImages();
+
+    //     if (timer != null)
+    //     {
+    //         timer.Dispose();
+    //     }
+    //     timer = new Timer(OnTimerEvent, null, 1000, 3500);
+
+    //     base.OnInitialized();
+    // }
+    // public void LoadImages()
+    // {
+    //     string[] files;
+    //     files = Directory.GetFiles(path1);
+    //     foreach (var file in files)
+    //     {
+    //         if (Path.GetFileName(file) == "Andy1.jpg")
+    //         {
+    //             continue;
+    //         }
+    //         fileList1.Add("images1/" + Path.GetFileName(file));
+    //     }
+    //     files = Directory.GetFiles(path2);
+    //     foreach (var file in files)
+    //     {
+    //         if (Path.GetFileName(file) == "Andy1.jpg")
+    //         {
+    //             continue;
+    //         }
+    //         fileList1.Add("images2/" + Path.GetFileName(file));
+    //     }
+    // }
+    // private void OnTimerEvent(object? state)
+    // {
+    //     img1 = fileList1[index++];
+    //     if (index >= fileList1.Count)
+    //     {
+    //         index = 0;
+    //     }
+    //     InvokeAsync(StateHasChanged);
+    // }
+}
