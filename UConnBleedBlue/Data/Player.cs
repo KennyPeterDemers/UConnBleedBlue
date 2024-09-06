@@ -1,6 +1,6 @@
 namespace UConnBleedBlue.Data
 {
-    public class Player
+    public partial class Player
     {
         public int playerId { get; set; }
         public string? playerName { get; set; }
