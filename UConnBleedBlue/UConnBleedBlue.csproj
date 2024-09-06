@@ -7,9 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Audio\**" />
+    <Content Remove="wwwroot\Audio\**" />
+    <EmbeddedResource Remove="wwwroot\Audio\**" />
+    <None Remove="wwwroot\Audio\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\images1\" />
-    <Folder Include="wwwroot\Audio\" />
-    <Folder Include="wwwroot\Video\" />
   </ItemGroup>
 
   <ItemGroup>
