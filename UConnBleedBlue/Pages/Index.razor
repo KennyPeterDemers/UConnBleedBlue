@@ -1,73 +1,13 @@
 ﻿@page "/"
 
-<style>
-    .boxSmall {
-        display: flex;
-        height: 100px;
-        color: blue;
-    }
-
-    .boxMedium {
-        display: flex;
-        height: 200px;
-        color: blue;
-    }
-
-    .boxLarge {
-        display: flex;
-        height: 600px;
-        color: blue;
-    }
-
-    .leftSmall {
-        width: 25%;
-        height: 80px;
-        background-color: yellow;
-    }
-
-    .rightSmall {
-        width: 70%;
-        height: 80px;
-        background-color: lightgray;
-        text-align:center;
-    }
-
-    .leftMedium {
-        width: 25%;
-        height: 80px;
-        background-color: yellow;
-    }
-
-    .rightMedium {
-        width: 70%;
-        height: 180px;
-        background-color: lightgray;
-    }
-
-    .rightLarge {
-        width: 70%;
-        height: 600px;
-        background-color: lightgray;
-    }
-
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 50%;
-        border: 2px solid blue;
-    }
-    .verticalspacer {
-        height: 30px;
-    }
-</style>
+@using UConnBleedBlue.Models
+@using MailKit.Net.Smtp
+@using MailKit.Security
 
 <PageTitle>Football Alumni News</PageTitle>
 
-<h1 style="color: blue;text-align:center;">
-    <b>
-        Second Annual Bleed Blue With Andy UConn Football Alumni Tailgate!
-    </b>
+<h1 class="textBox">
+    Second Annual Bleed Blue With Andy UConn Football Alumni Tailgate!
 </h1>
 
 @if (imageSource is not null)
@@ -81,53 +21,55 @@
 
     <div class="boxSmall">
         <section class="leftSmall">
-            <h1>Game:</h1>
+            <h1 class="textBox">Game:</h1>
         </section>
         <aside class="rightSmall">
-            <h1><b><font size="10">UConn vs. Rice</font></b></h1>
+            <h1 class="textBox">UConn vs. Rice</h1>
         </aside>
     </div>
     <div class="boxSmall">
         <section class="leftSmall">
-            <h1>Date / Time:</h1>
+            <h1 class="textBox">Date / Time:</h1>
         </section>
         <aside class="rightSmall">
-            <h1><b><font size="10">Saturday October 26, 2024   3:30</font></b></h1>
+            <h1 class="textBox">Saturday October 26, 2024   3:30</h1>
         </aside>
     </div>
     <div class="boxSmall">
         <section class="leftSmall">
-            <h1>Tailgate Starts:</h1>
+            <h1 class="textBox">Tailgate Starts:</h1>
         </section>
         <aside class="rightSmall">
-            <h1><b><font size="10">12:00 Noon</font></b></h1>
+            <h1 class="textBox">12:00 Noon</h1>
         </aside>
     </div>
-    <div class="boxMedium">
-        <section class="leftMedium">
-            <h1>Tickets:</h1>
+    <div class="boxSmall">
+        <section class="leftSmall">
+            <h1 class="textBox">Tickets:</h1>
         </section>
-        <aside class="rightMedium">
-            <h1 style ="color: red;"><b>Each Player Can Request 2 Free Tickets To The Game</b></h1>
+        <aside class="rightSmall">
+            <h1 class="textBox">Each Player Can Request 2 Free Tickets To The Game</h1>
         </aside>
     </div>
-    <div class="boxMedium">
-        <section class="leftMedium">
-            <h1>Parking:</h1>
+    <div class="boxSmall">
+        <section class="leftSmall">
+            <h1 class="textBox">Parking:</h1>
         </section>
-        <aside class="rightMedium">
-            <h1 style="color: red;"><b>Parking Will Have To Be Purchased</b></h1>
+        <aside class="rightSmall">
+            <h1 class="textBox">Parking Will Have To Be Purchased</h1>
         </aside>
     </div>
     <div class="boxMedium">
         <section class="leftSmall">
-            <h1>Menu:</h1>
+            <h1 class="textBox">Menu:</h1>
         </section>
         <aside class="rightMedium">
-            <h1><b>Similar to last year featuring Hotdogs, Hamburgers, Sausage & Peppers, Water, Soda, and Beer. I will again be grilling with last year's master chef 'Seamus Donagher'</b></h1>
+            <h1 class="textBox">Similar to last year featuring Hotdogs, Hamburgers, Sausage & Peppers, Water, Soda, and Beer. I will again be grilling with last year's master chef 'Seamus Donagher'</h1>
         </aside>
     </div>
-    <div> 
+    <div class="verticalspacer"></div>
+    <div class="verticalspacer"></div>
+    <div>
         <img src="images1/seamus.jpg" class="center">
     </div>
  
@@ -135,18 +77,60 @@
 
     <div class="boxLarge">
         <section class="leftSmall">
-            <h1>Notes:</h1>
+            <h1 class="textBox">Notes:</h1>
         </section>
         <aside class="rightLarge">
-            <p style="color: purple;"><b><font size="6">Email me if you will be attending. I'm in the process of buying food, beverages, and suplies. I need an accurate head count.'</font></b></p>
-            <p style="color: blue;"><b><font size="6">Andy will have his tent to celebrate the 20th Anniversary of the 2004 Motor City Bowl Team</font></b></p>
-            <p style="color: purple;"><b><font size="6">We can mingle between Andy's tent and the tailgate prior to the game</font></b></p>
-            <p style="color: blue;"><b><font size="6">Please send me any UConn Football related photos you have so I can post them on this site</font></b></p>
-            <p style="color: purple;"><b><font size="6">I need about 10 volunteers that can come to the tailgate early and help setup. Please email me if you'd like to help</font></b></p>
-            <p style="color: red;"><b><font size="6">The old site "www.UConnBleedBlue.com is under construction and will be combined with this site in a few weeks"</font></b></p>
+            <p class="textParagraph">Andy will have his tent to celebrate the 20th Anniversary of the 2004 Motor City Bowl Team</p>
+            <p class="textParagraph">We can mingle between Andy's tent and the tailgate prior to the game</p>
+            <p class="textParagraph">Please send me any UConn Football related photos you have so I can post them on this site</p>
+            <p class="textParagraph">I need about 10 volunteers that can come to the tailgate early and help setup. Please email me if you'd like to help</p>
+            <p class="textParagraph">The old site "www.UConnBleedBlue.com is under construction and will be combined with this site in a few weeks"</p>
         </aside>
     </div>
-  
+
+    <div class="verticalspacer"></div>
+
+    <div class="boxMedium">
+        <section class="leftSmall">
+            <h1>Attendance:</h1>
+        </section>
+        <aside class="rightMedium">
+           <EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
+                <div>
+                    <label class="textParagraph">
+                        Player Name:
+                        <InputText @bind-Value="EmailRequest.From" class="form-control mt-2" />
+                    </label>
+                </div>
+
+                <div>
+                    <label class="textParagraph">
+                        Player Email Address:
+                        <InputText @bind-Value="EmailRequest.FromEmail" class="form-control mt-2" />
+                    </label>
+                    <label>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;I want to volunteer to help at the tailgate
+                        <InputCheckbox typeof="checkbox" @bind-Value="IsChecked" />
+                    </label>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-primary mt-2">Click To Indicate You Are Attending</button>
+                </div>
+
+                <div>
+                    <label>
+                        @emailStatus
+                    </label>
+                </div>
+            </EditForm>
+        </aside>
+        <div class="verticalspacer"></div>
+    </div>
+
+
+    <div class="verticalspacer"></div>
+
     <div class="verticalspacer"></div>
 
     <div class="boxMedium">
@@ -154,18 +138,77 @@
             <h1>Questions:</h1>
         </section>
         <aside class="rightMedium">
-            <h1>Contact&nbsp;&nbsp;&nbsp;&nbsp;Kenny Demers</h1>
-            <h1>(860) 310-7141</h1>
-            <h1>kpdemers073@gmail.com</h1>
+            <h1 class="textParagraph">Contact&nbsp;&nbsp;&nbsp;&nbsp;Kenny Demers</h1>
+            <h1 class="textParagraph">(860) 310-7141</h1>
+            <h1 class="textParagraph">kpdemers073@gmail.com</h1>
         </aside>
     </div>
 </body>
 
 @code {
+    [SupplyParameterFromForm(FormName = "EmailForm")]
+    EmailRequest EmailRequest { get; set; } = new();
+
+    [Parameter]
+    public bool IsChecked { get; set; } = false;
+
     private string imageSource = $"images1/Andy1.jpg";
 
-    protected override void OnInitialized()
+    private string emailStatus = "";
+
+    Timer? timer;
+
+    private void OnTimerEvent(object? state)
     {
-        base.OnInitialized();
+        emailStatus = "";
+        IsChecked = false;
+        InvokeAsync(StateHasChanged);
+    }
+    void Submit()
+    {
+        try
+        {
+            // force TLS 1.2 connection if your application requires
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
+            string server = "mail5019.site4now.net";
+            int port = 587; // 587 for StartTls
+            string from = "kenny@andybleedblue.com";
+            string password = "UConnBleedBlue62$";
+            string to = "kenny@andybleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
+
+            var message = new MimeKit.MimeMessage();
+            message.From.Add(new MimeKit.MailboxAddress(EmailRequest.From, from)); // replace from_name with real name
+            message.To.Add(new MimeKit.MailboxAddress("kenny@andybleedblue.com", to)); // replace to_name with real name
+            message.Subject = "Player Attending";
+            message.Body = new MimeKit.TextPart("plain")
+                {
+                    Text = EmailRequest.From + " , " + EmailRequest.FromEmail + " , " + IsChecked.ToString()
+                };
+
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                client.Connect(server, port, MailKit.Security.SecureSocketOptions.StartTls); // for port 587
+                client.Authenticate(from, password);
+                client.Send(message);
+                client.Disconnect(true);
+            }
+            EmailRequest.From = "";
+            EmailRequest.FromEmail = "";
+            EmailRequest.Tribute = "";
+
+            emailStatus = "Attendance Information Successfully Submitted";
+
+            if (timer != null)
+            {
+                timer.Dispose();
+            }
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+        }
+        catch (Exception ex)
+        {
+            emailStatus = "Error - " + ex.Message;
+        }
     }
 }
+

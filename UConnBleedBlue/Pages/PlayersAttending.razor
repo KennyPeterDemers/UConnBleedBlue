@@ -1,12 +1,14 @@
 ﻿@page "/playersAttending"
 
-@using UConnBleedBlue.Data
+@using UConnBleedBlue.Models
 
 @inject PlayerService PlayerService
 
 <PageTitle>Players Attending</PageTitle>
 
 <h1>Players Planning To Attend : @attending</h1>
+
+
 
 @if (players == null)
 {

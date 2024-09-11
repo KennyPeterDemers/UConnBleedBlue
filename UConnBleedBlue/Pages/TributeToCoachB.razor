@@ -1,23 +1,89 @@
 ﻿@page "/TributeToCoachB"
 
+@using UConnBleedBlue.Models
+@using MailKit.Net.Smtp
+@using MailKit.Security
+
 <style>
     .messagebox {
         min-width: 50%;
         max-width: 100%;
         padding: 10px 10px 10px 10px;
         border: 1px solid blue;
-        margin: 5;
-    }</style>
+        margin: 5px;
+    }
 
-<h1>2024 Messages</h1>
+    .verticalspacer {
+        height: 40px;
+    }
 
-<div class="messagebox">
-    <p>This Section Of The Page Is Under Construction</p>
-    <p>Anyone not able to write a tribute last year can submit one this year</p>
-    <p>The submittal portion of this page should be finished shortly</p>
-</div>
+    textarea
+    {
+        width:50%;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+    }
+</style>
 
-<h1>2023 Messages</h1>
+<h1 style="color: blue;">2024 Messages</h1>
+
+<div class="verticalspacer"></div>
+
+<p style="color: blue;"><b><font size="4">Available For Players That Didn't Attend Last Year</font></b></p>
+
+<EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
+    <div>
+        <label style ="color: blue;">
+            Author Name:
+            <InputText @bind-Value="EmailRequest.From" class="form-control mt-2" />
+        </label>
+    </div>
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <label style="color: blue;">
+            Author Email Address:
+            <InputText @bind-Value="EmailRequest.FromEmail"  class="form-control mt-2" />
+        </label>
+    </div>
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <label style="color: blue;">
+            Your Tribute To Andy:
+        </label>
+    </div>
+
+    <div>
+        <textarea rows="@Rows"
+                  @bind-value=EmailRequest.Tribute
+                  @bind-value:event="oninput" />
+    </div>
+
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </div>
+
+    <div>
+        <label>
+            @emailStatus
+        </label>
+    </div>
+
+</EditForm>
+
+<div class="verticalspacer"></div>
+
+<div class="verticalspacer"></div>
+
+<h1 style="color: blue;">2023 Messages</h1>
 
 <div class="messagebox">
     <p>
@@ -3193,22 +3259,88 @@
     </p>
 </div>
 
-<div class="messagebox">
-    <p>
-        Under construction - still more tributes to be copied from old site to this site
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-    </p>
-    <p>
-        <b>
-        </b>
-    </p>
-</div>
+
+
+@code
+{
+    [SupplyParameterFromForm(FormName = "EmailForm")]
+    EmailRequest EmailRequest { get; set; } = new();
+
+    int MIN_ROWS = 5;
+    int MAX_ROWS = 500;
+
+    int Rows = 5;
+
+    string emailStatus = "";
+
+    protected override void OnInitialized()
+    {
+        EmailRequest.SetCallback(CalculateSize);
+
+        base.OnInitialized();
+    }
+    private void Submit()
+    {
+        if (EmailRequest.From.Length < 3)
+        {
+            return;
+        }
+        if (EmailRequest.FromEmail.Contains(".") == false)
+        {
+            return;
+        }
+        if (EmailRequest.FromEmail.Contains("@") == false)
+        {
+            return;
+        }
+        SendEmail();
+    }
+
+    void SendEmail()
+    {
+        try
+        {
+            // force TLS 1.2 connection if your application requires
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
+            string server = "mail5019.site4now.net";
+            int port = 587; // 587 for StartTls
+            string from = "kenny@andybleedblue.com";
+            string password = "UConnBleedBlue62$";
+            string to = "kenny@andybleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
+
+            var message = new MimeKit.MimeMessage();
+            message.From.Add(new MimeKit.MailboxAddress(EmailRequest.From, from)); // replace from_name with real name
+            message.To.Add(new MimeKit.MailboxAddress("kenny@andybleedblue.com", to)); // replace to_name with real name
+            message.Subject = EmailRequest.Subject;
+            message.Body = new MimeKit.TextPart("plain")
+            {
+                Text = EmailRequest.Tribute
+            };
+
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                client.Connect(server, port, MailKit.Security.SecureSocketOptions.StartTls); // for port 587
+                client.Authenticate(from, password);
+                client.Send(message);
+                client.Disconnect(true);
+            }
+            EmailRequest.From = "";
+            EmailRequest.FromEmail = "";
+            EmailRequest.Tribute = "";
+
+            emailStatus = "Tribute was successfully submitted";
+        }
+        catch (Exception ex)
+        {
+            emailStatus = "Error - " + ex.Message;
+        }
+    }
+
+    private void CalculateSize(string value)
+    {
+        Rows = Math.Max(value.Split('\n').Length, value.Split('\r').Length);
+        Rows = Math.Max(Rows, MIN_ROWS);
+        Rows = Math.Min(Rows, MAX_ROWS);
+    }
+}

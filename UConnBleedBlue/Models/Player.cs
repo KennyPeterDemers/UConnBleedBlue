@@ -1,4 +1,4 @@
-namespace UConnBleedBlue.Data
+namespace UConnBleedBlue.Models
 {
     public partial class Player
     {

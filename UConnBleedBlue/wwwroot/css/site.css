@@ -92,3 +92,80 @@ a, .btn-link {
     border: 5px solid black;
     margin: 0;
 }
+
+.verticalspacer {
+    height: 30px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border: 2px solid blue;
+}
+
+.boxSmall {
+    display: flex;
+    height: 100px;
+    color: blue;
+}
+
+.boxMedium {
+    display: flex;
+    height: 200px;
+    color: blue;
+}
+
+.boxLarge {
+    display: flex;
+    height: 600px;
+    color: blue;
+}
+
+.leftSmall {
+    width: 25%;
+    height: 80px;
+    background-color: yellow;
+}
+
+.rightSmall {
+    width: 66%;
+    height: 80px;
+    background-color: lightgray;
+    text-align: center;
+}
+
+.leftMedium {
+    width: 25%;
+    height: 80px;
+    background-color: yellow;
+}
+
+.rightMedium {
+    width: 66%;
+    height: 190px;
+    background-color: lightgray;
+}
+
+.rightLarge {
+    width: 66%;
+    height: 600px;
+    background-color: lightgray;
+}
+
+.textBox {
+    color: blue;
+    text-align: center;
+    font-weight: bold;
+}
+.textParagraph {
+    color: blue;
+    text-align: center;
+    font-weight: bold;
+    font-size:xx-large;
+}
+.tab {
+    display: inline-block;
+    margin-left: 4em;
+}

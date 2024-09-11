@@ -1,6 +1,6 @@
 using OfficeOpenXml;
 
-namespace UConnBleedBlue.Data
+namespace UConnBleedBlue.Models
 {
     public class PlayerService
     {
