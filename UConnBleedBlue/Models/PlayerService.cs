@@ -19,14 +19,14 @@ namespace UConnBleedBlue.Models
                     {
                         int totalColumns = excelWorksheet.Dimension.End.Column;
                         int totalRows = excelWorksheet.Dimension.End.Row;
-                        for (int row = 1; row <= totalRows; row++)
+                        for (int row = 2; row <= totalRows; row++)
                         {
                             Player player = new Player();
                             for (int col = 1; col <= totalColumns; col++)
                             {
                                 if (col == 1)
                                 {
-                                    player.playerId = row;
+                                    player.playerId = row - 1;
                                     object x = excelWorksheet.Cells[row, col].Value;
                                     if (x != null)
                                     {
@@ -36,10 +36,22 @@ namespace UConnBleedBlue.Models
                                 }
                                 if (col == 2)
                                 {
-                                    player.playerFinalYear = excelWorksheet.Cells[row, col].Value.ToString();
+                                    if (excelWorksheet.Cells[row, col].Value == null)
+                                    {
+                                        player.playerEmail = "";
+                                    }
+                                    else
+                                    {
+                                        player.playerEmail = excelWorksheet.Cells[row, col].Value.ToString();
+                                    }
                                     continue;
                                 }
                                 if (col == 3)
+                                {
+                                    player.playerFinalYear = excelWorksheet.Cells[row, col].Value.ToString();
+                                    continue;
+                                }
+                                if (col == 4)
                                 {
                                     player.playerAttending2024 = Convert.ToBoolean(excelWorksheet.Cells[row, col].Value.ToString());
                                     continue;

@@ -1,0 +1,51 @@
+﻿@page "/photoGalleryTeams"
+
+@using System.IO;
+
+<div class="teamList">
+    <div class="col-md-3">
+        <button class="btn-btn-primary" @onclick="LoadImages">Load Images</button>
+        <hr />
+        <hr />
+
+        @if (fileList != null && fileList.Count > 0)
+        {
+            int nSL = 0;
+            @foreach (string file in fileList)
+            {
+                nSL++;
+                <br />
+                <span>@nSL.</span>
+                <span style="cursor:pointer;text-decoration:underline;color:blue;" @onclick="@(e=>ReadFile(file))">@file</span>
+            }
+        }
+    </div>
+    <div class="teamList">
+        <h1 style="text-align: center">@imgName</h1>
+        <div class="teamPhoto">
+            <img src="@img" asp-append-version="true" />
+        </div>
+    </div>
+</div>
+
+@code {
+    string img = "";
+    string imgName = "N/A";
+    List<string> fileList = new List<string>();
+    string path = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\imagesTeamPhotos"}";
+
+    public void LoadImages()
+    {
+        string[] files = Directory.GetFiles(path);
+        foreach (var file in files)
+        {
+            fileList.Add(Path.GetFileName(file));
+        }
+    }
+    public void ReadFile(string fileName)
+    {
+        imgName = fileName.Split('.')[0];
+        img = "/imagesTeamPhotos/" + fileName;
+        StateHasChanged();
+    }
+}
