@@ -1,5 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.FluentUI.AspNetCore.Components;
+using Radzen;
 using UConnBleedBlue.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,7 @@ builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<PlayerService>();
 builder.Services.AddScoped<PlayerService>();
+builder.Services.AddFluentUIComponents();
 
 var app = builder.Build();
 

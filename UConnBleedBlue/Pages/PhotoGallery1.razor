@@ -1,61 +1,114 @@
 ﻿@page "/photoGallery1"
 
+
+
 @if (img1 is not null)
 {
+    <FluentStack HorizontalGap="10">
+        <FluentButton Appearance="Appearance.Accent" OnClick="@Pause">@labelText @sequenceNumber</FluentButton>
+    </FluentStack>
+
+
     <div class="wrapper">
         <div class="box box"><img src="@img1"></div>
     </div>
 }
 
 @code {
+    Orientation orientation = Orientation.Horizontal;
     public string? img1 { get; set; }
     List<string> fileList1 = new List<string>();
     string path1 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images1"}";
     string path2 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images2"}";
     int index = 0;
     Timer? timer;
-
+    string sequenceNumber = "";
+    int value = 0;
+    int max = 1;
+    string err = "";
+    string labelText = "Click To Pause The Images Changing:  ";
     protected override void OnInitialized()
     {
-        LoadImages();
-
-        if (timer != null)
+        try
         {
-            timer.Dispose();
-        }
-        timer = new Timer(OnTimerEvent, null, 1000, 3500);
+            LoadImages();
 
-        base.OnInitialized();
+            if (timer != null)
+            {
+                timer.Dispose();
+            }
+            timer = new Timer(OnTimerEvent, null, 500, 3000);
+
+            base.OnInitialized();
+
+        }
+        catch (Exception ex)
+        {
+            err = ex.Message;
+        }
     }
     public void LoadImages()
     {
         string[] files;
-        files = Directory.GetFiles(path1);
-        foreach (var file in files)
+
+        try
         {
-            if (Path.GetFileName(file) == "Andy1.jpg")
+            files = Directory.GetFiles(path1);
+            foreach (var file in files)
             {
-                continue;
+                if (Path.GetFileName(file) == "Andy1.jpg")
+                {
+                    continue;
+                }
+                fileList1.Add("images1/" + Path.GetFileName(file));
             }
-            fileList1.Add("images1/" + Path.GetFileName(file));
+            files = Directory.GetFiles(path2);
+            foreach (var file in files)
+            {
+                if (Path.GetFileName(file) == "Andy1.jpg")
+                {
+                    continue;
+                }
+                fileList1.Add("images2/" + Path.GetFileName(file));
+            }
+            max = fileList1.Count;
+            sequenceNumber = String.Format("{0} of {1}", index + 1, fileList1.Count);
+            img1 = fileList1[0];
         }
-        files = Directory.GetFiles(path2);
-        foreach (var file in files)
+        catch (Exception ex)
         {
-            if (Path.GetFileName(file) == "Andy1.jpg")
-            {
-                continue;
-            }
-            fileList1.Add("images2/" + Path.GetFileName(file));
+            err = ex.Message;
         }
     }
     private void OnTimerEvent(object? state)
     {
-        img1 = fileList1[index++];
-        if (index >= fileList1.Count)
+        try
         {
-            index = 0;
+            img1 = fileList1[index++];
+            if (index >= fileList1.Count)
+            {
+                index = 0;
+            }
+            sequenceNumber = String.Format("{0} of {1}", index, fileList1.Count);
+            InvokeAsync(StateHasChanged);
         }
-        InvokeAsync(StateHasChanged);
+        catch (Exception ex)
+        {
+            err = ex.Message;
+        }
+    }
+    private void Pause()
+    {
+        timer?.Dispose();
+        timer = null;
+        if (labelText.Contains("Pause"))
+        {
+            labelText = "Click To Continue The Images Changing:  ";
+        }
+        else
+        {
+            timer = new Timer(OnTimerEvent, null, 500, 3000);
+            labelText = "Click To Pause The Images Changing:  ";
+        }
     }
 }

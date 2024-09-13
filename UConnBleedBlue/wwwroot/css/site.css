@@ -67,6 +67,12 @@ a, .btn-link {
     content: "An error has occurred."
 }
 
+.buttonPause {
+    color: blue;
+    font-weight: bold;
+    font-size: x-large;
+}
+
 .wrapper {
     max-height: 2000px;
     display: flex;
@@ -87,7 +93,7 @@ a, .btn-link {
 }
 
 .messageBox {
-    width: 50%;;
+    width: 50%;
     padding: 10px 10px 10px 10px;
     border: 2px solid blue;
     margin: auto;
@@ -96,6 +102,12 @@ a, .btn-link {
     text-align: center;
     font-size: x-large;
     font-weight: bold;
+}
+
+.donations {
+    color: blue;
+    font-weight: bold;
+    font-size: xx-large;
 }
 
 .verticalspacer {
@@ -203,3 +215,17 @@ a, .btn-link {
 .colorBlue {
     color: blue;
 }
+
+.seqNumber {
+    color: blue;
+    font-weight: bold;
+    font-size: xx-large;
+    text-align: center;
+}
+
+.sliderStyle {
+    color: blue;
+    font-weight: bold;
+    font-size: xx-large;
+}
+
