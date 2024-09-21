@@ -1,0 +1,38 @@
+﻿@page "/TeamPhoto"
+
+@inject PlayerService PlayerService
+
+<style>
+    .imageTeams {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+        border: 3px solid blue;
+    }
+</style>
+
+@using UConnBleedBlue.Models
+
+<p>
+    <div>
+        <img src="@imageSrc" class="imageTeams">
+    </div>
+</p>
+
+
+@code {
+    string imageSrc = "";
+
+    protected override void OnInitialized()
+    {
+        // create the path to the image via the image file's name
+        imageSrc = string.Format("imagesTeamPhotos/{0}.png", PlayerService.SelectedPlayerFinalYear);
+        if (File.Exists(imageSrc) == false)
+        {
+            imageSrc = "imagesTeamPhotos/MissingTeamPhoto.png";
+
+        }
+    }
+
+}

@@ -15,7 +15,6 @@
 }
 
 @code {
-    Orientation orientation = Orientation.Horizontal;
     public string? img1 { get; set; }
     List<string> fileList1 = new List<string>();
     string path1 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images1"}";
@@ -23,7 +22,7 @@
     int index = 0;
     Timer? timer;
     string sequenceNumber = "";
-    int value = 0;
+    //int value = 0;
     int max = 1;
     string err = "";
     string labelText = "Click To Pause The Images Changing:  ";
@@ -38,8 +37,6 @@
                 timer.Dispose();
             }
             timer = new Timer(OnTimerEvent, null, 500, 3000);
-
-            base.OnInitialized();
 
         }
         catch (Exception ex)

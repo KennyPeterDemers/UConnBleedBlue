@@ -72,7 +72,7 @@
     </div>
 
     <div>
-        <label>
+        <label class="labelError">
             @emailStatus
         </label>
     </div>
@@ -3273,6 +3273,8 @@
 
     string emailStatus = "";
 
+    Timer? timer;
+
     protected override void OnInitialized()
     {
         EmailRequest.SetCallback(CalculateSize);
@@ -3281,16 +3283,38 @@
     }
     private void Submit()
     {
+        if (timer != null)
+        {
+            timer.Dispose();
+        }
         if (EmailRequest.From.Length < 3)
         {
+            emailStatus = "Enter a valid name";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            return;
+        }
+        if (EmailRequest.FromEmail.Length < 7)
+        {
+            emailStatus = "Enter a valid email address";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
             return;
         }
         if (EmailRequest.FromEmail.Contains(".") == false)
         {
+            emailStatus = "Enter a valid email address";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
             return;
         }
         if (EmailRequest.FromEmail.Contains("@") == false)
         {
+            emailStatus = "Enter a valid email address";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            return;
+        }
+        if (EmailRequest.Tribute.Length < 20)
+        {
+            emailStatus = "Enter a valid tribute";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
             return;
         }
         SendEmail();
@@ -3330,10 +3354,13 @@
             EmailRequest.Tribute = "";
 
             emailStatus = "Tribute was successfully submitted";
+
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
         }
         catch (Exception ex)
         {
             emailStatus = "Error - " + ex.Message;
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
         }
     }
 
@@ -3343,4 +3370,10 @@
         Rows = Math.Max(Rows, MIN_ROWS);
         Rows = Math.Min(Rows, MAX_ROWS);
     }
+    private void OnTimerEvent(object? state)
+    {
+        emailStatus = "";
+        InvokeAsync(StateHasChanged);
+    }
+
 }

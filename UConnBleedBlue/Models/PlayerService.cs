@@ -4,6 +4,7 @@ namespace UConnBleedBlue.Models
 {
     public class PlayerService
     {
+        public string SelectedPlayerFinalYear { get; set; } = "";
         public List<Player>? GetPlayers()
         {
             try

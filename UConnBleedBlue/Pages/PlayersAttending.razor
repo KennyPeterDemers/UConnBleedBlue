@@ -3,6 +3,8 @@
 @using UConnBleedBlue.Models
 
 @inject PlayerService PlayerService
+@inject NavigationManager NavigationManager;
+
 
 <PageTitle>Players Attending</PageTitle>
 
@@ -32,6 +34,9 @@ else
                     <td>@player.playerId</td>
                     <td>@player.playerName</td>
                     <td>@player.playerFinalYear</td>
+                    <td>
+                        <button @onclick="@(() => ViewTeam(player.playerFinalYear))">View</button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -54,5 +59,19 @@ else
     {
         ReadExcel();
         base.OnInitialized();
+    }
+    public void ViewTeam(string? year)
+    {
+        if (year == null)
+        {
+            return;
+        }
+        if (year == "?")
+        {
+            return;
+        }
+        // Save the required year of the photo in the PlayerService which can be accessed by other components
+        PlayerService.SelectedPlayerFinalYear = year;
+        NavigationManager.NavigateTo("TeamPhoto");
     }
 }

@@ -84,8 +84,8 @@ a, .btn-link {
 }
 
 .box img {
-    width: 100%;
-    height: 100%;
+    width: 90%;
+    height: 90%;
 }
 
 .box img {
@@ -93,15 +93,26 @@ a, .btn-link {
 }
 
 .messageBox {
+    width: 90%;
+    padding: 10px 10px 10px 10px;
+    border: 2px solid blue;
+    margin: auto;
+    color: blue;
+    background-color: yellow;
+    text-align: center;
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.tickets {
     width: 50%;
     padding: 10px 10px 10px 10px;
     border: 2px solid blue;
     margin: auto;
-    color:blue;
-    background-color:blanchedalmond;
+    color: blue;
+    background-color: floralwhite;
     text-align: center;
     font-size: x-large;
-    font-weight: bold;
 }
 
 .donations {
@@ -119,57 +130,10 @@ a, .btn-link {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    height: 50%;
     border: 2px solid blue;
 }
 
-.boxSmall {
-    display: flex;
-    height: 100px;
-    color: blue;
-}
-
-.boxMedium {
-    display: flex;
-    height: 200px;
-    color: blue;
-}
-
-.boxLarge {
-    display: flex;
-    height: 490px;
-    color: blue;
-}
-
-.leftSmall {
-    width: 25%;
-    height: 80px;
-    background-color: yellow;
-}
-
-.rightSmall {
-    width: 66%;
-    height: 80px;
-    background-color: lightgray;
-    text-align: center;
-}
-
-.leftMedium {
-    width: 25%;
-    height: 80px;
-    background-color: yellow;
-}
-
-.rightMedium {
-    width: 66%;
-    height: 190px;
-    background-color: lightgray;
-}
-
-.rightLarge {
-    width: 66%;
-    height: 450px;
-    background-color: lightgray;
-}
 
 .textBox {
     color: blue;
@@ -223,9 +187,10 @@ a, .btn-link {
     text-align: center;
 }
 
-.sliderStyle {
-    color: blue;
+.BigAndBold {
+    color: red;
     font-weight: bold;
     font-size: xx-large;
 }
+
 
