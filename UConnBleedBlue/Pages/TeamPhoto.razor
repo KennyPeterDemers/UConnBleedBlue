@@ -14,11 +14,14 @@
 
 @using UConnBleedBlue.Models
 
-<p>
-    <div>
-        <img src="@imageSrc" class="imageTeams">
-    </div>
-</p>
+@if (imageSrc is not null)
+{
+    <p>
+        <div>
+            <img src="@imageSrc" class="imageTeams">
+        </div>
+    </p>
+}
 
 
 @code {
@@ -26,12 +29,23 @@
 
     protected override void OnInitialized()
     {
-        // create the path to the image via the image file's name
-        imageSrc = string.Format("imagesTeamPhotos/{0}.png", PlayerService.SelectedPlayerFinalYear);
-        if (File.Exists(imageSrc) == false)
+        try
         {
-            imageSrc = "imagesTeamPhotos/MissingTeamPhoto.png";
+            // create the path to the image via the image file's name
+            // File.Exists() needs wwwroot prefix to find it
+            imageSrc = $"wwwroot/imagesTeamPhotos/{PlayerService.SelectedPlayerFinalYear}.png";
+            if (File.Exists(imageSrc) == false)
+            {
+                imageSrc = "wwwroot/imagesTeamPhotos/MissingTeamPhoto.png";
 
+            }
+            // remove prefix
+            imageSrc = imageSrc.Substring(8);
+            InvokeAsync(StateHasChanged);
+        }
+        catch (Exception ex)
+        {
+            
         }
     }
 
