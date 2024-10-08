@@ -80,7 +80,7 @@ a, .btn-link {
 }
 
 .box {
-    border: 5px solid blue;
+    border: 1px solid blue;
 }
 
 .box img {
@@ -123,7 +123,7 @@ a, .btn-link {
 }
 
 .verticalspacer {
-    height: 30px;
+    height: 20px;
 }
 
 .center {

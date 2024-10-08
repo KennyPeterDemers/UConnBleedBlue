@@ -2,17 +2,17 @@
 
 @using UConnBleedBlue.Models
 
-@inject PlayerService PlayerService
+@inject PlayersService PlayerService
 @inject NavigationManager NavigationManager;
 
 
 <PageTitle>Players Attending</PageTitle>
 
-<h1 class="colorBlue">Players Planning To Attend : @attending</h1>
+<h1 class="colorBlue">Players Planning To Attend : @playersService.PlayerList.Count</h1>
 
 
 
-@if (players == null)
+@if (playersService == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -28,14 +28,14 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var player in players)
+            @foreach (var player in @playersService.PlayerList)
             {
                 <tr>
                     <td>@player.playerId</td>
                     <td>@player.playerName</td>
                     <td>@player.playerFinalYear</td>
                     <td>
-                        <button @onclick="@(() => ViewTeam(player.playerFinalYear))">View</button>
+                        <button @onclick="@(() => ViewTeam(player.playerFinalYear, player.headCoach))">View</button>
                     </td>
                 </tr>
             }
@@ -44,34 +44,43 @@ else
 }
 
 @code {
-    private int attending = 0;
-    public List<Player>? players = new List<Player>();
-    private List<Player>? ReadExcel()
+    public PlayersService playersService = new PlayersService();
+
+    public void ViewTeam(string? year, string? headCoach)
     {
-        players = PlayerService.GetPlayers();
-        if (players != null)
-        {
-            attending = players.Count;
-        }
-        return players;
-    }
-    protected override void OnInitialized()
-    {
-        ReadExcel();
-        base.OnInitialized();
-    }
-    public void ViewTeam(string? year)
-    {
-        if (year == null)
+        if ((year == null) || (headCoach == null))
         {
             return;
         }
-        if (year == "?")
+        if ((year == "?") || (headCoach == "?"))
         {
             return;
         }
-        // Save the required year of the photo in the PlayerService which can be accessed by other components
+        if ((year == " ") || (headCoach == " "))
+        {
+            return;
+        }
+        // Save the required year and coach of the photo in the PlayerService which can be accessed by other components
         PlayerService.SelectedPlayerFinalYear = year;
+        PlayerService.HeadCoach = headCoach;
+
+        // Get the player's team photo of his final year
+        PlayerService.ImageSource = $"wwwroot/imagesTeamPhotos/{PlayerService.SelectedPlayerFinalYear}.png";
+        if (File.Exists(PlayerService.ImageSource) == false)
+        {
+            // If that's one of the missing team photos - try the previous year
+            int previousYear = int.Parse(PlayerService.SelectedPlayerFinalYear) - 1;
+            PlayerService.ImageSource = $"wwwroot/imagesTeamPhotos/{previousYear}.png";
+
+            // if that picture does not exist - get error message pgoto
+            if (File.Exists(PlayerService.ImageSource) == false)
+            {
+                PlayerService.ImageSource = "wwwroot/imagesTeamPhotos/MissingTeamPhoto.png";
+            }
+        }
+        // remove prefix
+        PlayerService.ImageSource = PlayerService.ImageSource.Substring(8);
+
         NavigationManager.NavigateTo("TeamPhoto");
     }
 }

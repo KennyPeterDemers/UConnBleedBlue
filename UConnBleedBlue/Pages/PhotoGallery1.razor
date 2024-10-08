@@ -1,5 +1,15 @@
 ﻿@page "/photoGallery1"
 
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 90%;
+        border: 2px solid blue;
+    }
+</style>
 
 
 @if (img1 is not null)
@@ -9,8 +19,8 @@
     </FluentStack>
 
 
-    <div class="wrapper">
-        <div class="box box"><img src="@img1"></div>
+    <div>
+        <img src="@img1" class="center">
     </div>
 }
 
@@ -26,6 +36,7 @@
     int max = 1;
     string err = "";
     string labelText = "Click To Pause The Images Changing:  ";
+
     protected override void OnInitialized()
     {
         try

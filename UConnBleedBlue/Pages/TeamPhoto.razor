@@ -1,6 +1,6 @@
 ﻿@page "/TeamPhoto"
 
-@inject PlayerService PlayerService
+@inject PlayersService PlayerService
 
 <style>
     .imageTeams {
@@ -9,6 +9,18 @@
         margin-right: auto;
         width: 80%;
         border: 3px solid blue;
+    }
+
+    .messageBoxXL {
+        width: 80%;
+        padding: 10px 10px 10px 10px;
+        border: 2px solid blue;
+        margin: auto;
+        color: white;
+        background-color: blue;
+        text-align: center;
+        font-size: x-large;
+        font-weight: bold;
     }
 </style>
 
@@ -21,31 +33,49 @@
             <img src="@imageSrc" class="imageTeams">
         </div>
     </p>
+    <div class="messageBoxXL">
+        <p>
+            @label
+        </p>
+    </div>
 }
 
 
 @code {
     string imageSrc = "";
+    string label = "";
+    string err = "";
 
     protected override void OnInitialized()
     {
         try
         {
-            // create the path to the image via the image file's name
-            // File.Exists() needs wwwroot prefix to find it
-            imageSrc = $"wwwroot/imagesTeamPhotos/{PlayerService.SelectedPlayerFinalYear}.png";
-            if (File.Exists(imageSrc) == false)
-            {
-                imageSrc = "wwwroot/imagesTeamPhotos/MissingTeamPhoto.png";
+            // // Get the player's team photo of his final year
+            // imageSrc = $"wwwroot/imagesTeamPhotos/{PlayerService.SelectedPlayerFinalYear}.png";
+            // if (File.Exists(imageSrc) == false)
+            // {
+            //     // If that's one of the missing team photos - try the previous year
+            //     int previousYear = int.Parse(PlayerService.SelectedPlayerFinalYear) - 1;
+            //     imageSrc = $"wwwroot/imagesTeamPhotos/{previousYear}.png";
 
-            }
-            // remove prefix
-            imageSrc = imageSrc.Substring(8);
+            //     // if that picture does not exist - get error message pgoto
+            //     if (File.Exists(imageSrc) == false)
+            //     {
+            //         imageSrc = "wwwroot/imagesTeamPhotos/MissingTeamPhoto.png";
+            //     }
+            // }
+            // // remove prefix
+            // imageSrc = imageSrc.Substring(8);
+
+            imageSrc = PlayerService.ImageSource;
+
+            label = string.Format("{0}    Head Coach: {1}", PlayerService.SelectedPlayerFinalYear, PlayerService.HeadCoach);
+
             InvokeAsync(StateHasChanged);
         }
         catch (Exception ex)
         {
-            
+            err = ex.Message;
         }
     }
 

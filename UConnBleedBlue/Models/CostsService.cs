@@ -2,15 +2,18 @@ using OfficeOpenXml;
 
 namespace UConnBleedBlue.Models
 {
-    public class PlayerService
+    public class CostsService
     {
-        public string SelectedPlayerFinalYear { get; set; } = "";
-        public List<Player>? GetPlayers()
+        public string Err { get; set; } = "";
+
+        public List<Cost> CostList = new List<Cost>();
+
+        public double TotalCosts { get; set; } = 0.0;
+        public CostsService()
         {
             try
             {
-                List<Player> players = new List<Player>();
-                string filePath = Directory.GetCurrentDirectory() + @"\\wwwroot\players\Players.xlsx";
+                string filePath = Directory.GetCurrentDirectory() + @"\\wwwroot\Data\Costs.xlsx";
                 FileInfo fileInfo = new FileInfo(filePath);
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
                 using (ExcelPackage excelPackage = new ExcelPackage(fileInfo))
@@ -22,16 +25,16 @@ namespace UConnBleedBlue.Models
                         int totalRows = excelWorksheet.Dimension.End.Row;
                         for (int row = 2; row <= totalRows; row++)
                         {
-                            Player player = new Player();
+                            Cost cost = new Cost();
                             for (int col = 1; col <= totalColumns; col++)
                             {
                                 if (col == 1)
                                 {
-                                    player.playerId = row - 1;
+                                    cost.CostId = row - 1;
                                     object x = excelWorksheet.Cells[row, col].Value;
                                     if (x != null)
                                     {
-                                        player.playerName = x.ToString();
+                                        cost.Description = x.ToString();
                                     }
                                     continue;
                                 }
@@ -39,34 +42,24 @@ namespace UConnBleedBlue.Models
                                 {
                                     if (excelWorksheet.Cells[row, col].Value == null)
                                     {
-                                        player.playerEmail = "";
+                                        cost.Amount = 0.0;
                                     }
                                     else
                                     {
-                                        player.playerEmail = excelWorksheet.Cells[row, col].Value.ToString();
+                                        cost.Amount = (double)excelWorksheet.Cells[row, col].Value;
                                     }
-                                    continue;
-                                }
-                                if (col == 3)
-                                {
-                                    player.playerFinalYear = excelWorksheet.Cells[row, col].Value.ToString();
-                                    continue;
-                                }
-                                if (col == 4)
-                                {
-                                    player.playerAttending2024 = Convert.ToBoolean(excelWorksheet.Cells[row, col].Value.ToString());
-                                    continue;
+                                    break;
                                 }
                             }
-                            players.Add(player);
+                            CostList.Add(cost);
+                            TotalCosts += cost.Amount;
                         }
                     }
                 }
-                return players;
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
+                Err =  ex.Message;
             }
         }
     }
