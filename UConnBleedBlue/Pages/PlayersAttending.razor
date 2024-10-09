@@ -5,10 +5,22 @@
 @inject PlayersService PlayerService
 @inject NavigationManager NavigationManager;
 
+<style>
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 50px;
+        color: #ffffff;
+        overflow: hidden;
+    }
 
-<PageTitle>Players Attending</PageTitle>
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+</style>
 
-<h1 class="colorBlue">Players Planning To Attend : @playersService.PlayerList.Count</h1>
+<h1>Players Planning To Attend : @playersService.PlayerList.Count</h1>
 
 
 

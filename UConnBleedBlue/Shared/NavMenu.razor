@@ -1,9 +1,6 @@
 ﻿@using UConnBleedBlue.Models
 
-@* @inject PlayersService PlayersService
-@inject CostsService CostsService
-@inject DonationsService DonationsService
- *@
+
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="">UConnBleedBlue</a>
@@ -84,7 +81,7 @@
 
     private string playersThatDonatedPageLabel = "";
 
-    private string donatePageLabel = "Donate:";
+    private string donatePageLabel = "Donate";
 
     private string costsPageLabel = "";
 
@@ -104,13 +101,13 @@
     {
         try
         {
-            costsPageLabel = string.Format("Tailgate Costs: ${0}", costsService.TotalCosts);
+            costsPageLabel = string.Format("Tailgate Costs  ${0}", costsService.TotalCosts);
 
             //donatePageLabel = "Donate: " + donationsService.TotalDonations.ToString("C");
 
-            playersAttendingPageLabel = $"Players Attending - {playersService.PlayerList.Count}";
+            playersAttendingPageLabel = $"Players Attending  {playersService.PlayerList.Count}";
 
-            playersThatDonatedPageLabel = $"Players Donating - {donationsService.NumberOfPeopleDonating}";
+            playersThatDonatedPageLabel = $"Current Donors  {donationsService.NumberOfPeopleDonating}";
         }
         catch (Exception ex)
         {

@@ -25,6 +25,7 @@ namespace UConnBleedBlue.Models
                 using (ExcelPackage excelPackage = new ExcelPackage(fileInfo))
                 {
                     object x;
+                    int id = 1;
                     ExcelWorksheet? excelWorksheet = excelPackage.Workbook.Worksheets.FirstOrDefault();
                     if (excelWorksheet != null)
                     {
@@ -37,7 +38,7 @@ namespace UConnBleedBlue.Models
                             {
                                 if (col == 1)
                                 {
-                                    donation.PlayerId = row - 2;
+                                    donation.PlayerId = id++;
                                     x = excelWorksheet.Cells[row, col].Value;
                                     if (x != null)
                                     {
@@ -68,6 +69,10 @@ namespace UConnBleedBlue.Models
                             if (doubleEntry == false)
                             {
                                 DonationList.Add(donation);
+                            }
+                            else
+                            {
+                                id--;
                             }
                         }
                     }
