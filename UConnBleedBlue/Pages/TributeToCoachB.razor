@@ -25,9 +25,22 @@
         background-color: #f8f8f8;
         font-size: 16px;
     }
+
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 50px;
+        color: white;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
 </style>
 
-<h1 style="color: blue;">2024 Messages</h1>
+<h1>2024 Messages</h1>
 
 <div class="messagebox">
     <p>
@@ -54,7 +67,7 @@
 
 <div class="verticalspacer"></div>
 
-<p style="color: blue;"><b><font size="4">Available For Players That Didn't Attend Last Year</font></b></p>
+<p style="color: blue;"><b><font size="4">Available For Anyone That Didn't Submit A Message Last Year</font></b></p>
 
 <EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
     <div>
@@ -106,7 +119,7 @@
 
 <div class="verticalspacer"></div>
 
-<h1 style="color: blue;">2023 Messages</h1>
+<h1>2023 Messages</h1>
 
 <div class="messagebox">
     <p>

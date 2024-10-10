@@ -19,7 +19,7 @@
     }
 </style>
 
-<h1>Current Donation Total : $@donationsService.TotalDonations</h1>
+<h1>Current Donation Total : @donationsService.TotalDonations.ToString("C")</h1>
 
 
 @if (donationsService == null)

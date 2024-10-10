@@ -101,7 +101,7 @@
     {
         try
         {
-            costsPageLabel = string.Format("Tailgate Costs  ${0}", costsService.TotalCosts);
+            costsPageLabel = string.Format("Costs {0}", costsService.TotalCosts.ToString("C"));
 
             //donatePageLabel = "Donate: " + donationsService.TotalDonations.ToString("C");
 

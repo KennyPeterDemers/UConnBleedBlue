@@ -5,7 +5,7 @@
 <style>
 
     .verticalspacer {
-        height: 10px;
+        height: 20px;
     }
 
     .messageBox {
@@ -38,16 +38,21 @@
         background-color: peachpuff;
     }
 
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 50px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
 </style>
 
-<div class="messageBox mbFontSize1 mbBackColor3">
-    <p>
-        Tailgate Costs As Of @Today
-    </p>
-    <p>
-        @costsService.TotalCosts.ToString("C")
-    </p>
-</div>
+<h1>Current Tailgate Costs & Player Donations</h1>
 
 <div class="verticalspacer"></div>
 
@@ -69,6 +74,9 @@
     </p>
     <p>
         @costsService.CostList[5].Description - $@costsService.CostList[5].Amount
+    </p>
+    <p>
+        Total Costs - @costsService.TotalCosts.ToString("C")
     </p>
 </div>
 
