@@ -9,16 +9,28 @@
         height: 90%;
         border: 2px solid blue;
     }
+
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 20px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
 </style>
 
 
 @if (img1 is not null)
 {
-    <FluentStack HorizontalGap="10">
-        <FluentButton Appearance="Appearance.Accent" OnClick="@Pause">@labelText @sequenceNumber</FluentButton>
-    </FluentStack>
-
-
+    <h1>@sequenceNumber</h1>
+    <p>
+        <button Color="ButtonColor.Primary" @onclick="Pause">@buttonPauseText</button>
+    </p>
     <div>
         <img src="@img1" class="center">
     </div>
@@ -30,12 +42,14 @@
     string path1 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images1"}";
     string path2 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images2"}";
     int index = 0;
+    //int goToIndex = 73;
     Timer? timer;
     string sequenceNumber = "";
     //int value = 0;
     int max = 1;
     string err = "";
-    string labelText = "Click To Pause The Images Changing:  ";
+    string buttonPauseText = "Pause";
+    bool disable = true;
 
     protected override void OnInitialized()
     {
@@ -105,18 +119,20 @@
             err = ex.Message;
         }
     }
-    private void Pause()
+    protected void Pause(EventArgs args)
     {
         timer?.Dispose();
         timer = null;
-        if (labelText.Contains("Pause"))
+        if (buttonPauseText == "Pause")
         {
-            labelText = "Click To Continue The Images Changing:  ";
+            buttonPauseText = "Continue";
+            disable = false;
         }
         else
         {
             timer = new Timer(OnTimerEvent, null, 500, 3000);
-            labelText = "Click To Pause The Images Changing:  ";
+            buttonPauseText = "Pause";
+            disable = true;
         }
     }
 }
