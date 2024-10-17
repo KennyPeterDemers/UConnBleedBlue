@@ -28,9 +28,13 @@
 @if (img1 is not null)
 {
     <h1>@sequenceNumber</h1>
+
     <p>
-        <button Color="ButtonColor.Primary" @onclick="Pause">@buttonPauseText</button>
+        <button style="margin-right: 10%" Color="ButtonColor.Primary" @onclick="Pause">@buttonPauseText</button>
+        <label>Go To Index</label>
+        <input @bind="GoToIndex" />
     </p>
+
     <div>
         <img src="@img1" class="center">
     </div>
@@ -49,7 +53,10 @@
     int max = 1;
     string err = "";
     string buttonPauseText = "Pause";
-    bool disable = true;
+    //bool disable = true;
+    private string GoToIndex { get; set; } = string.Empty;
+    public string GoToIndexLast { get; set; } = string.Empty;
+    public bool GoToInProgress { get; set; } = false;
 
     protected override void OnInitialized()
     {
@@ -106,6 +113,30 @@
     {
         try
         {
+            if (GoToInProgress)
+            {
+                return;
+            }
+            if (GoToIndex != GoToIndexLast)
+            {
+                int newIndex = int.Parse(GoToIndex);
+                if ((newIndex < 1) || (newIndex > fileList1.Count))
+                {
+                    GoToIndex = string.Empty;
+                    GoToIndexLast = GoToIndex;
+                }
+                else
+                {
+                    index = newIndex;
+                    img1 = fileList1[index];
+                    GoToIndexLast = GoToIndex;
+                    GoToInProgress = true;
+                    buttonPauseText = "Continue";
+                    sequenceNumber = String.Format("{0} of {1}", index, fileList1.Count);
+                    InvokeAsync(StateHasChanged);
+                    return;
+                }
+            }
             img1 = fileList1[index++];
             if (index >= fileList1.Count)
             {
@@ -126,13 +157,16 @@
         if (buttonPauseText == "Pause")
         {
             buttonPauseText = "Continue";
-            disable = false;
+            //disable = false;
         }
         else
         {
+            GoToInProgress = false;
+            GoToIndex = string.Empty;
+            GoToIndexLast = string.Empty;
             timer = new Timer(OnTimerEvent, null, 500, 3000);
             buttonPauseText = "Pause";
-            disable = true;
+            //disable = true;
         }
     }
 }

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Radzen;
 using UConnBleedBlue.Models;
 
 var builder = WebApplication.CreateBuilder(args);

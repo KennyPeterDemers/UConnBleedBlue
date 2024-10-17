@@ -29,7 +29,9 @@
 {
     <h1>@year</h1>
     <p>
-        <button Color="ButtonColor.Primary" @onclick="Pause">@buttonPauseText</button>
+        <button style="margin-right: 10%" Color="ButtonColor.Primary" @onclick="Pause">@buttonPauseText</button>
+        <label>Go To Year</label>
+        <input @bind="GoToYear" />
     </p>
 
     <div>
@@ -48,6 +50,9 @@
     string err = "";
     string year = "1900";
     string buttonPauseText = "Pause";
+    public string GoToYear { get; set; } = string.Empty;
+    public string GoToYearLast { get; set; } = string.Empty;
+    public bool GoToInProgress { get; set; } = false;
 
     protected override void OnInitialized()
     {
@@ -95,6 +100,33 @@
     {
         try
         {
+            if (GoToInProgress)
+            {
+                return;
+            }
+            if (GoToYear != GoToYearLast)
+            {
+                for (int i = 0; i < fileList1.Count; i++)
+                {
+                    string temp = fileList1[i].Split("/")[1];
+                    temp = temp.Split(".")[0];
+                    int j = int.Parse(temp);
+                    if (j == int.Parse(GoToYear))
+                    {
+                        index = i;
+                        img1 = fileList1[index++];
+                        year = GoToYear;
+                        GoToYearLast = GoToYear;
+                        GoToInProgress = true;
+                        buttonPauseText = "Continue";
+                        InvokeAsync(StateHasChanged);
+                        return;
+                    }
+                }
+                GoToYear = string.Empty;
+                GoToYearLast = GoToYear;
+                return;
+            }
             img1 = fileList1[index++];
             if (index >= fileList1.Count)
             {
@@ -119,6 +151,9 @@
         }
         else
         {
+            GoToInProgress = false;
+            GoToYear = string.Empty;
+            GoToYearLast = string.Empty;
             timer = new Timer(OnTimerEvent, null, 500, 3000);
             buttonPauseText = "Pause";
         }
