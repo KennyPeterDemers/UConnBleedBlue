@@ -30,7 +30,7 @@ namespace UConnBleedBlue.Models
                     {
                         int totalColumns = excelWorksheet.Dimension.End.Column;
                         int totalRows = excelWorksheet.Dimension.End.Row;
-                        for (int row = 3; row <= totalRows; row++)
+                        for (int row = 2; row <= totalRows; row++)
                         {
                             Donation donation = new Donation();
                             for (int col = 1; col <= totalColumns; col++)
@@ -45,7 +45,7 @@ namespace UConnBleedBlue.Models
                                     }
                                     continue;
                                 }
-                                if (col == 4)
+                                if (col == 3)
                                 {
                                     x = excelWorksheet.Cells[row, col].Value;
                                     if (x != null)
