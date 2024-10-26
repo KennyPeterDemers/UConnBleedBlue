@@ -125,6 +125,19 @@
                 timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
                 return;
             }
+            int year;
+            if (int.TryParse(lastFall, out year) == false)
+            {
+                emailStatus = "Last year played is invalid";
+                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+                return;
+            }
+            if (year < 1960)
+            {
+                emailStatus = "Last year played is invalid";
+                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+                return;
+            }
             // force TLS 1.2 connection if your application requires
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 

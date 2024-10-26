@@ -17,7 +17,7 @@ namespace UConnBleedBlue.Models
             {
 
                 Dictionary<string, string> names = new Dictionary<string, string>();
-                string filePath = Directory.GetCurrentDirectory() + @"\\wwwroot\Data\Donations.xlsx";
+                string filePath = Directory.GetCurrentDirectory() + @"\\wwwroot\Data\Football Alumni Donations.xlsx";
                 FileInfo fileInfo = new FileInfo(filePath);
                 ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
 
@@ -41,7 +41,15 @@ namespace UConnBleedBlue.Models
                                     x = excelWorksheet.Cells[row, col].Value;
                                     if (x != null)
                                     {
-                                        donation.PlayerName = x.ToString();
+                                        donation.PlayerName = (string)x;
+                                        if (donation.PlayerName == "Total Vision Deland")
+                                        {
+                                            donation.PlayerName = "Ryan Timko";
+                                        }
+                                        else if (donation.PlayerName == "Carmen Ammirato")
+                                        {
+                                            donation.PlayerName = "Carmen and Marlene Ammirato";
+                                        }
                                     }
                                     continue;
                                 }
