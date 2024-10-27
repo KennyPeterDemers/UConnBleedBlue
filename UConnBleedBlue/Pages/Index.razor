@@ -34,6 +34,20 @@
     h1 {
         text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
     }
+
+    h2 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 30px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h2 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+    
 </style>
 
 
@@ -42,41 +56,29 @@
 <h1>
     2nd Annual Bleed Blue With Andy UConn Football Alumni Tailgate!
 </h1>
+<h1>
+    UConn 17 Rice 10
+</h1>
+<h1>
+    See You At The 3rd Annual Next Year
+</h1>
+<h1>
+    Don't Forget To Donate
+</h1>
 
-@if (imageSource is not null)
+@if ((imageSource1 is not null) && (imageSource2 is not null))
 {
     <div>
-        <img src="@imageSource" asp-append-version="true" class="center" />
+        <img src="@imageSource1" asp-append-version="true" class="center" />
+    </div>
+    <div>
+        <img src="@imageSource2" asp-append-version="true" class="center" />
     </div>
 }
-<div class="verticalspacer"></div>
-
-<div class="messageBox">
-    <p>
-        Game: UConn vs. Rice
-    </p>
-    <p>
-        Date / Time: Saturday October 26, 2024   3:30
-    </p>
-    <p>
-        Tailgate Starts: 12:00 Noon
-    </p>
-    <p>
-        Menu: Featuring Hotdogs, Hamburgers, Sausage & Peppers, Water, Soda, and Beer. I Will Again Be Grilling With Last Year's Grill Master - 'Seamus Donagher'
-    </p>
-    <p>
-        <div>
-            <img src="images1/seamus.jpg" class="center">
-        </div>
-    </p>
-    <p>Andy will have his tent to celebrate the 20th Anniversary of the 2004 Motor City Bowl Team</p>
-    <p>We can mingle between Andy's tent and the tailgate prior to the game</p>
-    <p>Questions: Kenny Demers    (860) 310-7141   or kpdemers073@gmail.com</p>
-</div>
-
 
 @code {
 
-    private string imageSource = $"images1/Andy1.jpg";
+    private string imageSource1 = $"images2/GroupPhoto2024.png";
+    private string imageSource2 = $"images1/Andy1.jpg";
 }
 
