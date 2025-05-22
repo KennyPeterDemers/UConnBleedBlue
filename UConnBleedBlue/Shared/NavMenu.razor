@@ -18,11 +18,16 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="attendenceForm">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Attendence Form
+            <NavLink class="nav-link" href="playersAttending">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> @currentAlumniMembersPageLabel
             </NavLink>
         </div>
         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="mailingListForm">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Alumni Form
+            </NavLink>
+        </div>
+        @*<div class="nav-item px-3">
             <NavLink class="nav-link" href="obtainTicketsAndParking">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Tickets & Parking
             </NavLink>
@@ -33,25 +38,20 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="playersAttending">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> @playersAttendingPageLabel
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
             <NavLink class="nav-link" href="Donate">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> @donatePageLabel
             </NavLink>
         </div>
-@*         <div class="nav-item px-3">
+         <div class="nav-item px-3">
             <NavLink class="nav-link" href="Costs">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> @costsPageLabel
             </NavLink>
         </div>
- *@        <div class="nav-item px-3">
+        <div class="nav-item px-3">
             <NavLink class="nav-link" href="PlayersThatDonated">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> @playersThatDonatedPageLabel
             </NavLink>
-        </div>
+        </div> *@
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="photoGallery1">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery
@@ -71,7 +71,7 @@
 </div>
 
 @code {
-    private string playersAttendingPageLabel = "";
+    private string currentAlumniMembersPageLabel = "";
 
     private string playersThatDonatedPageLabel = "";
 
@@ -99,7 +99,7 @@
 
             //donatePageLabel = "Donate: " + donationsService.TotalDonations.ToString("C");
 
-            playersAttendingPageLabel = $"Players Attending  {playersService.PlayerList.Count}";
+            currentAlumniMembersPageLabel = $"Alumni  - {playersService.PlayerList.Count}";
 
             playersThatDonatedPageLabel = $"Current Donors  {donationsService.NumberOfPeopleDonating}";
         }
