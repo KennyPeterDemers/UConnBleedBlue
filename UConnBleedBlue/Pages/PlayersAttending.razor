@@ -20,7 +20,7 @@
     }
 </style>
 
-<h1>Players Planning To Attend : @playersService.PlayerList.Count</h1>
+<h1>UConn Football Players & Friends : @playersService.PlayerList.Count</h1>
 
 
 
@@ -36,7 +36,26 @@ else
                 <th></th>
                 <th>Name</th>
                 <th>Final Year</th>
-                <th>Team Photo</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -46,9 +65,26 @@ else
                     <td>@player.playerId</td>
                     <td>@player.playerName</td>
                     <td>@player.playerFinalYear</td>
-                    <td>
-                        <button @onclick="@(() => ViewTeam(player.playerFinalYear, player.headCoach))">View</button>
-                    </td>
+                    <td></td>
+                    <td></td>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>*</th>
                 </tr>
             }
         </tbody>
@@ -93,6 +129,6 @@ else
         // remove prefix
         PlayerService.ImageSource = PlayerService.ImageSource.Substring(8);
 
-        NavigationManager.NavigateTo("TeamPhoto");
+        //NavigationManager.NavigateTo("TeamPhoto");
     }
 }

@@ -64,6 +64,10 @@ namespace UConnBleedBlue.Models
                                 }
                                 if (col == 5)
                                 {
+                                    if (excelWorksheet.Cells[row, col].Value == null)
+                                    {
+                                        continue;
+                                    }
                                     player.playerAttending2024 = Convert.ToBoolean(excelWorksheet.Cells[row, col].Value.ToString());
                                     continue;
                                 }
