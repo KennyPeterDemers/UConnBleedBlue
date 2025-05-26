@@ -27,11 +27,11 @@
 
 @if (img1 is not null)
 {
-    <h1>@year</h1>
     <p>
-        <button style="margin-right: 10%" Color="ButtonColor.Primary" @onclick="Pause">@buttonPauseText</button>
-        <label>Go To Year</label>
-        <input @bind="GoToYear" />
+        <button style="color:blue;margin-right: 10%" class="col-form-label-sm fs-2 fw-bold" @onclick="Pause">@buttonPauseText</button>
+        <label style="color:blue" class="col-form-label-sm fs-2 fw-bold">Go To Year</label>
+        <input style="width:150px;color:blue" class="col-form-label-sm fs-2 fw-bold" @bind="GoToYear" />
+        <label style="color:blue" class="col-form-label-sm fs-2 fw-bold">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@year</label>
     </p>
 
     <div>

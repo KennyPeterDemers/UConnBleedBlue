@@ -2,11 +2,13 @@ namespace UConnBleedBlue.Models
 {
     public partial class Player
     {
-        public int playerId { get; set; }
-        public string? playerName { get; set; }
-        public string? playerEmail { get; set; }
-        public string? headCoach { get; set; }
-        public string? playerFinalYear { get; set; }
-        public bool playerAttending2024 { get; set; }
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        public string? Email { get; set; }
+        public string? HeadCoach { get; set; }
+        public string? FinalYear { get; set; }
+        public bool AttendingTailgate { get; set; } = false;
+        public bool TicketsNeeded { get; set; } = false;
+        public int NumberOfTickets { get; set; } = 0;
     }
 }

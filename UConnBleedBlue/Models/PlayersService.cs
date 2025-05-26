@@ -32,11 +32,11 @@ namespace UConnBleedBlue.Models
                             {
                                 if (col == 1)
                                 {
-                                    player.playerId = row - 1;
+                                    player.Id = row - 1;
                                     object x = excelWorksheet.Cells[row, col].Value;
                                     if (x != null)
                                     {
-                                        player.playerName = x.ToString();
+                                        player.Name = x.ToString();
                                     }
                                     continue;
                                 }
@@ -44,31 +44,27 @@ namespace UConnBleedBlue.Models
                                 {
                                     if (excelWorksheet.Cells[row, col].Value == null)
                                     {
-                                        player.playerEmail = "";
+                                        player.Email = "";
                                     }
                                     else
                                     {
-                                        player.playerEmail = excelWorksheet.Cells[row, col].Value.ToString();
+                                        player.Email = excelWorksheet.Cells[row, col].Value.ToString();
                                     }
                                     continue;
                                 }
                                 if (col == 3)
                                 {
-                                    player.playerFinalYear = (excelWorksheet.Cells[row, col].Value == null) ? " " : excelWorksheet.Cells[row, col].Value.ToString();
+                                    player.FinalYear = (excelWorksheet.Cells[row, col].Value == null) ? " " : excelWorksheet.Cells[row, col].Value.ToString();
                                     continue;
                                 }
                                 if (col == 4)
                                 {
-                                    player.headCoach = (excelWorksheet.Cells[row, col].Value == null) ? " " : excelWorksheet.Cells[row, col].Value.ToString();
+                                    player.HeadCoach = (excelWorksheet.Cells[row, col].Value == null) ? " " : excelWorksheet.Cells[row, col].Value.ToString();
                                     continue;
                                 }
                                 if (col == 5)
                                 {
-                                    if (excelWorksheet.Cells[row, col].Value == null)
-                                    {
-                                        continue;
-                                    }
-                                    player.playerAttending2024 = Convert.ToBoolean(excelWorksheet.Cells[row, col].Value.ToString());
+                                    player.AttendingTailgate = (excelWorksheet.Cells[row, col].Value == null) ? false : Convert.ToBoolean(excelWorksheet.Cells[row, col].Value);
                                     continue;
                                 }
                             }
