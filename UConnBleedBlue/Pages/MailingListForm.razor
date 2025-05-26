@@ -17,30 +17,17 @@
     }
 </style>
 
-<h1>2025 Football Alumni Mailing List</h1>
-<br />
+<h1>Football Alumni Mailing List</h1>
 
 <h1>Please Sign Up - Keep Our Football Alumni Strong</h1>
 <br />
-
-<h1>We Currently Have @playersService.PlayerList.Count Players On Our Mailing List</h1>
-<br />
-
-<h1>Let's' Get 300 Players By The UAB Tailgate This Year</h1>
-<br />
-
-<h1>Please Contact Any Former Players So They Can Be Added To Our List</h1>
-<br />
-
-<div class="verticalspacer"></div>
-
 
 <body>
     <EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
         <div>
             <label class="textParagraph fs-1 fw-bold">
                 Name:
-                <InputText style="width:700px;height:60px;color:blue" @bind-Value="EmailRequest.From" />
+                <InputText style="width:700px;height:60px;color:blue" @bind-Value="player.Name" />
             </label>
         </div>
 
@@ -49,7 +36,7 @@
         <div>
             <label class="textParagraph fs-1 fw-bold">
                 Email Address:
-                <InputText style="width:700px;height:60px;color:blue" @bind-Value="EmailRequest.FromEmail" />
+                <InputText style="width:700px;height:60px;color:blue" @bind-Value="player.Email" />
             </label>
         </div>
 
@@ -58,30 +45,41 @@
         <div>
             <label class="textParagraph fs-1 fw-bold">
                 Last Year (Fall) You Played:
-                <InputText style="color:blue" @bind-Value="@lastFall" />
+                <InputText style="color:blue" @bind-Value="player.FinalYear" />
             </label>
         </div>
 
         <div class="verticalspacer"></div>
 
-        <div>
-            <label class="textParagraph fs-1 fw-bold width=200">
-                Message (Optional):
-            </label>
-        </div>
-
-        <div>
-            <h1></h1>
-            <textarea rows="@Rows" cols="80" style="color:blue;font-size=50px" @bind="@MessageText" bind-value:event="OnKeyUp" />
+        <div class="checkbox fs-1 fw-bold">
+            <label style ="width:1200px;height:30px;color:blue"><input type="checkbox" style="width:30px;height:30px;color:blue"
+                @bind-value="player.AttendingTailgate">I Will Attend The Nov 1st FAU "Bleed Blue With And" Tailgate</label>
         </div>
 
         <div class="verticalspacer"></div>
 
+        @if (player.AttendingTailgate)
+        {
+            <div class="checkbox fs-1 fw-bold">
+                <label style ="width:800px;height:30px;color:blue"><input type="checkbox" style="width:30px;height:30px;color:blue" @bind-value="player.TicketsNeeded">I Need Tickets To The Game</label>
+            </div>
+
+            <div class="verticalspacer"></div>
+
+            @if (player.TicketsNeeded)
+            {
+                <div class="form-group mt-3">
+                    <label style ="color:blue" class="col-form-label fs-1 fw-bold">Number Of Tickets Needed:</label>
+                    <InputNumber style ="width:80px;height:30px;color:blue" Min="0" Max="4" @bind-Value="player.NumberOfTickets"
+                    class="form-control" />
+                </div>
+
+                <div class="verticalspacer"></div>
+            }
+        }
         <div>
             <button type="submit" class="btn btn-primary mt-2">Submit Your Information</button>
         </div>
-
-        <div class="verticalspacer"></div>
 
         <div>
             <label class="labelError">
@@ -99,39 +97,20 @@
     [Parameter]
     public bool IsChecked { get; set; } = false;
 
+    [Parameter]
+    public bool IsAttending { get; set; } = false;
+
     private string emailStatus = "";
-
-    private string lastFall = "";
-
-    private string message = "";
-
-    private int Rows = 5;
 
     Timer? timer;
 
-    public PlayersService playersService = new PlayersService();
+    public Player player = new Player();
 
-    string messageText = "";
-    protected string MessageText
-    {
-        get => messageText;
-        set
-        {
-            messageText = value;
-            CalculateSize(value);
-        }
-    }
     private void OnTimerEvent(object? state)
     {
         emailStatus = "";
-        message = "";
         IsChecked = false;
         InvokeAsync(StateHasChanged);
-    }
-    private void CalculateSize(string value)
-    {
-        Rows = Math.Max(value.Split('\n').Length, value.Split('\r').Length);
-        Rows = Math.Max(Rows, 2);
     }
     void Submit()
     {
@@ -141,12 +120,14 @@
             {
                 timer.Dispose();
             }
+            EmailRequest.From = player.Name;
             if (EmailRequest.From.Length < 3)
             {
                 emailStatus = "Enter a valid name";
                 timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
                 return;
             }
+            EmailRequest.FromEmail = player.Email;
             if (EmailRequest.FromEmail.Length < 7)
             {
                 emailStatus = "Enter a valid email address";
@@ -166,7 +147,7 @@
                 return;
             }
             int year;
-            if (int.TryParse(lastFall, out year) == false)
+            if (int.TryParse(player.FinalYear, out year) == false)
             {
                 emailStatus = "Last year played is invalid";
                 timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
@@ -193,7 +174,8 @@
             message.Subject = "Player Attending";
             message.Body = new MimeKit.TextPart("plain")
                 {
-                    Text = EmailRequest.From + " , " + EmailRequest.FromEmail + " , " + lastFall + " , " + IsChecked.ToString() + "\n\r[" + MessageText + "]"
+                    Text = player.Name + " , " + player.Email + " , " + player.FinalYear + " , " + player.AttendingTailgate.ToString() + " , "
+                    + player.TicketsNeeded.ToString() + " , " + player.NumberOfTickets.ToString()
                 };
 
             using (var client = new MailKit.Net.Smtp.SmtpClient())

@@ -21,6 +21,9 @@
 </style>
 
 <h1>UConn Football Players & Friends : @playersService.PlayerList.Count</h1>
+<br />
+
+<h1>Fill Out The Alumni Form - So Your Information Can be Updated</h1>
 
 
 
@@ -36,7 +39,7 @@ else
                 <th></th>
                 <th>Name</th>
                 <th>Final Year</th>
-                <th></th>
+                <th>Attending<br>Tailgate</th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -62,10 +65,10 @@ else
             @foreach (var player in @playersService.PlayerList)
             {
                 <tr>
-                    <td>@player.playerId</td>
-                    <td>@player.playerName</td>
-                    <td>@player.playerFinalYear</td>
-                    <td></td>
+                    <td>@player.Id</td>
+                    <td>@player.Name</td>
+                    <td>@player.FinalYear</td>
+                    <td>@player.AttendingTailgate</td>
                     <td></td>
                     <th></th>
                     <th></th>
