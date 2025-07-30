@@ -1,0 +1,111 @@
+﻿@page "/Costs"
+
+@inject NavigationManager NavigationManager;
+
+<style>
+
+    .verticalspacer {
+        height: 20px;
+    }
+
+    .messageBox {
+        width: 50%;
+        padding: 10px 10px 10px 10px;
+        border: 2px solid blue;
+        margin: auto;
+        color: blue;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .mbFontSize1 {
+        font-size: x-large;
+    }
+
+    .mbFontSize2 {
+        font-size: large;
+    }
+
+    .mbBackColor1 {
+        background-color: yellow;
+    }
+
+    .mbBackColor2 {
+        background-color: lawngreen;
+    }
+
+    .mbBackColor3 {
+        background-color: peachpuff;
+    }
+
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 50px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+</style>
+
+<h1>Current Tailgate Costs & Player Donations</h1>
+
+<div class="verticalspacer"></div>
+
+<div class="messageBox mbFontSize2 mbBackColor1">
+    <p>
+        @costsService.CostList[0].Description - $@costsService.CostList[0].Amount
+    </p>
+    <p>
+        @costsService.CostList[1].Description - $@costsService.CostList[1].Amount
+    </p>
+    <p>
+        @costsService.CostList[2].Description - $@costsService.CostList[2].Amount
+    </p>
+    <p>
+        @costsService.CostList[3].Description - $@costsService.CostList[3].Amount
+    </p>
+    <p>
+        @costsService.CostList[4].Description - $@costsService.CostList[4].Amount
+    </p>
+    <p>
+        Total Costs - @costsService.TotalCosts.ToString("C")
+    </p>
+</div>
+
+<div class="verticalspacer"></div>
+
+<div class="messageBox mbFontSize1 mbBackColor2">
+    <p>
+        Current Donations To Andy's Fund & Football NIL
+    </p>
+    <p>
+        @donationsService.NumberOfPeopleDonating Football Alumni Have Donated A Total Of: @donationsService.TotalDonations.ToString("C")
+    </p>
+</div>
+
+
+
+@code {
+    public CostsService costsService = new CostsService();
+    public DonationsService donationsService = new DonationsService();
+
+    public string err = "";
+
+    string Today = DateTime.Now.ToLongDateString();
+
+    // protected override void OnInitialized()
+    // {
+    //     try
+    //     {
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         err = ex.Message;
+    //     }
+    // }
+}

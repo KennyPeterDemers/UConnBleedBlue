@@ -1,0 +1,165 @@
+﻿@page "/photoGallery2"
+
+@*@inject IJSRuntime JS*@
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 90%;
+        border: 2px solid blue;
+    }
+
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 20px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .image-item {
+        text-align: center;
+        cursor: pointer;
+    }
+
+        .image-item img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+    .image-label {
+        margin-top: 8px;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .dialog-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .dialog-content {
+        position: relative;
+        width: 95vw;
+        height: 95vh;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dialog-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+    }
+
+    .close-button {
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        background: #fff;
+        color: #333;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        width: 32px;
+        height: 32px;
+        cursor: pointer;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+</style>
+
+@if (nameUrlList.Count > 0)
+{
+    <div class="image-grid">
+        @foreach (var (name, url) in nameUrlList)
+        {
+            <div class="image-item" loading="lazy" @onclick="() => OpenImage(url)">
+                <img src="@url" alt="@name" />
+                <div class="image-label"></div>
+            </div>
+        }
+    </div>
+    @if (IsDialogOpen)
+    {
+        <div class="dialog-overlay" @onclick="CloseDialog">
+            <div class="dialog-content" @onclick:stopPropagation>
+                <img src="@DialogImageUrl" alt="Full Image" class="dialog-image" />
+                <button class="close-button" @onclick="CloseDialog">✕</button>
+            </div>
+        </div>
+    }
+
+}
+
+@code {
+    List<(string, string)> nameUrlList = new List<(string, string)>();
+    string path2 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\images2"}";
+    string err = "";
+    private bool IsDialogOpen = false;
+    private string DialogImageUrl = "";
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            foreach (var file in Directory.GetFiles(path2))
+            {
+                string path = Path.GetFileName(file);
+                Tuple<string, string> tuple = new Tuple<string, string>(path.Split('.')[0], "images2/" + path);
+                nameUrlList.Add((path.Split('.')[0], "images2/" + path));
+            }
+        }
+        catch (Exception ex)
+        {
+            err = ex.Message;
+        }
+    }
+    @*protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var urls = nameUrlList.Select(i => i.Item2).ToList();
+            await JS.InvokeVoidAsync("preloadImages", urls);
+        }
+    }*@
+    private void OpenImage(string url)
+    {
+        DialogImageUrl = url;
+        IsDialogOpen = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsDialogOpen = false;
+    }
+
+}

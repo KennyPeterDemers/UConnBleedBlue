@@ -1,0 +1,159 @@
+﻿@page "/playersAttending"
+
+@using UConnBleedBlue.Models
+
+@inject PlayersService PlayerService
+@inject NavigationManager NavigationManager;
+
+<style>
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 32px;
+        color: #ffffff;
+        text-align: center;
+        text-shadow: 0 0 5px blue, 0 0 5px blue, 0 0 5px blue, 0 0 5px blue;
+    }
+
+    @@media (min-width: 768px) {
+        h1 {
+         font-size: 50px;
+        }
+    }
+
+    .responsive-table {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    table {
+        min-width: 600px;
+    }
+
+    .colorBlue th,
+    .colorBlue td {
+        white-space: nowrap;
+        padding: 0.5rem;
+    }
+
+</style>
+
+<h1>UConn Football Players & Friends : @playersService.PlayerList.Count</h1>
+<br />
+
+<h1>Fill Out The Registration Form - To Keep Our Information Current</h1>
+
+
+
+@if (playersService == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <div class="responsive-table">
+        <table class="table table-striped colorBlue">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Final Year</th>
+                    <th>Attending<br>Tailgate</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var player in @playersService.PlayerList)
+                {
+                    <tr>
+                        <td>@player.Id</td>
+                        <td>@player.Name</td>
+                        <td>@player.FinalYear</td>
+                        <td></td>
+                        <td></td>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                        <th>*</th>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@code {
+    public PlayersService playersService = new PlayersService();
+
+    public void ViewTeam(string? year, string? headCoach)
+    {
+        if ((year == null) || (headCoach == null))
+        {
+            return;
+        }
+        if ((year == "?") || (headCoach == "?"))
+        {
+            return;
+        }
+        if ((year == " ") || (headCoach == " "))
+        {
+            return;
+        }
+        // Save the required year and coach of the photo in the PlayerService which can be accessed by other components
+        PlayerService.SelectedPlayerFinalYear = year;
+        PlayerService.HeadCoach = headCoach;
+
+        // Get the player's team photo of his final year
+        PlayerService.ImageSource = $"wwwroot/imagesTeamPhotos/{PlayerService.SelectedPlayerFinalYear}.png";
+        if (File.Exists(PlayerService.ImageSource) == false)
+        {
+            // If that's one of the missing team photos - try the previous year
+            int previousYear = int.Parse(PlayerService.SelectedPlayerFinalYear) - 1;
+            PlayerService.ImageSource = $"wwwroot/imagesTeamPhotos/{previousYear}.png";
+
+            // if that picture does not exist - get error message pgoto
+            if (File.Exists(PlayerService.ImageSource) == false)
+            {
+                PlayerService.ImageSource = "wwwroot/imagesTeamPhotos/MissingTeamPhoto.png";
+            }
+        }
+        // remove prefix
+        PlayerService.ImageSource = PlayerService.ImageSource.Substring(8);
+
+        //NavigationManager.NavigateTo("TeamPhoto");
+    }
+}

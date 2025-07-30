@@ -1,0 +1,111 @@
+﻿@page "/Donate"
+
+<style>
+
+    .messageBoxXL {
+        width: 90%;
+        padding: 10px 10px 10px 10px;
+        border: 2px solid blue;
+        margin: auto;
+        color: blue;
+        background-color: yellow;
+        text-align: center;
+        font-size: x-large;
+        font-weight: bold;
+    }
+
+    .verticalspacer {
+        height: 10px;
+    }
+
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 50px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+</style>
+
+<h1>Please Donate - Every Little Bit Helps</h1>
+
+<div class="messageBoxXL">
+    <p>
+        All Money Donated Will Go Into The Bleeding Blue For Good Football NIL Fund -
+    </p>
+    <p>
+        The Donations Will Then Be Allocated To Cover The Cost Of The Tailgate - Roughly $2000.
+    </p>
+    <p>
+        It will then Add $5000 to Andy's Football Alumni Fund.
+    </p>
+    <p>
+        The Remaining Donations Will Stay In The Football NIL Fund.
+    </p>
+    <p>
+        All Donations Are Tax Deductable!
+    </p>
+    <p style="background-color:powderblue;">
+        Current Donations Received: @donationService.TotalDonations.ToString("C") From @donationService.NumberOfPeopleDonating Players
+    </p>
+</div>
+
+<div class="verticalspacer"></div>
+
+<div>
+    <img src="imagesTeamPhotos/MoraNIL.png" class="center">
+</div>
+
+<div class="verticalspacer"></div>
+
+<div class="messageBoxXL">
+    <p>
+        Bonus: Your Donation of $100 or More Gives You A Premium Subscription To "Storrs Central" For a Year (a $275 value).
+    </p>
+    <div class="tickets">
+        <a href="https://storrscentral.com/">View Storrs Central</a>
+    </div>
+</div>
+
+<div class="verticalspacer"></div>
+
+<div class="messageBoxXL">
+    <p>
+        Please Click The Link Below - This Will Allow You To Donate Via The "Bleeding Blue For Good" NIL Website.
+    </p>
+    <div class="tickets">
+        <p>
+            <a href="https://www.bleedingblueforgood.org/donate">Donate To Andy & The Football NIL</a>
+        </p>
+    </div>
+    <p>
+        When The Link Above Takes You To The "Bleed Blue For Good" Website
+    </p>
+    <p>
+        Do Not Click The <font color="black">"DONATE"</font><font color="blue"> Button At The Top Right Of The Page</font>
+    </p>
+    <p>
+        Scroll Down and Fill Out The Form As Shown Below
+    </p>
+    <p>
+        From The Dropdown List - Select - "Football Alumni Tailgate"
+    </p>
+    <p>
+        <div>
+            <img src="imagesTeamPhotos/DonationInstructions.png" class="center">
+        </div>
+    </p>
+</div>
+
+
+
+@code {
+    DonationsService donationService = new DonationsService();
+
+
+}

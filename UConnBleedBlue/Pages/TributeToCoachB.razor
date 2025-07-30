@@ -1,0 +1,3639 @@
+﻿@page "/TributeToCoachB"
+
+@using UConnBleedBlue.Models
+@using MailKit.Net.Smtp
+@using MailKit.Security
+
+<style>
+    .messagebox {
+        min-width: 50%;
+        max-width: 100%;
+        padding: 10px 10px 10px 10px;
+        border: 1px solid blue;
+        margin: 5px;
+    }
+
+    .verticalspacer {
+        height: 40px;
+    }
+
+    textarea
+    {
+        width:50%;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        font-size: 16px;
+    }
+
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 50px;
+        color: white;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+</style>
+
+<h1>2024 Messages</h1>
+
+<div class="messagebox">
+    <p>
+        Coach B!
+    </p>
+    <p>
+        Thank you for all that you do for the Bleed Blue Nation of UConn Football!
+    </p>
+    <p>
+        You have always been a kindhearted, yet tough nose man who knows their purpose in life - to build character amongst young people who turned into men!
+    </p>
+    <p>
+        I never had you as a coach, but I know you as a man of UCONN!
+    </p>
+    <p>
+        An individual who has, and will continue to inspire us to be the best we can in our chosen path.
+    </p>
+    <p>
+        <b>
+            Damon Lewis
+            1994 Captain
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for all your efforts over the years to connect with the former players.
+    </p>
+    <p>
+        Your firm handshake along with your always super positive attitude means a great deal to us.
+    </p>
+    <p>
+        You make UConn a better place.
+    </p>
+    <p>
+        Keep up the great work!
+    </p>
+    <p>
+        <b>
+            Patrick Anglim
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Andy,
+    </p>
+    <p>
+        Thank you for being a guiding light for my journey through my UConn undergraduate years.
+    </p>
+    <p>
+        The insight you displayed in holding ourselves accountable for our action was your main focus as our mentor during the age of consciousness and your ability to align our role as a student athlete made you grow up fast on the UConn campus.
+    </p>
+    <p>
+        Your insight to our needs for our dreams and desire to succeed and adhere to our responsibility to hold ourselves accountable!
+    </p>
+    <p>
+        Thank you.
+    </p>
+    <p>
+        <b>
+            Herb DeGraffe 1974-1977
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        Our alumni has an asset that is cherished that no other school in the country can have. For over 40yrs you have me coming back to UConn from NJ and every time I see you, you have at least 10 stories to tell that are very memorable that I may have forgotten but you keep those experiences alive. Thank you for being a mentor, coach and friend over the years.
+    </p>
+    <p>
+        Whether you are connecting with alumni with student athletes for the job events, locker room visits, spring practice visits, cards to wish me well will always make me smile. You do this for 1,200 Alumni!! Nobody does that across the country! Thank you for your friendship, inspiration and indelible mark you continue to make on our program. Bringing the alumni together at special events and games always welcoming us back to UConn has been very special to us.
+    </p>
+    <p>
+        Thank you for being there for all of us! Look forward to seeing you at the tailgate!
+    </p>
+    <p>
+    </p>
+    <p>
+        <b>
+            Pat Margiatto - 1987
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        To Coach Andy Baylock, "the guiding force behind UConn football teams"".
+    </p>
+    <p>
+        Your unwavering commitment to putting the team first and always striving for excellence left an indelible mark on my life.
+    </p>
+    <p>
+        Through your leadership, you instilled in me the values of teamwork, perseverance, and integrity.
+    </p>
+    <p>
+        You transformed not only our game but also our character, shaping the person I am today.
+    </p>
+    <p>
+        Your legacy lives on in every play, every challenge, and every victory we face.
+    </p>
+    <p>
+        I’m forever grateful to have played under your mentorship.
+    </p>
+    <p>
+        <b>
+            Ron Mansfield (‘75)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        To "Ol Coach B!
+    </p>
+    <p>
+        Seems the word "tribute" doesn't seem to describe ALL that you mean to the UConn Football Family and the University of Connecticut!
+    </p>
+    <p>
+        To me personally, you are more than my former Coach, you are a mentor, dear friend and you have treated my through out the over 50+ years I've known you like part of your family.
+    </p>
+    <p>
+        Certainly one of the best decisions I made in my life was to take the suggestion from Red Kelin to come to Connecticut and be part of UConn Football and to have you as my Frosh Coach!
+    </p>
+    <p>
+        And did I need your support and direction that first year!
+    </p>
+    <p>
+        Well sorry I can't be part of the 2nd Bleed Blue this year......some unplanned needed repairs of worn out body parts were necessary a few weeks ago!
+    </p>
+    <p>
+        God Bless You, be Well & safe! I will be watching the Huskies do a little "fried" Rice on the 26th!
+    </p>
+    <p>
+        <b>
+            Gregory “ Skip” Gorski  1972
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy
+    </p>
+    <p>
+        You've heard this many times before from so many former players but I'll say it again. 
+    </p>
+    <p>
+        You've been a role model for so many of us ... 
+    </p>
+    <p>
+        a hard-nosed guy with a kind heart and perhaps the most committed coach that UConn ever had....
+    </p>
+    <p>
+        to the university and former players. We are all blessed to have been coached by you.  
+    </p>
+    <p>
+        Thanks for helping guide us through college and putting us on the best path for our future.
+    </p>
+    <p>
+        <b>
+            Ralph Tiner   1970
+        </b>
+    </p>
+</div>
+
+<div class="verticalspacer"></div>
+
+<p style="color: blue;"><b><font size="4">Available To Everyone</font></b></p>
+
+<EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
+    <div>
+        <label style ="color: blue;">
+            Author Name:
+            <InputText @bind-Value="EmailRequest.From" class="form-control mt-2" />
+        </label>
+    </div>
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <label style="color: blue;">
+            Author Email Address:
+            <InputText @bind-Value="EmailRequest.FromEmail"  class="form-control mt-2" />
+        </label>
+    </div>
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <label style="color: blue;">
+            Your Tribute To Andy:
+        </label>
+    </div>
+
+    <div>
+        <textarea rows="@Rows"
+                  @bind-value=EmailRequest.Tribute
+                  @bind-value:event="oninput" />
+    </div>
+
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </div>
+
+    <div>
+        <label class="labelError">
+            @emailStatus
+        </label>
+    </div>
+
+</EditForm>
+
+<div class="verticalspacer"></div>
+
+<div class="verticalspacer"></div>
+
+<h1>2023 Messages</h1>
+
+<div class="messagebox">
+    <p>
+        “We all appreciate the commitment and contributions Andy has made and continues to make to this University and all of the Student-Athletes…
+    </p>
+    <p>
+        he’s something very, very special.
+    </p>
+    <p>
+        I am so happy we are finally honoring him, now we need to win for him! “
+    </p>
+    <p>
+        <b>
+            Jim Mora
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+     </p>
+    <p>
+        Even though I’ve never been on a football field for a single snap, some how I got an invitation to participate in this football tribute. I wouldn’t ever pass up the opportunity to let you know of the immense impact you’ve had in my life. So, I’m grateful for the chance.
+    </p>
+    <p>
+        Aside from my parents, nobody has had a more profound influence than you. You got my dad the job at East Catholic before I was even born for God’s sakes!  Seriously, you’ve been there for me every step of the way. I wouldn’t be the head coach at UConn without you. I wouldn’t have played at UConn either. You are responsible for much of my success professionally.
+    </p>
+    <p>
+        More poignantly, you’re responsible in large part for the man I’ve become. Your lessons remain prevalent in my life…
+    </p>
+    <p>
+        “If you see something you don’t agree with, and you don’t acknowledge it, that means you accept it.”
+    </p>
+    <p>
+        “When you cut somebody remember, he is somebody’s son. Treat him as such.”
+    </p>
+    <p>
+        “Nice try vs. nice play.”
+    </p>
+    <p>
+        “Debits and credits.”
+    </p>
+    <p>
+        “Can’t worry about what you can’t control.”
+    </p>
+    <p>
+        “Third and one is the same as 3 and 2, bases loaded.”
+    </p>
+    <p>
+        There isn’t a day that goes by that I don’t think about how you would handle a situation.  And, I truly want to honor you with all I do as your successor. You really do have big shoes to fill!
+    </p>
+    <p>
+        I pray that I will have half as positive an impact that you’ve had in your life. The number of people you’ve positively touched is impossible to equal. I once thought an effective person must make enemies. I no longer believe that, because you’ve never made one.
+    </p>
+    <p>
+        I’m grateful you are still in my life and so happy your football family is appropriately honoring you.  All those whom you’ve touched owe you a debt of gratitude. You’ve given us a model of a man whose faith and family are at the center of his life and the golden rule is how you lead. We are all proud to follow. God bless you Coach Baylock.
+    </p>
+    <p>
+        Love,
+    </p>
+    <p>
+        <b>
+            Jim Penders
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        Not for nothing but I’ve known you for 40 years and safe to say you’re the same guy today that you were then.
+    </p>
+    <p>
+        Generous with your time, considerate of others, a teacher extraordinaire and the kindest human being in the state of Connecticut.
+    </p>
+    <p>
+        Baseball was your sport but life is what you’re best suited for and no one loves life more than you.
+    </p>
+    <p>
+        I wish I had taken your advice and thrown batting practice and taken some swings.
+    </p>
+    <p>
+        I would’ve learned more from you on how to teach, coach, touch and love people.
+    </p>
+    <p>
+        Thank you Andy, for making UConn special.
+    </p>
+    <p>
+        <b>
+            Your friend, Geno Auriemma
+        </b>
+    </p>
+</div>
+
+
+<div class="messagebox">
+    <p>
+        Andy Baylock,
+    </p>
+    <p>
+        You are Mr. Connecticut.
+    </p>
+    <p>
+        From the teams you coached, to all the others you supported, you are the enduring face of UConn Athletics.
+    </p>
+    <p>
+        Your love and connection to so many student athletes is something I have always marveled at.
+    </p>
+    <p>
+        You represent the best of all us Huskies and we are so lucky to have you.
+    </p>
+    <p>
+        <b>
+            -Jim Calhoun
+        </b>
+    </p>
+</div>
+
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        As I sit back and think about how I could honor you, I know that words cannot express how grateful I am to have you in my life.
+    </p>
+    <p>
+        When I came to UConn in 2007, you showed me what it meant to be a UConn Husky.
+    </p>
+    <p>
+        From having dinner with your family and the players that made the 3.0 gpa list my freshman year (unfortunately that was my only time haha), to riding with you to go speak at local elementary schools, I will never forget our conversations.
+    </p>
+    <p>
+        Anywhere you go around the country everyone knows Coach Baylock!
+    </p>
+    <p>
+        It speaks volumes to who you are as a person and the impact you’ve made and will continue to make on many people.
+    </p>
+    <p>
+        Thank you for inspiring me and showing me how to be a real Coach/Leader. See you soon!
+    </p>
+    <p>
+        Love you,
+    </p>
+    <p>
+        <b>
+            Kashif Moore
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        When I first got to UConn ten years ago after 18 years at Boston College, there were two people who made my transition seamless: Dee Rowe and Andy Baylock.
+    </p>
+    <p>
+        I will never forget how Andy made me feel welcome & wanted.
+    </p>
+    <p>
+        I’ve always been impressed with how he’s not only committed to seeing me succeed, but every sport be successful at UConn.
+    </p>
+    <p>
+        Thank you Coach for being a great mentor and I’m still waiting to take batting practice off you!
+    </p>
+    <p>
+        <b>
+            -Mike Cavanaugh
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Nobody bleeds blue more than you, Coach Baylock.
+    </p>
+    <p>
+        Your constant presence and contributions behind the scenes for the football program did not go unnoticed.
+    </p>
+    <p>
+        Your positive attitude and the ability to make everyone feel welcome are just a few of the qualities that make you special.
+    </p>
+    <p>
+        Every team needs a guy like you, Coach Baylock – we were fortunate to have you.
+    </p>
+    <p>
+        <b>
+            Randy Edsall
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach you are one of a kind.
+    </p>
+    <p>
+        We could search the world and never find an individual that represents so many roles with the class, character, humility, humor, and loyalty that you display.
+    </p>
+    <p>
+        You treated me, Karen and my children with love, respect and true friendship and you will forever be a very special part of our family.  UConn will always hold a special place in our heart.
+    </p>
+    <p>
+        Thanks, Coach for making it an honor to ever be a part of the Husky nation.
+    </p>
+    <p>
+        <b>
+            -TJ Weist
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You are in the same category with Jim Calhoun, Geno Auriemma, and Joe Morrone.
+    </p>
+    <p>
+        Your fingerprints are all over the UConn baseball and football programs.
+    </p>
+    <p>
+        You have touched countless student-athletes lives and many, many coaches.
+    </p>
+    <p>
+        Coach Baylock, thank you for all you’ve done for UCONN.
+    </p>
+    <p>
+        <b>
+            -Ray Reid
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B!
+    </p>
+    <p>
+        You are the definition of consistency.
+    </p>
+    <p>
+        The way you find ways to connect with everyone you come in contact with is amazing to see. You’ve always been supportive and an outstanding ambassador for our entire sports performance department. I have so much respect for you and appreciate all of your support over the years. Our student-athletes and coaches are so fortunate to have you as a resource. Your wisdom and dedication is unmatched in college athletics. Thank you for all you do, Coach Baylock!
+    </p>
+    <p>
+        You’ve always been supportive and an outstanding ambassador for our entire sports performance department. I have so much respect for you and appreciate all of your support over the years. Our student-athletes and coaches are so fortunate to have you as a resource. Your wisdom and dedication is unmatched in college athletics. Thank you for all you do, Coach Baylock!
+    </p>
+    <p>
+        I have so much respect for you and appreciate all of your support over the years. Our student-athletes and coaches are so fortunate to have you as a resource. Your wisdom and dedication is unmatched in college athletics. Thank you for all you do, Coach Baylock!
+    </p>
+    <p>
+        Our student-athletes and coaches are so fortunate to have you as a resource. Your wisdom and dedication is unmatched in college athletics. Thank you for all you do, Coach Baylock!
+    </p>
+    <p>
+        Your wisdom and dedication is unmatched in college athletics. Thank you for all you do, Coach Baylock!
+    </p>
+    <p>
+        <b>
+            -Matt King
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy Baylock, not just the pride of UConn Football and Baseball, not just the pride of UConn…the pride of the entire STATE OF CONNECTICUT!
+    </p>
+    <p>
+        Forever on the Mount Rushmore of UConn!
+    </p>
+    <p>
+        I am proud to know you and honored to be your friend.
+    </p>
+    <p>
+        Congratulations on a lifetime of hard work and success.
+    </p>
+    <p>
+        <b>
+            -Dan Toscano
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Bayls …..
+    </p>
+    <p>
+        I’m pleased to be one of sooo many others that get to honor you today with a very loud message of respect, caring, love and enduring faith that your many marks at UConn will live on forever…..
+    </p>
+    <p>
+        starting way back when in your career with UCONN Football as an able Assistant Coach….
+    </p>
+    <p>
+        then onto UCONN Baseball as an Assistant and then many years as that sport’s Head Coach,
+    </p>
+    <p>
+        then back to Football as the rallying Assistant for getting the Alumni to be present and active in the growth of a program that has a rich history and is now rebuilding for a future of success…
+    </p>
+    <p>
+        but all of these Athletic moments are properly underscored with well earned Academic success, the equal of very few in the entire NCAA….
+    </p>
+    <p>
+        Bayls, you ARE UConn, and UConn is YOU….Enough said….
+    </p>
+    <p>
+        I love you, my brother.
+    </p>
+    <p>
+        Respectfully submitted by former UCONN Athletics Director,
+    </p>
+    <p>
+        <b>
+            Paul Pendergast
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Andy,
+    </p>
+    <p>
+        I’m so glad they’re taking the time to honor you at the football game.  You have impacted so many lives and helped carve a path for so many.  When I first arrived at UConn at the age of 25, you immediately became a father figure to me.  It was an intimidating time, and you always had a nice pep talk to keep me on track. I remember our many talks in my office, it was nice to know I could always turn to you for guidance, no matter what the situation was!  You supported me as a Head Coach who was also raising a family and for that I am forever grateful.  I smile every time I get to see and talk to you at an event.  You truly are a legend and UConn is so lucky to have you.
+    </p>
+    <p>
+        You have impacted so many lives and helped carve a path for so many.
+    </p>
+    <p>
+        When I first arrived at UConn at the age of 25, you immediately became a father figure to me.
+    </p>
+    <p>
+        It was an intimidating time, and you always had a nice pep talk to keep me on track.
+    </p>
+    <p>
+        I remember our many talks in my office, it was nice to know I could always turn to you for guidance, no matter what the situation was!
+    </p>
+    <p>
+        You supported me as a Head Coach who was also raising a family and for that I am forever grateful.
+    </p>
+    <p>
+        I smile every time I get to see and talk to you at an event.
+    </p>
+    <p>
+        You truly are a legend and UConn is so lucky to have you.
+    </p>
+    <p>
+        Love you! Enjoy your special day!
+    </p>
+    <p>
+        <b>
+            -Jen Sanford
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        I worked with Andy for 37 years, and the first thing that comes to my mind is that he has been the “Mentor of Mentors”.
+    </p>
+    <p>
+        I didn’t ask to talk to Andy when I first came to UConn to coach the Track and Cross Country teams, he basically told me to come to his office the first week I was on the job as a 29 year old Head Coach.
+    </p>
+    <p>
+        When I left his office that day, I had a friend for life, a confidant, a cheerleader and an inspirational character who never let me down.
+    </p>
+    <p>
+        A MENTOR.  Open and honest, he always shared his thoughts, his coaching techniques and his feelings.
+    </p>
+    <p>
+        Over the years I can’t even imagine how many other “Mentors” he has impacted.
+    </p>
+    <p>
+        I just know that this Mentor could never have been the Coach that I became without the friendship and guidance provided by the Master of the Mentors, Coach Baylock!!
+    </p>
+    <p>
+        <b>
+            Greg Roy
+        </b>
+    </p>
+    <p>
+        <b>
+            Head Coach(retired)
+        </b>
+    </p>
+    <p>
+        <b>
+            UConn Track and Field/XC
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        Congratulations to you for your OUTSTANDING Career at UConn! You have been so much to me as a mentor, a colleague, but most importantly you have been a good friend.
+    </p>
+    <p>
+        Thank you for your commitment and dedication to UConn Athletics, and the entire University of Connecticut community.
+    </p>
+    <p>
+        You make it family!
+    </p>
+    <p>
+        Go Huskies!
+    </p>
+    <p>
+        <b>
+            Jim Donohue
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        No doubt who “Mr. UCONN” is.
+    </p>
+    <p>
+        Congrats on an impactful, storied, impressive and renowned career with many years ahead. 
+    </p>
+    <p>
+        It has been a joy to know you Andy.
+    </p>
+    <p>
+        Wish you the best of everything!
+    </p>
+    <p>
+        <b>
+            -Bob and Alyce Goldberg
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        Over the last 15 years of me working with football, you have always checked in and offered to help.
+    </p>
+    <p>
+        You have helped so many of the guys with internship opportunities and guidance that I know they will look back one day and be grateful.
+    </p>
+    <p>
+        I have always enjoyed our quick chats and appreciate the support you have given to SASP each year with new incoming students and those graduating.
+    </p>
+    <p>
+        UCONN is lucky to have you around for all the years with your knowledge and wisdom.
+    </p>
+    <p>
+        Best,
+    </p>
+    <p>
+        <b>
+            Kelli Kozaryn     SASP Football Counselor
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        For the last 24 years I have had the opportunity to watch your commitment and impact on your student athletes, alumni, the athletics staff and the local community.
+    </p>
+    <p>
+        You bleed blue through and through and it’s inspiring.
+    </p>
+    <p>
+        I am so thankful for your willingness to stop, say hi and share a story.
+    </p>
+    <p>
+        As a student you spoke in one of my classes and it has left a lasting impression on me for the standards and passion for the coaching profession and always giving back.
+    </p>
+    <p>
+        Thank you for all you have done not only as a coach, but as a great human being.
+    </p>
+    <p>
+        “Not bad for an old guy”.
+    </p>
+    <p>
+        With much respect,
+    </p>
+    <p>
+        <b>
+            Moe Butler ’03
+        </b>
+    </p>
+    <p>
+        <b>
+            Sports Performance
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach,
+    </p>
+    <p>
+        While the entirety of sport is amazing and fills life with memories, there are a few special moments that stand out differently from the rest.
+    </p>
+    <p>
+        Sometime around April of 2007 or so, you pulled me aside after a CPIA awards dinner in the Rome ballroom after I had the opportunity to present a couple of awards to student-athletes in my cohort. You complimented my messaging and emphasized the importance of showing genuine care for our student-athletes.
+    </p>
+    <p>
+        That may have been the first time we spoke. I was early in my career, still holding onto my 20s for dear life, and I didn’t know much about anything. I knew immediately, however, that your words would stay with me forever.
+    </p>
+    <p>
+        You didn’t have to take time out of your night to do that, and I was genuinely honored… and a little starstruck. We hadn’t really interacted before, and you were THE Coach Andy Baylock everyone talked about; the one everyone respected, the one everyone knew cared about them.
+    </p>
+    <p>
+        Your endless value of people, education, growth, kindness, and sending these young Huskies into the world one day ready to bring good is all that is fundamentally right about college sport.
+    </p>
+    <p>
+        I am grateful beyond measure that our paths have crossed so many times over the last nearly 17 years. When I see you, I instantly remember what’s really important. I know it’s about the people, about the kids, about sincerity, about love for what you do and love for the folks around you. I know that it’s about family, and honor, and authenticity….. and then celebrating the victories along the way isn’t so bad either.
+    </p>
+    <p>
+        Coach, thank you for everything you bring to every seemingly little moment. I promise you, those moments are huge.
+    </p>
+    <p>
+        Love,
+    </p>
+    <p>
+        <b>
+            Alana Butler
+        </b>
+    </p>
+    <p>
+        <b>
+            UConn (Field Hockey) ‘01 & Student Athlete Success Program
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy,
+    </p>
+    <p>
+        Thanks for everything you have meant to me over the years and everything you have done for UConn during your career.
+    </p>
+    <p>
+        From being your baseball SID back in the 80s and 90s, to your work in football now, you have always been there for me.
+    </p>
+    <p>
+        You are a trusted mentor and friend.
+    </p>
+    <p>
+        <b>
+            -Mike Enright ’88
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach,
+    </p>
+    <p>
+        I am so blessed that you and I once had offices next door to each other, I loved the many talks we used to have.
+    </p>
+    <p>
+        You have impacted so many lives including mine and you always have such a positive outlook and attitude on life!
+    </p>
+    <p>
+        I know you don’t like attention brought to you, I am so happy you are going to be honored at the football game.
+    </p>
+    <p>
+        You so deserve it. We are so lucky to have you as part of UConn Athletics.
+    </p>
+    <p>
+        You are truly a LEGEND Coach….Love you!
+    </p>
+    <p>
+        <b>
+            Kim Gedney
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Hi Coach.
+    </p>
+    <p>
+        Congratulations on being honored by UConn at tonight’s football game.
+    </p>
+    <p>
+        You are absolutely amazing!
+    </p>
+    <p>
+        Along with your long-time buddy, Coach Rowe, there is no one that has been as terrific an ambassador for UConn Athletics as you.
+    </p>
+    <p>
+        For 60 years you have represented Husky Nation with CLASS and INTEGRITY, and have influenced thousands of student athletes along the way, from UConn Football, UConn Baseball, the Cape Cod League, the U.S. Baseball teams, the Detroit Tigers’ minor league team in Norwich, and still to this day, the baseball student-athletes at Eastern.
+    </p>
+    <p>
+        Along with your “rubber arm” you have a heart of gold, always caring about the young men and their families you come in contact with, and continue to be part of their lives.
+    </p>
+    <p>
+        Personally, thank you being that buffer, that sounding board, for me and others during our years in Storrs.
+    </p>
+    <p>
+        Your encouragement and that arm around the shoulder got many of us through some tough times….and you were always there.
+    </p>
+    <p>
+        You are so deserving of this and any honor you receive.
+    </p>
+    <p>
+        Your hard work, commitment to excellence, and unwavering loyalty to UConn has without question stood the test of time. Thank you, and God Bless.
+    </p>
+    <p>
+        <b>
+            -Randy LaVigne
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        It is hard to imagine someone making their mark on a school and its student/athletes more than you, Coach.
+    </p>
+    <p>
+        It’s not just what you did with the football and baseball programs, it’s how you did it.
+    </p>
+    <p>
+        You were always classy, genuine, and present.
+    </p>
+    <p>
+        I greatly enjoyed your company on the UConn Football bus rides and road trips.
+    </p>
+    <p>
+        I could listen to your stories all day long.
+    </p>
+    <p>
+        Thanks for your friendship and all that you’ve done to make the people around you feel special.
+    </p>
+    <p>
+        You are a Connecticut treasure!
+    </p>
+    <p>
+        All my Best,
+    </p>
+    <p>
+        <b>
+            Kevin Nathan
+            (Former UConn Football reporter)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        No one deserves to be honored more than Coach B.
+    </p>
+    <p>
+        A legend at UConn but more importantly a legendary person. Congrats Coach!
+    </p>
+    <p>
+        <b>
+            -Joe D’Ambrosio
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy
+    </p>
+    <p>
+        Many thanks for a terrific Husky career, from a guy who has bled UConn Blue for a long time, to one who has bled Husky Blue even longer.
+    </p>
+    <p>
+        <b>
+            Wayne Norman
+        </b>
+    </p>
+    <p>
+        <b>
+            UConn Sports Network and morning host on WILI-AM
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You are truly a gem.
+    </p>
+    <p>
+        Since meeting you, you’ve made Ja’Miya and I feel right at home.
+    </p>
+    <p>
+        You welcomed us and it felt like we’d known you forever.
+    </p>
+    <p>
+        You have such a kind and selfless spirit and it’s no wonder everyone speaks so highly of you.
+    </p>
+    <p>
+        I want to take this time to say thank you for the work you’ve done both on and off the field.
+    </p>
+    <p>
+        Job well done.
+    </p>
+    <p>
+        -With Love,
+    </p>
+    <p>
+        <b>
+            Daneisha and Ja’Miya
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        Having attended an American high school in Germany, I met you first on campus when the freshman team reported in 1969. Aside from your reassuring ways, what I remember most was your no-nonsense approach to academics. You helped me register for the same kinds of classes as all incoming students, implicitly emphasizing that I was there to be educated. Your letter to the parents of incoming players bespoke a commitment to education and the ideals of sport: to develop character through shared sacrifice and self-discipline in order to prepare for life. While my athletic contributions were limited, the discipline I learned by facing adversity and by finishing what I started has helped me greatly in achieving other goals over the years.
+    </p>
+    <p>
+        Every time I see you, I remind you that I feel like an imposter on alumni rolls because I only played freshman ball and scarcely saw the field, yet you always make me feel a part of the team.
+    </p>
+    <p>
+        As a college professor for more than four decades at a university that invests heavily in its football program, I have long lamented the absence of those values that you first instilled in us. A letter from a football coach to his players extolling the virtues of reading would simply be unheard of on campuses today. We were lucky to be under your tutelage, Coach. Many thanks for the lessons you taught.
+    </p>
+    <p>
+        <b>
+            Donald Dickson ’73 (freshman team, ’69), Ph.D., FRHistS
+        </b>
+    </p>
+    <p>
+        <b>
+            Professor of English, Texas A&M University
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach,
+    </p>
+    <p>
+        You are, without a doubt, one of the best people we have ever had the pleasure to know. Your kindness, commitment and love shine through in everything you do, and everyone you encounter. We will never forget the kindness you’ve shown to Jazz’s daughter through the years, always making her and Daneisha feel a part of the UConn family. Thank you for everything, Coach. We love you!
+    </p>
+    <p>
+        <b>
+            Lisa and Dan Lowry
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        I can never thank you for all you have done for me and my family over the years. In August of 1970 I entered into your freshman program along with 120 other players. At that time I had no idea how much you would do for me over the next 50 plus years. You have been a coach, teacher, mentor, colleague, advisor, and most of all a valued friend. You have been an inspiration to so many and helped guide me into the person I am today. There are so many memories and so many values you have given to me. I have been so blessed to have you in my life and my family, and I love you for enriching our lives.
+    </p>
+    <p>
+        Love,
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+        <b>
+            Brian, Kathy, Brian Jr and Beth Usher
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        You have been a great inspiration from my first days with you as a “Husky Pup,” through my varsity career.   Your ability to remember all former players and keep in contact is truly amazing, as is your dedication to the UConn football program.  It’s always a pleasure to hear from you!
+    </p>
+    <p>
+        The University of Connecticut, and all players who have experienced playing for you, are extremely fortunate to have had you as a coach, friend, and loving, caring person. Thank you, Coach!
+    </p>
+    <p>
+        With utmost respect,
+    </p>
+    <p>
+        <b>
+            George Kupfrian, 1968
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Andy, Coach, Friend:
+    </p>
+    <p>
+        Congrats to you!……..When I first arrived at UCONN it was overwhelming for me: Big  Stadium, complicated plays, both on offense as well as defense, discipline to be on time, don’t be a moment late!  Study Hall, plus being away from home. Make no mistake, you had to  UP your game! But no matter how frustrated I got, there was always one person I could rely on to get me back on track, both, mentally and physically. Yes it was you, Andy, with your smile, pat on the back and your winning, get organized attitude! I thought of you often when I was in Viet Nam and how great it would be to get home to UCONN and ANDY B”s winning ways.
+    </p>
+    <p>
+        THANK YOU COACH B’ for all you have contributed to my intermittent and, yet ,prolonged stay at UCONN.
+    </p>
+    <p>
+        <b>
+            Victor J Radzevich
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        To Coach B …. The One and Only !
+    </p>
+    <p>
+        YOU have stood the test of time for all of us …. As young people YOU believed in us and have stayed with us the whole way  !!!
+    </p>
+    <p>
+        With thanks and appreciation,
+    </p>
+    <p>
+        <b>
+            Rick Robustelli  – 1971
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        When I arrived on campus in Storrs in the fall of 2006 it was only the second time I’d ever been to the State of Connecticut. The first was during freshman orientation. While I visited the football facilities and met some of the coaches and staff during orientation, I didn’t earn a roster spot as a walk-on until a few weeks later. When I did, Rasool Ahmed made sure that I knew who you were. As a walk-on from Kansas City, Missouri, there wasn’t a ton of incentive for you to be so engaged in my experience as a football player at the University of Connecticut, but you were. Whether it was chatting about Rasool, Kansas City bbq, or even my girlfriend at Seton Hall who you’d heard about because one of your friends was in their athletic department and she worked for the basketball team, you managed to maintain a relationship with a young man who wasn’t on scholarship, from halfway across the country. The lesson in your experience at UConn is that people and relationships are the most valuable things we can possess. I took the lesson to heart, and my career in government affairs and lobbying has been the direct result of valuing people and fostering those relationships. For that, I say, “Thank you.” The last time we were able to catch up, you gave me a tour of the new UConn campus with a developed downtown, bus depot, and more restaurants during my era. When I see you again, it will be to congratulate you on all your achievements at the home opener on August 31st.  I’ll end this letter with a couple of quotes that apply to your impact on me and the University of Connecticut.
+        “You can easily judge the character of a man by how he treats those who can do nothing for him.” – Johann Wolfgang von Goethe
+        “I’ve learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.” – Maya Angelou
+    </p>
+    <p>
+        Congratulations. You’ve done well. You deserve all the recognition you receive.
+    </p>
+    <p>
+        Bleed Blue,
+    </p>
+    <p>
+        <b>
+            Joss Tillard-Gates
+            Football 06
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for all that you have done and still do for UConn nation. Your commitment to serving the UConn family is admirable, and for me personally, it has changed my life.
+    </p>
+    <p>
+        The career-oriented networking event you organized over 6 years ago opened a door for me to intern with and learn from another UConn alum. That internship provided me with an opportunity when I needed it most, and I will forever be grateful. Your wisdom, good-faith, commitment to UConn, and consistent positivity has been a blessing to all who’ve been fortunate enough to cross paths with you. I commit to paying it forward to the best of my ability.
+    </p>
+    <p>
+        Thank you, Coach. We are all lucky to have you in our lives.
+    </p>
+    <p>
+        Go Huskies!
+    </p>
+    <p>
+        <b>
+            -Bryant Sheriffs, 2015-2017
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        Thank you for the support and the endless love during my time at UConn. You always knew what to say. Even after my departure you stayed in touch and always made it feel like home when I came back to visit.
+    </p>
+    <p>
+        With appreciation,
+    </p>
+    <p>
+        <b>
+            Hergy Mayala, 2015-2018
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Greetings Coach Baylock,
+    </p>
+    <p>
+        Thank you for being a great man and a great motivator. You are truly God sent!
+    </p>
+    <p>
+        Respect and Love,
+    </p>
+    <p>
+        <b>
+            Maurice “Moe” Lloyd, 2001-2004
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach,
+    </p>
+    <p>
+        Greetings from the fastest player to ever wear UConn gear. Andy Baylock, you could possibly be the greatest man to ever walk the earth. You have done so much for the maturation of a lot of us former UConn players, and continue to keep us in the loop after 20 years. You are a great person, friend and a legend!
+    </p>
+    <p>
+        <b>
+            -Jason Williams, ’05
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        It was August 27,1973, about ten a.m.. It was double session football, first day in pads. It was already 98 degrees on the way to 103. Humidity hung in the air like artillery smoke. We were a bunch of scrubs in the huddle, waiting for instructions.
+    </p>
+    <p>
+        Whistles and hollering, grunting and the sounds of helmets hitting pads.
+    </p>
+    <p>
+        Sweat and heat like a sauna, we were silent, hot and miserable, just hanging on.
+    </p>
+    <p>
+        You came to our huddle and asked us, “Who wants to have fun?”
+    </p>
+    <p>
+        “We do !” We replied in one voice, hopeful of some respite or reprieve.
+    </p>
+    <p>
+        “BE THE FUN !” you said with a smile and left us to ponder that thought.
+    </p>
+    <p>
+        In that moment I learned a life lesson I never relinquished. Best advice I ever heard in my entire life. Be the fun!
+    </p>
+    <p>
+        Thank, Coach for all the encouragement, dedication and inspiration. You made it fun, and you always had our back. We have been blessed with you in our lives, then and now.
+    </p>
+    <p>
+        <b>
+            Coach Andy ‘Bear’ Baylock, the best there is.
+            Al MacLellan 73-75 Co-Capt.
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach:
+    </p>
+    <p>
+        I have been organizing this event for some time.
+    </p>
+    <p>
+        Now it’s my time to tell you why. It’s not about UCONN, football, or baseball, but about feelings. Everyone has feelings that change over the years. Every one of us has had our highs and lows. We have all had challenges, but anyone that has been fortunate enough to have had contact with you has been in receipt of something special – unconditional friendship and love. The coolest thing about it is, I did not know when it was going to happen. It could have been a dreary Saturday and I went out to my mailbox and there is a hand-written postcard with a “Hi Kenny” at the top. Or maybe, it would be mid-morning and I am in my cellar/office working at my computer and my cellphone rings and I glance at it and see “Andy”. Or it could be a sunny day and I get the mail. I open an envelope to see a picture of my 18-year-old self in my UCONN uniform. Suddenly, I forget my aches and pains and the current issues in the world and remember what a blessed life I’ve had. There may be other great people in the world like you, but they haven’t crossed my path yet. Thank you for being in my life.
+    </p>
+    <p>
+        Love,
+    </p>
+    <p>
+        <b>
+            Kenny Demers  1970
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        I don’t think there will ever be a way to get across how much you mean to the University of Connecticut and our football team. During a time of so much change and growth for all of us, you were always there to lend a hand, share your wealth of knowledge, and point us in the right direction.
+    </p>
+    <p>
+        Thank you for everything!
+    </p>
+    <p>
+        <b>
+            Steve Brown
+            Class of ‘14
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy
+    </p>
+    <p>
+        You guided us during our early days at UConn to make sure we would get the most out of our UConn experience. And once we left to go out to the real world, you kept in touch to help maintain our Husky connection with your newsletter and special notes from time to time. The fact that you still remember our names and hometowns when we meet at the football game day tent is amazing. You are the epitome of bleeding blue and we are thankful to have your mentorship and happy that UConn football is honoring you. Thanks for all you’ve done for us.  Go Huskies!!
+    </p>
+    <p>
+        Best wishes
+    </p>
+    <p>
+        <b>
+            Ralph Tiner 66-69
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Andy,
+    </p>
+    <p>
+        I am so proud to call you Coach!
+    </p>
+    <p>
+        I clearly recall your commitment to the football program and the players when I played for you back in the ’60’s, the era of the “Spear Tackle.”
+    </p>
+    <p>
+        Your kindness and caring is what struck me and to no one’s surprise you have never wavered. I still marvel at you hand-writing all of those messages and notes to us over the years.
+    </p>
+    <p>
+        You are an amazing human being Coach, and I want to thank you for all you’ve done for me and all of the players you have coached over the years. I am so sorry I can’t attend your celebration, but know that you occupy a very special place in my heart.
+    </p>
+    <p>
+        Sincerely,
+    </p>
+    <p>
+        <b>
+            John “Beau” Billingslea (1962-1965)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Andy,
+    </p>
+    <p>
+        I wrote this eleven years ago after attending the “Farewell to Memorial Stadium”. It’s hard to fully express what a gift you are to UConn and everyone who has been privileged to know you.
+        Thank you for being my coach, mentor, friend.
+        Regards,
+        Skip Gorski
+
+    </p>
+    <p>
+        May 16, 2012
+    </p>
+    <p>
+        Dear UConn Alumni;
+    </p>
+    <p>
+        To say that I’m a proud member of the UConn Football Alumni would be an understatement. I am always grateful to be able to attend a gathering of the Alumni at Storrs and or the Rent.
+    </p>
+    <p>
+        The “Farewell To Memorial Stadium” this past Saturday, was as much fun and as special as all the previous UConn Football Alumni Events I’ve been fortunate to attend.
+    </p>
+    <p>
+        As I was driving back home to NJ that evening, I reflected on the day and the festivities. It carried the same theme of all the many previous events I’ve attended. Greetings from many former Alumni, listening to the speakers recall how we all feel about the place that brought back so many memories. Rich [Foye] portrayed a vision of looking at memories of the Stadium through the lens of a camera. A very appropriate way to look at the history of what was special to all fun. Phil Barry and coach Naviaux also made poignant thoughts. All this is wonderful, however…………    </p>
+    <p>
+        I’d like to add a vision I had that had been missed last Saturday, and quite frankly at most of the Alumni events. A constant image in this vision [if you look through Rich Foye’s video clip analogy] is one man that personifies UConn Football. A man that was so unselfish in his reaching out to us as players and young men. And now as grown men, he continues to reach out to us again in a way that makes each of us feel special. We ALL know that man…..Andy Baylock!
+    </p>
+    <p>
+        Rewinding the film from Memorial Stadium and then playing it back over the decades, there is Andy guiding players and coaches through those many memories.
+    </p>
+    <p>
+        Wins, big pays and outstanding efforts by those who stood tall at Memorial Stadium occurred under Andy’s watch.  Andy was and is always there over the decades to the present time to help make us who we are.  There have been outstanding Head and Assistant coaches at UConn that have had guided us on the field, but Andy continues to do it through out our adult lives. How amazing is it that we all are fortunate to have this great man give so much to those of us who have passed through the Storrs campus.
+    </p>
+    <p>
+        Andy Baylock is a “gift” to all who know him. He is what we aspire to and believe in. We all are grateful for the goodness and kindness he shares with us each time we see him.
+    </p>
+    <p>
+        Think about the moment you greet Andy. A warm handshake, a big bear hug, that smile and most of all he remembers a special moment, a play, an anecdote, a highlighted event from the past about what you did at UConn. He does that with such ease, without hesitation and with conviction for hundreds of former players and coaches. Andy jokes about not using computers, smart phones and emails. He doesn’t need it!  He’s got everything stored on his own “hard drive” – the brain God gave him.
+    </p>
+    <p>
+        Why rely on a machine, he carries everything upstairs – where it counts!
+    </p>
+    <p>
+        Andy does it all “under the radar” quietly building an Alumni Family of former players, coaches and support staff and doesn’t expect an ounce of credit for all that he does.
+    </p>
+    <p>
+        I’ve never heard Andy use the word “I” when it comes to what he loves to do for UConn Football or for that matter anything that he does for all of us former players.
+    </p>
+    <p>
+        We have been blessed with a chance to come back to be part of UConn Football again after years and decades off the playing field. Andy has created this “family” from nothing and built it to become a caring and close knit group.  We all look forward to these events and Andy has been our guide and leader though it all.
+    </p>
+    <p>
+        When I left the “Farewell to Memorial Stadium Event”, I thanked Andy for the day, but for me it wasn’t enough. I wanted to write this and express how we all feel about Andy.
+    </p>
+    <p>
+        So on behalf of ALL the UConn Football Alumni and current players, coaches and support staff-
+    </p>
+    <p>
+        THANK YOU ANDY!
+    </p>
+    <p>
+        For all that you have done for UConn Football, for your guidance, support and love as we took our first steps on campus to our last steps in life.
+    </p>
+    <p>
+        God Bless you always!
+    </p>
+    <p>
+        <b>
+            Gregory “ Skip” Gorski  1972
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        I can’t thank you enough from the beginning of our freshman FB team for believing in me, mentoring me to believe in myself, and staying in touch with your continued mentoring throughout my entire life journey.
+    </p>
+    <p>
+        You live the definition of true friendship.
+    </p>
+    <p>
+        Forever grateful
+    </p>
+    <p>
+        <b>
+            Al Akowitz
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        I think of you not just as a coach but as an outstanding friend, individual and representative of the University of Connecticut. While you coached the team you were always concerned with players as individuals. You made it a point to keep in touch with former athletes and have done so with me for more than 55 years. I am proud to know you, Andy Baylock.
+    </p>
+    <p>
+        <b>
+            -Victor Kinon (Class of ’68)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You have been a great inspiration to me since I first met you when you recruited me back in 1966.  I was called out of class to meet with you and my high school coach/teacher.  I’ll never forget your enthusiasm for UConn and how you bled blue even then.  I was sold.  You have led a charmed life and influenced 1000’s of kids …. and are still able to name them all, along with a little insightful story about them.  Amazing!  My favorite is Coach Toner buying you the best steak you ever had on your way back to Storrs after you guys came to my house.  That was 57 years ago.  I can’t remember what I did yesterday.  I am thankful for you being in my life, have and will continue to cherish our friendship.
+    </p>
+    <p>
+        <b>
+            Bobby Nichols  ’67-’70
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach B,
+    </p>
+    <p>
+        Always ready with a smile, you were one of the very first people I met when I started my UConn career in the Football Office back in 2004. You continuously were willing to share your vast knowledge of UConn Athletics, Baseball, Football, etc., and that helped me more than you know.  Listening to your legendary stories made me the happiest and they stick with me still.  Your stories are legendary, and so are YOU.  Your kindness and generosity extend well beyond UConn. I can only imagine the thousands of lives you’ve touched.  But I want you to know that you ARE UConn Athletics for me.  The one constant in my past and present happy thoughts of UConn Football.   Love you Coach – keep pitching,
+    </p>
+    <p>
+        <b>
+            -Joanne Fazio
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        You are a true inspiration to us all with your dedication and commitment to UConn.
+    </p>
+    <p>
+        Love you,
+    </p>
+    <p>
+        <b>
+            Kappy
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach.
+    </p>
+    <p>
+        I have always been astounded how great a coach you have been to so many for so long. No doubt you remember all the baseball and football players you had over the years. Your toughness and kindness know no bounds. You always seemed to get the most out of players by providing encouragement and excellent challenges. I never ever witnessed you belittle any player, anyone – ever. About eight years ago I happened to be at UConn, and I thought of visiting you. I had not seen you in many decades. The building was locked but a person let me in, and I went up to a secretary and asked if Coach Baylock was in. Instantly, down the hall you bellowed: “Is that Brian Hermes?” You jumped out of your room, we hugged, and then you took me on a grand tour of the new facilities.
+    </p>
+    <p>
+        You are the best.
+    </p>
+    <p>
+        <b>
+            Brian Hermes – 1971
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        You have been one of the most inspirational and influential people in my life.  I will always cherish our friendship.
+    </p>
+    <p>
+        I can remember the first time I met you in 1964, you were bigger than life itself.  You have continued to be a bigger than life role model for all those that were fortunate enough to come into contact with you.  You have been responsible for many things in my life from talking me into staying with the program, telling me about my first Head Coaching job at Plainfield High School when I returned from the Service, to teaching me how to study and live by a simple “To Do” list every day.  However, the most important take away from you was learning how to treat people with respect, loyalty and a never-ending work ethic.
+    </p>
+    <p>
+        We are all better people because of you, and we thank you for being the glue that holds the Football Alumni together.
+    </p>
+    <p>
+        Today, is our way of showing our love for you.
+    </p>
+    <p>
+        Love,
+    </p>
+    <p>
+        <b>
+            Vin Iovino 1968
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        Thank you for all that you do, and all that you have done for all of your players,. Thank u for being you!
+    </p>
+    <p>
+        We love you!
+    </p>
+    <p>
+        <b>
+            Danny Sullivan, class of ‘71.
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        My Guy!!!
+    </p>
+    <p>
+        Coach Baylock, you offered nothing but love to me since I met you for the first time ever at the age of 12 during goaline, the program you ran that was major in my school and had a positive impact on my peers. Being blessed enough to follow my dreams and play for UConn through the years of 2018-2022 you were there side by side everyday pouring nothing but positivity and wisdom on me every time we spoke. You lectured me on life, advice on my game and how to continue growing as a young man, and you told me things about East Hartford back in the day that I knew nothing about which was always funny to hear. I can’t thank you enough Coach, you are the epitome of UConn football. I love you and I’m grateful to have you as a resource in my life.
+    </p>
+    <p>
+        Thank you coach,
+    </p>
+    <p>
+        <b>
+            KK
+        </b>
+    </p>
+    <p>
+        <b>
+            Kevon Jones, ’18-22
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        I remember meeting for the first time and thinking, “wow this coach really does care about me. Can’t let this guy down”… I am confident you’ve had a direct impact on my success and can guarantee you’ve enlightened and enriched my life thoroughly in ways you may not realize.
+    </p>
+    <p>
+        Your goal of molding young men on and off the field into men of character and work ethic was a triumph. I draw on lessons you’ve taught me daily and I still strive to never let you down!
+    </p>
+    <p>
+        We are all Huskies and you are the lead dog Coach!
+    </p>
+    <p>
+        Thank you for all your time and efforts. I know you don’t do anything for thanks but out of love for us as men; you deserve to know we love you too!
+    </p>
+    <p>
+        <b>
+            Ryan Griffin, ’08
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I’d like to say that you are a true trail blazer of man.  True man of your word, you are truly the intricate key piece to the longevity of our brother hood.  Living legend!!!
+    </p>
+    <p>
+        Respectfully,
+    </p>
+    <p>
+        <b>
+            Justin “Perk” Perkins, 2001-2004
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach B,
+    </p>
+    <p>
+        I have never had an individual pour as much positive energy as you, and for that I am eternally grateful. I look at you as a father figure whose influence was unmatched through my time at UConn. I hope you know you are loved deeply by the UConn community and alumni. Thank you for your dedication to our success from mentorship to setting up career fairs.
+    </p>
+    <p>
+        Love,
+    </p>
+    <p>
+        <b>
+            Poughkeepsie Popper (Reuben Frank) 2010-2014
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for the love you always shown me and all the players. You are one of the most genuine people that I have ever met and everyone you have touched at UConn has benefited so greatly from it. You treat every player like we are one of your sons.
+    </p>
+    <p>
+        Thank you and we love you Coach B!
+    </p>
+    <p>
+        <b>
+            -Taber Small
+        </b>
+    </p>
+    <p>
+        <b>
+            “Nothing in this world is accomplished without passion”
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        As a member of Coach Baylock’s first freshman football team in 1964, one thing hasn’t changed much for Coach B over the years. The 105 freshmen players probably were among the first entries into Coach B’s legendary “database”, a paper rolodex file that must have thousands of entries today.
+    </p>
+    <p>
+        Fast forward to today and certainly automation helps Coach B. with his football duties. But that personal touch is still there as he continues to use his rolodex file to keep in touch with all of us.
+    </p>
+    <p>
+        Until recently, Coach mailed us the newsletter and always included a hand written greeting on the front page.
+    </p>
+    <p>
+        Today, the football news letter is electronically emailed to us. But the Coach Baylock personal connection with all of us still happens in different ways. It can be at the football alumni tent on a game day. Another can be a piece of mail with a note and picture with you and teammates pulled out of his files. Or sometimes Coach makes an off-season phone call which will usually include a few Husky football stories.
+    </p>
+    <p>
+        On Thursday, August 31, 2023, we will have a chance to publicly show our appreciation for all that Coach Baylock has done for the University of Connecticut and Husky football.
+    </p>
+    <p>
+        His tireless effort to keep football alumni and today’s football team members connected is so appreciated. We’ll have a chance to express our gratitude for his connection to all of us during his special game night and I know that appreciation will continue well beyond.
+    </p>
+    <p>
+        Thank you, Coach Andy Baylock for your friendship from that freshman season in 1964. All the best in the future as you provide a link to Husky football – past and present.
+    </p>
+    <p>
+        <b>
+            Carmen and Marlene Ammirato
+        </b>
+    </p>
+    <p>
+        <b>
+            Class of 1968
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        To Uncle Gramps,
+    </p>
+    <p>
+        Man, where do I start? Coach, you are the epitome of man who has experienced true happiness in his life. This comes from the amount of people you’ve influenced, mentored, and uplifted with just a mere smile or 2-minute convo that has created a ripple effect and impact far beyond the football field and UConn campus.
+    </p>
+    <p>
+        Every time I asked how you were doing, you would swiftly reply, “You know, not so bad for an old man. But I can still kick your ass!” I’ll hand it to you coach, the way you approached every day with a positive mindset sometimes made me actually believe you could. Haha
+    </p>
+    <p>
+        Since day 1, you commented on the fact that I am always smiling. “We don’t want no pickle puss’s around here,” as you would say. Well coach, the reason for me smiling when I saw you was because I truly saw your superpower which was your heart and spirit.
+    </p>
+    <p>
+        I am honored to have walked the hallways with you and shared a couple of laughs. Love you man and thank you.
+    </p>
+    <p>
+        Best,
+    </p>
+    <p>
+        <b>
+            Omar Fortt
+        </b>
+    </p>
+    <p>
+        <b>
+            Class of 2021
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Courtney Robinson, incoming freshman class by the way of Florida back in ’05. I want to take a second just to say, “Thank You”. Even as a transfer you’ve always been a standup guy and over the years we still stayed in contact and getting as many youth on campus as possible here in the state.
+    </p>
+    <p>
+        <b>
+
+            Forever Thank you!  -CR9
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        You granted my wish 50 years ago to be a part of UConn football. If you were ambivalent about it, you never showed it. I learned a lot about the game, about discipline, about showing up from you. You cut me no slack, but treated me with kindness and respect.  When I remember my years at UConn, I think of football first and the lifelong friends I made because of football. You taught us all life lessons, made us accountable, encouraged us when we needed it and reminded us to make our parents proud. You made me feel like a part of the family. No visit to UConn is complete without a hug from you. It was an experience that I will never forget and will always cherish. Enjoy your special day. ❤️
+    </p>
+    <p>
+        With love,
+    </p>
+    <p>
+        <b>
+            Martha
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Congratulations and thank you for the positive impact and lifelong lessons you given to generations of Huskies!!
+    </p>
+    <p>
+        As a 18 year old out of state kid who tore up his knee 45 days into his college career, your help and guidance made a huge difference in my ability to move forward. Being told I may not be able to play again, my sole purpose for going to school, you taught me early life lessons. Every Monday, Wednesday, and Friday you would show up in the station wagon at 7:45 to make sure I would get to class on time. This along with your study hall put me on a different path than when I showed up in August. You helped give me a different perspective and purpose in life. I know you have had a similar impact on hundreds of us over the years. You are truly a special person.
+    </p>
+    <p>
+        Thank you,
+    </p>
+    <p>
+        <b>
+            Ken Donlon ‘77
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Hey Coach,
+    </p>
+    <p>
+        I appreciate you being the face of UConn athletics alum.  Knowing you’re there with open arms always makes me feel good about coming home.
+    </p>
+    <p>
+        Much love, Coach,
+    </p>
+    <p>
+        <b>
+            Razul Wallace, 1999-2002
+        </b>
+    </p>
+</div>
+
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for the impact you have had on my life and the lives of hundreds of young men like me. Your contributions are immeasurable. The particulars of the games (or the plays we ran on the scout team 😊) have long faded from memory. However, the life lessons you taught and the example you set, have remained with me all of my life. I will be forever appreciative. Congratulations on the very well-deserved recognition.
+    </p>
+    <p>
+        <b>
+            Terry Ramsey  ’74 – ’77
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach!!
+    </p>
+    <p>
+        Man, you are the very definition of Bleed Blue! You’re truly an inspiration to me with your tenacity, perseverance, and integrity! You’re someone that I looked up to from the day we met, and then I became your bodyguard, (I took that job seriously, LOL). You have a long life ahead of you and I assume you will still be at UConn, one way or another. They can’t get rid of you that easily. I know I speak for everyone in my class, before and after when I say that you hold a place in my heart where it can never be extinguished.
+    </p>
+    <p>
+        Thank you for being you! Love you!
+    </p>
+    <p>
+        <b>
+            Rich Levy, ’16
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        Love and appreciate all you have done for me and every UConn student athlete. Bless you and your family today and every day!
+    </p>
+    <p>
+        Best wishes and a well-deserved honor.
+    </p>
+    <p>
+        <b>
+            Butch Parmalee 98’
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy,
+    </p>
+    <p>
+        You have been a great part of my career at UConn! You have been so supportive way beyond my years at UConn! I hope you enjoy this honor, Love you man! ”
+    </p>
+    <p>
+        <b>
+            Joe Corbo 1974
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You are only one of two people I call coach with a capital C. When you call your former players all snap to attention and say “Yes Coach”.
+    </p>
+    <p>
+        Thanks
+    </p>
+    <p>
+        <b>
+            Drew Bickel 1972
+        </b>
+    </p>
+</div>
+
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        I cannot even begin to find the right words to express how thankful I am for you. From the first day I stepped on campus and became a member of the UConn Football Family, you offered me advice and gave me the tools to help me become the best student-athlete I possibly could. From watching over my countless snaps during practice, to giving me words of encouragement to help me become a better leader, you were always there for me. After five years, two degrees, and the opportunity to accomplish my dream of becoming a UConn Husky, I am eternally grateful for your kindness and positivity. Thank you for all that I have done and will continue to do for UConn Football and UConn Athletics.
+    </p>
+    <p>
+        Thank you,
+    </p>
+    <p>
+        <b>
+            Brian Keating  #53
+        </b>
+    </p>
+    <p>
+        <b>
+            Class of 2021 / 22
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock isn’t just the kindest and most joyful man in UConn history… he’s one of the toughest too. One of my earliest UConn Football memories was when we got our first day off from summer camp back in ‘06, and Coach B was pitcher for the softball game we played. He took a softball right off the shin bone and it swelled up as big as the softball that hit him! But he shrugged it off like it was nothing and kept pitching, with, somehow, and even bigger smile than he normally sports.
+    </p>
+    <p>
+        A tough and a heartwarming gentleman, that I admire endlessly.
+    </p>
+    <p>
+        Thank you, Coach Baylock.
+    </p>
+    <p>
+        Best,
+    </p>
+    <p>
+        <b>
+            Alex Molina 2006-2009
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock has been one of the most influential people in my life. I consider him to be in the top five people of all time for me. From the time I stepped on the field in 1971 until now, he has always been there for me. I can remember a few years ago, speaking with him and he could remember a play that I made against the University of Maine on the end sweep. I can’t remember what I had for lunch yesterday! I have 11 grand-kids and all I want for them is to be decent humans. Coach Baylock is one of the most decent humans I have ever met.
+    </p>
+    <p>
+        Love you Coach!
+    </p>
+    <p>
+        <b>
+            Gary Calvino
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Thank you for everything Coach B!
+    </p>
+    <p>
+        As a young inner-city guy coming from New Jersey, it was good to have that guy that loved you no matter what you look like, where you came from, or what your background was. As long as you bled blue, you welcomed us. You will always hold a special place in my heart because of the HUGE heart you have. You would give rides to players that were injured to make sure they got to places on time. You would hold steak dinners at your house for guys that made the honor role. That’s the type of heart you have. Poppa Bear, you will forever be my favorite all time person from the UConn staff. Love you Coach Baylock. I know you can still kick some ass if needed. Ha ha!
+    </p>
+    <p>
+        <b>
+            Andre Dixon, 2005-2009
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        I just wanted to take a moment to say thank you. Thank you for giving everything you have every day. We appreciate all that you’ve done for us. One thing I truly find impressive is that I’ve never run into anyone who can say a negative thing about you. You treat everyone with the perfect mix of respect and tough love. You go out of your way for people even when you don’t have to. You’ve withstood the test of time. And I pray you continue to do so. You’re a pillar in the UConn sports community and I’m honored to say I know you. Keep being great!
+    </p>
+    <p>
+        Much Love,
+    </p>
+    <p>
+        <b>
+            Jerome Williams, 2008-2011
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        I know if my parents were alive they would want me to personally thank you for taking me under your wing as a Freshman Husky,  and not just being a Coach, but guiding me, and mentoring me and my teammates through our years at UConn. I was one of the fortunate players who got to be with you not only in Football, but 4 years in Baseball, culminating with our trip to the College World Series in 1972.  I have such wonderful memories and I’m glad you are finally being recognized by  the University. You are one of a kind, a great person and a wonderful friend to us all. Thank you for all you have done.  With utmost respect……..
+    </p>
+    <p>
+        <b>
+            Keith Kraham 1972
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock’
+    </p>
+    <p>
+        Sorry I am unable to attend your ceremony at the game this week due to the fact that I am still fighting this terrible case of leukemia which has plagued me for some time.
+    </p>
+    <p>
+        I just want to thank you for all the assistance you provided me during my days at UConn, especially the early years.
+    </p>
+    <p>
+        I am very lucky to have been associated with you and my teammates who won two Yankee conference titles. UConn and all of its players and coaches have been lucky have you on its staff.
+    </p>
+    <p>
+        Sincerely
+    </p>
+    <p>
+        <b>
+            Bob Warren
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for teaching us the importance of giving back. A lot of my favorite memories from my time at UConn was going down to Hartford to speak to the youth. All that was made possible because of you. Love you, Coach!
+    </p>
+    <p>
+        <b>
+            Emmanuel Omokaro, ’11
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Thanks coach B for all that you have done and still are doing for UCONN. It has been a pleasure getting to know you while at UCONN and learning even more about you after graduating. Your personal letters and messages are very much appreciated. I am so excited to see you being honored coach. Enjoy!!!
+    </p>
+    <p>
+        <b>
+            Carl Bond 98
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        I can never thank you enough for all that you’ve done for me during my time at UConn. Your genuine concern and love for everyone who has come through the program will never be forgotten.
+    </p>
+    <p>
+        All the best,
+    </p>
+    <p>
+        <b>
+            Dhameer Bradley, 2013-2018
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Hey coach!
+    </p>
+    <p>
+        I just wanted to tell you how appreciative I am to have you in my life. As a young Husky you showed me the values of life both on the football field and off. I remember you advising all of the young pups, pushing us to be promising future leaders, helping us achieve and focus on not only being great football players, but college graduates as well. The best quality that Coach Bear brings to the UConn family would be all of his hard work with the alumni. Keeping the UConn family together by emails, phone calls, and invites to football games. It’s amazing what Coach Baylock brings to the UConn nation and we love him dearly, and thank him for all of his dedication to the husky family!
+    </p>
+    <p>
+        -Best,
+    </p>
+    <p>
+        <b>
+            Isiah Moore, UConn Football 2012
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock!
+    </p>
+    <p>
+        I will always appreciate the words of wisdom you have given me. It was a blessing to have learned from you. Thank you for everything, Coach!
+    </p>
+    <p>
+        <b>
+            Zavior Scott, ’17-19
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock –
+    </p>
+    <p>
+        You are a tremendous leader and have been such a positive influence on so many young adults throughout your career, me included. Enjoy this night, and you better still be throwing out BP!
+    </p>
+    <p>
+        <b>
+            Noah Iden, ’18-’22
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You Greeted Me Upon Arrival. Stayed Throughout My Journey and Now I Humbly Thank You For  All Your Generosity and Passion for Making Others Better.
+    </p>
+    <p>
+        <b>
+            Dan Rose
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach
+    </p>
+    <p>
+        I remember the first time that we meant when you sat in my house with the train rumbling by outside. Although I have never found my baseball glove, I am fortunate to have found a mentor, a great coach and friend, and someone that will always be dear to my heart. Finally thank you for all the thousands of people that you have helped that feel the same way that I do.
+    </p>
+    <p>
+        Always,
+    </p>
+    <p>
+        <b>
+            Lou Allen Jr. – Class of 74
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Where to even start? Your presence and the way you cared is invaluable.  For a lot of players, it was the first time they have been on their own and your presence made countless young men feel more comfortable and surer that they belonged.  Thank you for all the encouraging words and just always being available to talk when needed.  I cannot begin to explain the impact you have had on me and all the players over the tremendous amount of years with the program.  The University is so lucky to have you.
+    </p>
+    <p>
+        Love you Coach!
+    </p>
+    <p>
+        <b>
+            Ryan Wirth, 2008-2012
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I wanted to thank you for your dedication and hard work to keep the UConn Football Family Alumni together. Your constant updates and messages to alumni keep us all informed how the program is doing even though we may not be close geographically. I remember you always said to make connections outside of football because not everyone will go Pro. I have taken that advice in my career and still network and meet new people. Thank you for all you do and always being supportive of the “Kicksquad” (Desi, Teggart, Me).
+    </p>
+    <p>
+        <b>
+            Chad Christen – UConn Kicker (2009 – 2013)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        To Coach Baylock,
+    </p>
+    <p>
+        You are an indispensable figure in the world of UCONN football, an architect of success, and a beacon of inspiration. Your role in shaping the program’s triumphs cannot be overstated. Through your leadership and guidance, UCONN football has soared to new heights, achieving remarkable success both on and off the field.
+    </p>
+    <p>
+        Your unwavering commitment to excellence has instilled a winning culture within the program, fostering a legacy of achievement and resilience. Your ability to connect people, build strong bonds, and keep them engaged has been instrumental in the team’s triumphs.
+    </p>
+    <p>
+        UCONN football owes a great deal of its triumphs to your tireless efforts, strategic brilliance, and unwavering passion. Your contributions have elevated the program to unprecedented levels of greatness.
+    </p>
+    <p>
+        As we reflect upon your remarkable tenure, it is evident that your impact extends far beyond wins and losses. You have shaped the lives of countless players, instilling in them the values of discipline, perseverance, and teamwork that will serve them far beyond the football field.
+    </p>
+    <p>
+        Coach Baylock, you are a true legend, and your influence on UCONN football will forever be enshrined in its storied history. Thank you for your unwavering dedication, leadership, and timeless impact on the program’s success.
+    </p>
+    <p>
+        With utmost respect and gratitude,
+    </p>
+    <p>
+        <b>
+            Gerrard Sheppard, ’08-’10
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B!
+    </p>
+    <p>
+        Coming to you from the west coast and wish I could be there on the 31st to see us beat the wolfpack. I’ll be there in spirit, and with my dad spread all over the rent, there will always be an “Irwin” there. One of these years in the near future the family and I will get back to UConn and be able to catch up on everything. You truly have been and continue to be the glue that holds so many generations of UConn Football together.
+    </p>
+    <p>
+        Much love and please continue to stay forever “young”.
+    </p>
+    <p>
+        <b>
+            Billy Irwin #58, 2000-2004
+        </b>
+    </p>
+</div>
+<div class="messagebox">
+    <p>
+        Coach Baylock –
+    </p>
+    <p>
+        “You are a great leader and a tremendous part of the UCONN Football Organization. You were/are a great mentor to me especially throughout my tenure at UCONN and continue to shape the lives of the young men that walk the halls today”
+    </p>
+    <p>
+        <b>
+            Mathieu Olivier
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B –
+    </p>
+    <p>
+        Thank you for starting the idea of the movement for UConn football Alumni. As a Floridian Alumni it used to be easy to feel “out of the loop” but because of you, not only myself…but my family feel like “part of the family” again. It will mean more than you know, for the rest of our lives. thank you!
+    </p>
+    <p>
+        <b>
+            Brian Hoffman
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        I am honored to have a lifelong relationship with a man of your caliber, expertise, and prestige. The impact you have made on many people over many years, close and far, can not go unnoticed. You’re a stand-up man who I have the utmost respect and honor for. The love you had for all of us has always been genuine and special. Through your words and actions, you showed all of this through your commitment. Sincerely, thank you for your continued hard work and dedication serving countless people over time. I appreciate everything you have done and honored to have you as a life long coach and father figure. It’s all love Coach B. Papa Bear!
+    </p>
+    <p>
+        With Great Respect and Honor
+    </p>
+    <p>
+        Love,
+    </p>
+    <p>
+        <b>
+            Twyon Martin Jr. (’07-’11) and Twyon III
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy
+    </p>
+    <p>
+        Thank you for being you: one tough, honest and dedicated man, who changed my life. If it wasn’t for Andy, I would not be a UCONN graduate and 4 year player. It would have been easy to quit my freshman year, for a variety of reasons.
+    </p>
+    <p>
+        Andy, you have been a consistent mentor and guide throughout my life. You are one of the best people I have ever met, always helping, encouraging, totally unselfish. You deserve every accolade you receive.
+    </p>
+    <p>
+        You have made an impact on so many players. You are truly one of a kind! Thanks again, Coach
+    </p>
+    <p>
+        <b>
+            Paul Scaffidi (Scaffer)  UCONN 1974    434-962-0682
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Just a short message to you Coach because you need to know that anyone who was touched by your leadership emerged as a better person. 1964 is 59 years behind us and the warm feelings of your enthusiasm, encouragement and kindness live on in me, probably the least qualified guy ever to have the opportunity to play for you. Coach, your reach, while centered in Storrs, goes far and deep into the character of your players. You are, and always have been, a class act.
+    </p>
+    <p>
+        <b>
+            Ed Jasudowich (aka The Kielbasa Kid)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        I want to thank you for all you have done for me during my time at UConn and as an alumnus. The establishment of this foundation could not go to a more deserving man. Kenny has done a superb job of getting it off the ground. Personally, my time playing for you was my best and helped me countless times in my life. There were some very talented players at UC, of which I probably was not one. But, to this day, you always treated me as one. In retrospect, you treated us all as stars. I have coached many sports from youth to juco level baseball and always made it a point to treat all players and families as you did us. I’ll never forget the afternoon of your time you gave me a few years ago when I came up for a visit. It really brought me to tears and reinforced the kind of man you are. Congratulations and enjoy your most deserved honor.
+    </p>
+    <p>
+        <b>
+            Pete LaVenia
+        </b>
+    </p>
+</div>
+
+
+<div class="messagebox">
+    <p>
+        Andy:
+    </p>
+    <p>
+        I am so grateful for all that you did for us our freshman year, helping us acclimate to college football, college academics and living away from home for the first time. It provided the foundation for success over the remainder of my college experience, and for a work ethic that has served me well in the years since.
+    </p>
+    <p>
+        You are deserving of all the honor and accolades you will receive on your special day.
+    </p>
+    <p>
+    </p>
+    Thank you Coach Baylock!    <p>
+    </p>
+    <p>
+        <b>
+            John G Salek    UConn Football 1969 – 1972
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B.
+    </p>
+    <p>
+        “4th and 1, what are you going to do?” Your last year coaching football in 1978 was my first and you were my position coach for part of the season. I also had you as a teacher for one of my first classes in PE. Fast forward to 2003 when you were reengaged with the football program which has been a wonderful run getting former players involved in the program to mentor future Huskies, solidifying bonds with former players and creating a community which did not exist before. Your dedication to the university and most importantly the former players (whether star players, or like me, having a short career) has been stellar.
+    </p>
+    <p>
+        You are truly one of a kind!
+    </p>
+    <p>
+        <b>
+            Jim Kern – 1983
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        We are so excited you are getting a well-deserved recognition by the football program. Knowing you throughout the years has been a blessing for us and our family. Having you as a coach, Sue as a teacher, Eric as a mentor then me coaching with you has been so much fun. We always look forward to seeing you. I liked working with your kids at Edwin O. Smith and your wife. You guys did great raising your kids even while being so involved with UConn Athletics. I hope you enjoy your day, and we look forward to seeing you.
+    </p>
+    <p>
+        Sincerely,
+    </p>
+    <p>
+        One of the Three Amigos and the best Slider you had in your class, <b>Sue and Mike McCarthy</b>
+    </p>
+    <p>
+        PS The Vineyard is still a great place to live, much better than your cape. Ha Ha
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        The legend himself!! The amount of life lessons I’ve learned from you over the years are countless. Must be all those homemade chocolate chip cookies my mom made you while at Dodd, and up in Storrs. Everywhere you go, you light up a room with your smile! I hope all is well and look forward to catching up soon!
+    </p>
+    <p>
+        <b>
+            -Kenny Dutton ’14
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        You have done so much for me and the UCONN Community. You had such a profound impact on my development as a young coach and continue to inspire and mentor those around you. I will always appreciate your guidance and generosity.
+    </p>
+    <p>
+        <b>
+            Shane Fogarty    Class of 2006
+        </b>
+    </p>
+    <p>
+        <b>
+            Football GA 2010/2011    Assistant Coach 2013
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Words can’t express the level of appreciation I have for you, and I know I speak for all the players that have crossed your path in your journey that your impact is profound. For me specifically, you have allowed me to feel like the UCONN football experience is a true brotherhood and family. Your legacy will last forever across multiple sports and that is a testament to the genuine love that you bring to work with you every day. I’m forever grateful for everything that you are and the role you have played in my life. Thank you!
+    </p>
+    <p>
+        Sincerely,
+    </p>
+    <p>
+        <b>
+            “JJ” – Jonathan Jean-Louis, 2007-2011
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I remember the day that we met on my official visit and the energy that you shared with the players. It was contagious and a major reason why I decided to attend UConn. Your passion for the game and the players was none that I’ve ever seen from my college visits. It’s been 16 years since I was a part of the football program. You continue to share that same energy whenever I bring my family to visit! You are a rare breed Coach B and appreciated by all! Thank you for being a huge part of my life! Go Huskies!
+    </p>
+    <p>
+        <b>
+            -Marvin Taylor, 2003-2007
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach!
+    </p>
+    <p>
+        No one means more to the UCONN athletics program than you. I always enjoyed our talks about Suffield Academy as we walked from Shenkman to the bookstore. I could always count on you to check in with me about family, school and life and I always appreciated it!
+    </p>
+    <p>
+        Nothing but love!
+    </p>
+    <p>
+        <b>
+            Brice McAllister, 2014-2017
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You are one of, if not the best, coaches of all time! You gave me jewels that I still live by today. You are a wise man with nothing but love and care for other people!
+    </p>
+    <p>
+        Thanks Coach!
+    </p>
+    <p>
+        <b>
+            Tyree Clark, ’11-’13
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Thank you Coach Baylock for your selfless service to UCONN athletics.
+    </p>
+    <p>
+        Your commitment and dedication to the students of UCONN Baseball and Football teams through many decades is inspiring.
+    </p>
+    <p>
+        For me, it is pretty cool to know you coached my Uncle Andre Thompson of Louisiana in the late 70s along with his brother.
+    </p>
+    <p>
+        During my tenure of ’04-’07 I appreciate you allowing me to speak to the kids from my hometown of Hartford, CT. It meant the world to me.
+    </p>
+    <p>
+        May peace be upon you.
+    </p>
+    <p>
+        <b>
+            – Stanley Williams “Stack”, ’07-’08
+        </b>
+    </p>
+</div>
+
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Congratulations! Coach, you have been an outstanding ambassador
+        for UConn athletics. I am glad you are being so honored. Your
+        coaching style was wonderful. You acknowledged positive effort,
+        while at the same time pointing out the possibility of a more impactful
+        outcome. It has been a model for me. It is always a pleasure to
+        receive your correspondence, notes, and photos. It is not lost to me
+        that you care enough to personally initial them. Thank you for your
+        many years of commitment to UConn. 
+    </p>
+    <p>
+        You are the embodiment of “Bleed Blue”
+    </p>
+    <p>
+        <b>
+            David Sorrell ‘74
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        Can’t thank you enough for all of the wise words and support over the years. Whenever I was down, I could always rely on you to pick me up with a “you’re a tough Irishman, Murph. You got this.”
+    </p>
+    <p>
+        You would always take the time to say hello to my family and that would often make their trip. My Pop loved reminiscing with you about your match-up up with him at Nova and the old Big East.
+    </p>
+    <p>
+        Nothing is ever too much of a hassle for you, Coach. You are the epitome of what it means to be a leader of men. You have changed and impacted so many lives throughout your career and I speak for us all in saying that it is an honor and a privilege to have you in our lives. Thank you for all that you have done and will continue to do, Coach!
+    </p>
+    <p>
+        Best,
+    </p>
+    <p>
+        <b>
+            -Kevin Murphy “Murph” #94 Class of 2018
+        </b>
+    </p>
+</div>
+
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        Thank you for all the time and advice you gave me while at UConn.
+    </p>
+    <p>
+        As a transfer from Army/West Point, arriving on the UConn campus was quite a change.
+    </p>
+    <p>
+        You and your dedication to young football players have been invaluable my entire life.
+    </p>
+    <p>
+        I remember meeting you at your field house office, study halls, and scout teams, and you always made time for your players.
+    </p>
+    <p>
+        Your experience and expert advice for the young men that have been fortunate enough to have met you, lives on forever as does your legacy.
+    </p>
+    <p>
+        Sincerely,
+    </p>
+    <p>
+        <b>
+            Art Christiani 1979
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Third down and long from your own 5-yard line…what do you do? You punt!
+    </p>
+    <p>
+        Thank you for always supporting the Huskies with such passion and enthusiasm!
+    </p>
+    <p>
+        <b>
+            Steve Dunn ‘93
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B is a legend! During my time at UConn Andy would often come up to me and tell me stories about my family history from New Britain. Stories that I didn’t even know! He was always there to support the guys and the coaching staff. Congrats Andy!
+    </p>
+    <p>
+        <b>
+            Chris Pavasaris
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        Having left Coach Naviaux’s office during my recruiting visit, my grandmother said to me, “Anthony, I want you to come here. That man is the only one to have spoken about you graduating.” Graduation, was a hope and a prayer; however, with the study hall lectures that fall, along with you monitoring my stadium stairs reminders for penalties after practice, (lol,) I was on the road to eventually learning how to learn. I sincerely want to know that through the years, all I have tried to do is to pay your fine example forward during my career teaching and coaching. You have been a very special blessing in my life, and I love you for that. God bless you, Coach.
+    </p>
+    <p>
+        <b>
+            Tony Catapano 1975-78
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Thank you Coach for all you have done for me and so many others.
+    </p>
+    <p>
+        You have been selfless and dedicated in helping all to be a better student, athlete and person.
+    </p>
+    <p>
+        Your legacy is solid. Thank you.
+    </p>
+    <p>
+        <b>
+            Jim Pisciottano    1971 Football Co-Captain
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        COACH-
+    </p>
+    <p>
+        No one is more deserving of that title. Beginning with those study halls with you and Mama Bear in 1966 ( yes even student managers had to attend) to allowing my son to help with baseball in the early 2000’s, you have been a teacher of life lessons, a friend to all , and inspiration to countless professional- on and off the playing fields of Storrs. If we bleed blue it is because of you.
+    </p>
+    <p>
+        Best Regards,
+    </p>
+    <p>
+        <b>
+            Bill DeGrazia UConn Basketball “71
+        </b>
+    </p>
+    <p>
+        <b>
+            Billy DeGrazia ’04, ’05
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        Congratulations on a long overdue honor! Your legacy in baseball, football, and beyond has left an indelible mark on UConn and UConn Athletics. Thank you for your unwavering support and dedication over the years – your impact will forever inspire us.
+    </p>
+    <p>
+        <b>
+            -Rhema Fuller, 2003-2006
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for being our coach, an inspiration and a mentor. Truly appreciate all you have done for me and my family. Thank you for your dedication to the University of Connecticut and fellow student-athletes and their families. We are fortunate that we have had you in our lives. If there is anyone that truly bleeds UConn Blue (Football, Baseball, Family, Friendships), it is you. Thank you.
+    </p>
+    <p>
+        Sincerely,
+    </p>
+    <p>
+        <b>
+            Chris Spelman    UConn Forever    BA 93, MA 95
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You are the rock of UConn sports and the glue to UConn football.  Always looking out for everyone and doing it with a smile on your face. We all aspire to be like you.
+    </p>
+    <p>
+        <b>
+            Max DeLorenzo, ’15
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock (Grandpa),
+    </p>
+    <p>
+        Every day when I would go out to practice, you would ask me how I was doing, and my response will be, “I have my hard hat, my shovel and my work boots, and today’s a workday.”
+    </p>
+    <p>
+        Thank you for everything, Coach!
+    </p>
+    <p>
+        <b>
+            Jhavon Williams, ’16
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        It is 50 years since we first met! Your guidance and friendship over those years has had a tremendous impact on my life and that of so many others. This night is long over due and I am so glad to see the outpouring of love for you from so many players that have spanned your time at UCONN. Yes, Coach you truly Bleed Blue!
+    </p>
+    <p>
+        Go Huskies!
+    </p>
+    <p>
+        <b>
+            Paul Mariano 77
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        When we finally find a slab of stone big enough to carve the Mount Rushmore for the University of Connecticut Division of Athletics, your name and face will be one of the first on there. Thank you for all you have done for past, current, and what your legacy will do for future athletes. I am not certain that the word ‘legend’ even captures what you mean to the institution.
+    </p>
+    <p>
+        We ALL appreciate you, Coach.
+    </p>
+    <p>
+        <b>
+            Dr. Uyi Osunde (Captain 2003)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I can never thank you enough for all your support while I was at UConn, and after graduating when you helped me look for job opportunities. Your care will never be forgotten.
+    </p>
+    <p>
+        <b>
+            -Denzel Allen, 2011-2012
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You’re an amazing coach and an even better person. I thank God, I met you during my time at UConn. Your smile and enthusiasm is something I looked forward to seeing. Going to Burton every morning and seeing you have the same energy was a lesson I learned and took with me.
+    </p>
+    <p>
+        “No matter how hard life gets, You should smile because God is never done working on you”
+    </p>
+    <p>
+        Your legacy will never leave UConn. Love you Coach!
+    </p>
+    <p>
+        Best,
+    </p>
+    <p>
+        <b>
+            Kevin Mensah, ’21
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for all you do and have done for our program.  You are a true living legend. Forever grateful!!
+    </p>
+    <p>
+        <b>
+            Danny Lansanah, ’09
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I remember coming in wide eyed and naive with nothing but an eagerness to prove I belonged on the team and a smile. You reminded me daily to keep smiling and assured me that being a pleasure to be around would always give me a place as a both a teammate and player. As we celebrate you and an amazing career, I just want to thank you for all of your dedication to making sure players were heard and for reminding me that the tough days are just a part of the journey. Smile through it, embrace it, and push through- you’ll come out whole.
+    </p>
+    <p>
+        All the best,
+    </p>
+    <p>
+        <b>
+            Tyrae Sims, #87 2014-2016
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thanks, Coach for being a mentor. I’m grateful that I met you. Your impact has been felt throughout the UConn community!
+    </p>
+    <p>
+        <b>
+            Aaron Garland, ’18
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I want to thank you for always keeping Husky Nation players connected. You always seem to make everyone feel special! I am so thankful !
+    </p>
+    <p>
+        <b>
+            Glenn Marrus
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        You are incredibly selfless and genuine. Thank you so much for all that you’ve done for myself, teammates, and students-athletes before and after. You are the man! It’s has been a pleasure; we can all aspire to have a fraction of the impact you’ve had on people at UConn.
+    </p>
+    <p>
+        <b>
+            Nick Williams, ’09
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach B,
+    </p>
+    <p>
+        Thank You, Thank You, Thank You!!!!!
+    </p>
+    <p>
+        You have been a guiding light to us all.
+    </p>
+    <p>
+        Love
+    </p>
+    <p>
+        <b>
+            Warren Nesteruk 1976, 77, 78
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock:
+    </p>
+    <p>
+        Certain people you meet in life have a special impact on your development as a man and you certainly fit this criteria. I appreciate all that you have done for me as well as the UConn program.
+    </p>
+    <p>
+        <b>
+            Ken Miller. (1978-81)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        You are truly an all-time UConn great because of the positive impact you have had upon so many people throughout your career.  You have been a leader and an ambassador for both the baseball and football programs at UConn, as well as the University at large.  So much of the wit and wisdom you imparted upon us on the field or in the freshmen study halls still rings true today. That’s impactful!!!
+    </p>
+    <p>
+        I wonder if while watching a practice you still say, “Good try, but make the play.”  Throughout your career you taught us “to make the play.”  You did it by being respectful, responsible, truthful, compassionate, and committed and instilling those traits into your players.
+    </p>
+    <p>
+        You’ve been “making the plays” for countless individuals and the University for over a half a century. We are forever grateful.
+    </p>
+    <p>
+        Best wishes,
+    </p>
+    <p>
+        <b>
+            Phil Pomposi    lass of 1979
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        Grabber here, just wanting to say congratulations! I cannot put into words how much of an impact you’ve had on my life, both on and off the field. All the stories going back to my time in high school, throughout my three years at UConn, are memories I have and will continue to cherish. Thank you for not only for bringing me to UConn, but for being such a great man and friend. Congrats again!!
+    </p>
+    <p>
+        <b>
+            Jason Grabowski
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        I wanted to send this message to let you know how much of a big influence you were in my life and how much being part of the UConn baseball program helped to shape my life.  First, I wanted to thank you for always believing in me as a person.  With my struggles my first two years, coming from a small town to a division 1 program, it would’ve been easy to give up on me. However, you never did and despite thinking my playing days at UConn might be over, you suggested I change my delivery and become the Side-Arm pitcher, which I embraced, and ultimately ended up having a successful UConn career.  Coach, I credit you for having that belief in me and thinking out of the box and just wanted to thank you for that opportunity.
+    </p>
+    <p>
+        Secondly, I also wanted to thank you for instilling the ethics of hard work, being on time, and the importance of education.  To this day, I still use some of your techniques that you taught us, including reading techniques involving reading the first and last sentence of a paragraph when reading a book, etc.  Your instruction in time management, and your focus on our academic success really helped me to be able to concurrently manage both playing baseball and successfully completing a physical therapy degree, as well as leading to a successful career in physical therapy after school.
+    </p>
+    <p>
+        Thanks again for everything and congratulations!
+    </p>
+    <p>
+        <b>
+            -Chris Hayes “Haze-man”
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B,
+    </p>
+    <p>
+        You are an amazing Man and an amazing Coach.
+    </p>
+    <p>
+        <b>
+            Scott Sweitzer
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy,
+    </p>
+    <p>
+        It has been a pleasure and honor knowing you. Your dedication is unsurpassed. You did not only coach football but gave us wisdom in life. We learned how to be successful, good and humble people.  The friends I made during my days at UConn are the best friends in my life. Thank you for being part of our lives and sharing yours with us. I think I speak for all UConn Alumni in saying we are better people for having known you and UConn Football would not be what it is without you. You have been the heart and soul of UConn Football and our Alumni. Thank you for all you have done.
+    </p>
+    <p>
+        <b>
+            Allan Burghardt,   #82,   78-81.
+
+        </b>
+    </p>
+    <p>
+        PS: Can I stop running laps now ???
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Since having finished my playing days in 1998, I have gotten to know you and wholeheartedly appreciate all you have done for the UConn Football program/Football Alumni programs as well as the university. Although I did not play for you, I have been in his presence enough over the years and have had stories related to me concerning the positive impact he has had on countless young men, in the various positions he has served. Peace and love Coach; congratulations on your being celebrated for all your accomplishments and service!
+    </p>
+    <p>
+        <b>
+            -Ernest Lowe 1994 – 1998
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach “B”
+    </p>
+    <p>
+        There is never enough space nor time to truly reflect and describe what you mean to everyone that you have come in contact with over the years. Only YOU have the ability to retain and recall all of the events and relationships you have fostered. The term “Bleed Blue” was created for you. May you continue to model to us all on how to live in this world.
+    </p>
+    <p>
+        Thanks for being you.
+    </p>
+    <p>
+        <b>
+            Mark Svencer
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach ”B”
+    </p>
+    <p>
+        I want to thank you for ALL you have done for me throughout the years.  YOU made UCONN a special place.
+    </p>
+    <p>
+        <b>
+            Brian Jones “81
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach,
+    </p>
+    <p>
+        Every student I have taught and every athlete I have coached has a little Andy Baylock in them. You came into my life in 1966 as My Freshman Football and Baseball Coach and helped me build a strong foundation of leadership and academic skill. For the next three years on the varsity level, I continued to observe firsthand how well you treated people with respect and love. You have always been a great role model and I wanted, and still want, to be like you.
+    </p>
+    <p>
+        I will always remember the day you called me into your office and asked me “Where did the quiet Italian kid from Newton Go?” You took great pride in checking up on us all and fixing situations before they went off the rails. One of the greatest compliments I ever received is when you asked me to babysit your children. I was honored that I had won your trust. In addition, you and Mrs. Baylock provided a Study Hall program that improved our study skills and grades. Also, your reference letter to the University of Michigan helped me secure a Fellowship. Receiving a copy of that letter from you, 53 years later, nearly brought me to tears.
+    </p>
+    <p>
+        I feel honored to join the many former athletes, families and friends, whose lives you have touched and enriched. I take great joy telling “Coach Baylock” stories to the Coaching Classes I teach, and to the Football Players and Wrestler’s I have coached. Above all, I appreciate the outpouring of interest and love you continue to give us all.
+    </p>
+    <p>
+        Thank You Coach.
+    </p>
+    <p>
+        I love you,
+    </p>
+    <p>
+        <b>
+            John R. Passarini #33     (That quiet Italian Kid from Newton)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        You are an incredible person with the sharpest mind. A true wonder. I utilized many of your sayings raising my kids. Thank you for all you have done for UCONN!
+    </p>
+    <p>
+        <b>
+            Mark Flood
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy,
+    </p>
+    <p>
+        You are a Friend, Mentor,and Coach.
+    </p>
+    <p>
+        The Ings family would like to thank you for the great experience we shared with you and the Uconn Family for the last 40 yrs.
+    </p>
+    <p>
+        <b>
+            Ellis Ings 86,87 Roger Ings 1974-77 Capt 77
+        </b>
+    </p>
+    <p>
+        Cell: 203-901-8325 E-Mail: ellisings0@gmail.com
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock –
+    </p>
+    <p>
+        I have known you since my high school days at NFA. I remember wanting to play both football and baseball at UConn and you told me I couldn’t hit a curve ball- stick to football. I’m glad I did ! You have been the ONE constant with our program over the years.  The true blue glue that has kept the brotherhood alive and well. I thank you for that.  You also inspire me with your constant urge to stay active as life moves on.  I aspire to this – thank you for all that you do for us
+    </p>
+    <p>
+        We love you,
+    </p>
+    <p>
+        <b>
+            Bill Cholawa
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B
+    </p>
+    <p>
+        You’ve been an inspiration to me from the moment I stepped foot on campus back in 2004. The countless meetings over the years just to see how I’m doing helped me make it through being homesick. Speaking to you and finding out the knowledge you had about my hometown blew me away. You’ve traveled all walks of life with sports.  Your welcoming nature and caring attitude left a long lasting impression on anyone that crossed paths with you. UConn has been blessed to have you apart of their University.  You are one of a kind. Thank you for everything my guy.
+    </p>
+    <p>
+        <b>
+
+            Ellis Gaulden     Tallahassee Native     UConn Football / Track&Field Athlete 2004 – 2009
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Congrats on an incredible career and your continued to commitment to the development of us student athletes. One of my fondest memories of my time at UConn was being invited over for steak dinners. You are an incredible influence on so many of us. Thank you for everything!
+    </p>
+    <p>
+        <b>
+            -Steve Greene     2009-2013
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Thank you for the effort and dedication that you have brought to the university and especially towards the athletes. I am grateful for the drive and passion you have shown to keep us all in loops of each others lives from our time at the university and years after. Thankful for the news letters that you work so hard with providing to the former players . Looking forward to seeing you soon Coach. Thank you for everything!
+    </p>
+    <p>
+        <b>
+            Tyler Samra, 2012-2015
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Thank you, Coach Baylock,
+    </p>
+    <p>
+        For all that you’ve done for the UConn community! You’ve left a remarkable impact and you will never be forgotten. I’m more than thankful we’ve crossed paths in the past five years and I’m very grateful for the positive energy you’ve brought every single day!
+    </p>
+    <p>
+        <b>
+            -Jordan Morrison, ’18-’22
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach:
+    </p>
+    <p>
+        Thanks for your mandatory 3 hours of study hall our Freshman year. It helped me get my degree. Many thanks.
+    </p>
+    <p>
+        Respectfully yours,
+    </p>
+    <p>
+        <b>
+            Joe Torre
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach,
+    </p>
+    <p>
+        You could receive all of the honors in the world and it still wouldn’t be nearly enough to recognize all you have done for UConn football, the entire athletic program, and the school in general.  UConn football is truly a brotherhood, and you are the glue that holds it all together.  My family and I love coming up to campus and visiting, one of the highlights is when we see you and ask you how you are doing, you enthusiastically reply “not too bad for an old guy!”  Thank you, from the bottom of my heart, for all you have done for me, my UConn football brothers, and the entire program.  Many things have changed over the years, but you have been the one thing that has remained steady.  I look forward to many more years of coming to campus and taking tours around the facilities.  Go Huskies!
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+        <b>
+            Tim Willman, 09-’13
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        My last season at UConn was in 2006, and many things have changed since then.  The one thing that remains the same with UConn Football is Coach Baylock’s presence.  It’s impossible to put into words how valuable he is to the program & adequately thank him for the positive impact he’s had on thousands of athletes while at UConn and their lives after their athletic careers end.  One of many things I admire about Coach Baylock is that he treats the All-American Running Back with the same level of respect as the walk-on trying to earn a spot on the team.  Coach Baylock’s memory is second to none.  He will remember the high school you went to and will inevitably have a story about that school/town/head football coach.  Periodically Coach Baylock will leave me a voicemail.  The most recent one was from January of ‘22.  It is just over 2 minutes long.  This message is an update on how things are with the program.  The passion, energy, and excitement in his voice are incredible.  I have the message saved and listen to it periodically.  He embodies everything right with college sports.  Coach B, thank you for selflessly giving your time to the program- keep it up, we need you & appreciate you!  
+    </p>
+    <p>
+        <b>
+            Matt Nuzie
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I wanted to take a moment to express my sincere gratitude and admiration for your remarkable contributions. Your name, Coach Andy Baylock, stands as a beacon of dedication, unwavering belief, and a lasting legacy that extends well beyond the world of sports.
+    </p>
+    <p>
+        Your unique ability to inspire teamwork, foster strong character, and ignite individual potential has left an indelible mark on all those who have had the privilege of learning from you. Your mentorship has not only impacted athletes on the field but has also resonated deeply with individuals from all walks of life.
+    </p>
+    <p>
+        Coach Baylock, your guidance and mentorship are truly a privilege. Your wisdom and encouragement continue to resonate in moments of challenge, motivating us to persevere and exceed our own expectations.
+    </p>
+    <p>
+        As we gather to honor you, it is with the utmost respect that we recognize your ongoing legacy as a genuine UConn Legend. Your unwavering dedication and inspirational leadership continue to shape our collective aspirations.
+    </p>
+    <p>
+        Coach B, your belief in the potential of every individual, coupled with the principles of teamwork and mentorship you have championed, will undoubtedly leave an indomitable legacy that carries forward, enriching the lives of countless others. 
+    </p>
+    <p>
+        <b>
+            You are the BEST – MOF (Marc Mofsowitz)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Aloha from Hawai’i, Coach B!
+    </p>
+    <p>
+        I am glad that you are getting the recognition you deserve for everything you have done and have given to the program for all of these years! Your genuine personality and ability to care for anyone you came across truly embodies the aloha spirit in the middle of Connecticut. You have impacted countless lives and made immeasurable contributions to UCONN over the years, but I want to thank you for making a kid from Hawai’i feel right at home! I will always remember the fun facts or trivia we’d go back and forth with.
+    </p>
+    <p>
+        Thank you for everything you’ve done!
+    </p>
+    <p>
+        <b>
+            Mark Hinkley (08-12)
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Andrew “Andy” Baylock, my eternal brother! 
+    </p>
+    <p>
+        I am honored and blessed to have you in my life! You are always in my prayers & thoughts due to your heavenly works! I remember during my unfortunate life changing trials and tribulations at UConn you saw me at the Co-Op and said to me “Christopher You are and will always be family no matter what, once a Husky always a Husky”, that left an everlasting impression with me and is the main reason why I proudly chose to graduate from UConn in 2013 with my Bachelor’s of Art in Communications.  Andrew “Andy” Baylock , Jerry Martin, Randy Edsall, Darrell Perkins and The Lowry’s (Dan Lowry & Lisa Leary-Lowry) will always be the valuable UConn Family members to me and that will never change! I hope I can make it to see you on August 31st! If not sometime soon in 2023!
+    </p>
+    <p>
+        I LOVE YOU TO THE MAXIMUM ANDY! GOD BLESS YOU WITH MORE LIFE, STAY BLESSED WITH SUCCESS! UNTIL I SEE YOU AGAIN! #SUPER #ANGEL #KING #ANYTHINGISPOSSIBLE #HOLYTRINITYVICTORY #BLEEDBLUE #GOHUSKIES #LOVEYOU
+    </p>
+    <p>
+        <b>
+            Christopher J. Andrade-Lopes
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        <b>
+            (Jim Previously Sent This Message to Coach – As Many Of Us Have Done Through The Years)
+        </b>
+    </p>
+    <p>
+        Coach Baylock,                                                                                   May 15, 2018
+    </p>
+    <p>
+        I’m turning 68 this year and with it comes the anniversary of my high school graduation 50 years ago but more importantly, it is the 50-year anniversary of my arrival at UCONN.
+    </p>
+    <p>
+        I was selected to be in the “early arrival” group of freshman Husky Pups. That meant my first exposure to UCONN was with 14 freshman teammates from all over the Northeast. I think this was a 2-week program before the rest of the freshman footballers and the rest of the freshman class joined us.
+    </p>
+    <p>
+        What I would like to express to you is that becoming part of the UCONN freshman football team was one of the greatest and most memorable life experiences for me.
+    </p>
+    <p>
+        Teams normally are remembered for, and celebrate, winning. I was part of a state championship high school baseball team and I cherished that experience. We still have team reunions and celebrate our success. In high school, especially in a small town, everyone has shared and common experiences in growing up together. Most of the guys on our high school team played Little League, and Babe Ruth on the same fields. We knew each other.
+    </p>
+    <p>
+        Getting to UCONN to meet and team with 49 guys from different backgrounds, different cities and states was exposure to a new and different dynamic. Very few of us knew one another. Pulling the various personalities and characters together into a cohesive unit was a great credit to the coaching staff. That process got us all to know one other, support each other and find a way to get along with each other. That time and experience was not only memorable but was invaluable in my maturation into adulthood.
+    </p>
+    <p>
+        Coach, you have dedicated your career to UCONN and continue to support the program. What I am trying to say is that, for me, even without lettering or finishing in the program, there are great memories of those times and especially my teammates and coaches.
+    </p>
+    <p>
+        Thank you for reaching out to me to become a Husky and all the support you gave to me in the program and continue to give, to every Husky, today.
+    </p>
+    <p>
+        Best Wishes,
+    </p>
+    <p>
+        <b>
+            Jim Briggs     480.319.4727      jimbriggsaz@gmail.com
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy:
+    </p>
+    <p>
+        Many thanks for all you have done for me and many others at UConn. I couldn’t have achieved much without the guidance of folks like you. You gave all of us the confidence and determination to strive and grow through football and throughout life. Many thanks to you and your family for all your support.
+    </p>
+    <p>
+        <b>
+            Bill Miller
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Hey Andy,
+    </p>
+    <p>
+        Thanks so much for being you! You have been a support and friend since my days playing for you as a frosh! Am eternally grateful for all you have done! I never forgot my Soph year when you knew I was on crutches and cast. You personally picked me up at McMahon and drove me to my Anatomy Lab class as you knew I had to get there studying to be a Physical Therapist. The snow and ice was beyond belief! I truly can  say, I love you man! This is a well deserved honor and I will be flying from Wisconsin to celebrate you!
+    </p>
+    <p>
+        <b>
+            Joe Corbo
+       </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Congratulations on such a successful career at UCONN!  You have touched so many lives in a heartfelt and down to earth way! For me personally, anytime I’ve ever needed anything you have always done whatever you could. Thank you for all your years of service to UCONN athletics! 
+    </p>
+    <p>
+        Most Respectfully,
+    </p>
+    <p>
+        <b>
+            Scott Vibberts 
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Dear Coach Baylock,
+    </p>
+    <p>
+        I want to extend my sincere appreciation for all the memories you have provided all of us  over the years. Your tireless efforts to build a UConn football community over the last fifty years is being recognized today in ways that only express the “tip of the iceberg” in emotions we collectively share with you. We all have been blessed to have had you in our life when it counted the most and for that I am eternally grateful.
+    </p>
+    <p>
+        With gratitude,
+    </p>
+    <p>
+        <b>
+            Jim Sproul
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Andy
+    </p>
+    <p>
+        Thank you for all the things that you’ve done for us. I appreciate all your hard work very much. You are the best. Looking forward to seeing you soon.
+    </p>
+    <p>
+        <b>
+            Scott Branning – 1973
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Some words that I thought describes Andy
+    </p>
+    <p>
+        Andy Baylock: one of the finest human beings one is fortunate to come in contact with.  He is a man of integrity, passion, humility, generosity, compassion, selflessness, and giving.   Those are just some of the words that aptly describe Coach.  Not only was Andy our Coach but he is a friend to all of us in every sense of the word.  Coach, thanks for being you!
+    </p>
+    <p>
+        <b>
+            Gene Massa – 1972
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Throughout your life, you have demonstrated how much you truly love your players. We thank you for your patience and continued support. You’ve always been available to help us in our time of need. Your former players appreciate your thoughtfulness and are delighted to learn that Governor Lamont will be issuing you a proclamation from the State of Connecticut thanking you for your years of devoted and unselfish service to the students, faculty and administration of the University of Connecticut.
+    </p>
+    <p>
+        What a truly awesome honor and accomplishment !!!
+    </p>
+    <p>
+        I want to extend my hearty gratitude to you, as my mentor and coach. I appreciate how much you’ve taught me and how you’ve helped further my education in Life. You are one of three people who made a profound impact on my life.
+    </p>
+    <p>
+        When I arrived at UConn during the Fall of 1966, I was a young, socially unsophisticated youth from Danielson, Connecticut. Danielson, certainly, was not known as the cradle for the birthing of college football players. All the players who proceeded me from Killingly High School, with the exception of Norm Chartier, became academically ineligible and their football careers ended. When I arrived on campus, I was determined to prove that I could become an academically sound and credible football player.
+    </p>
+    <p>
+        When I met you, Coach Baylock, I learned the true definition of a “Coach”. You were an inspiration and a mentor to us as young men. You were the first coach I ever met who wasn’t just interested in how each player could contribute to the team’s success on the football field. You were interested in our success in becoming honorable, responsible and committed young men. For many of us, you were the first Christian man we met who “walked the talk”. You taught us the importance of a college education. Though we had the privilege to play football; we had an even greater opportunity and responsibility to earn an education that would determine our success in life as businessmen, husbands, fathers and grandfathers.
+    </p>
+    <p>
+        You taught us how to study and properly allocate time during our busy days to prepare for our classroom responsibilities. During our first week, you gave us a mimeographed chart exhibiting all 24 hours in a day. I remember saying to myself, “WOW, there is a lot of time in a day. I can and will find the time I need to succeed in my studies.”  You also encouraged us to attend all our classes on a regular basis and to sit in the front row so all the professors knew who we were — that we were attentive and in attendance.
+    </p>
+    <p>
+        I was a freshman player who never made it to the finish line — or should I say “goal line”. I was injured during our first freshman game at Boston University. As a result, I was never able to complete my aspirations to become a UCONN Huskie Football Player.
+    </p>
+    <p>
+        Though I did not meet my goals in becoming an accomplished football player during my college career, I used your lessons to become the President of the Class of 1970, President of ARCHONS Leadership Honor Society, President of the Yankee Conference Student Government Council, recipient of the University of Connecticut U.S. Congress Intern Scholarship and received the honor of being the 1970 Killingly High School Commencement Speaker. (The high school I graduated from four years earlier.)
+    </p>
+    <p>
+        I also thank you for submitting a letter of recommendation for me to attend law school after my UCONN college career.
+    </p>
+    <p>
+        I am now retired; but enjoyed a successful business career. The highlight being an expert witness for a U.S. Presidential National Leadership Commission on Health Care. Though I was a player for only a short period of time, I couldn’t have come this far without your mentoring and fine example. You emphasized incorporating courage, sacrifice and humility into our character. I attempted to follow your teachings not only during college; but, throughout my adult life.
+    </p>
+    <p>
+        You not only positively impacted the lives of thousands of players; I am confident you also positively impacted the lives of many other non-players like me. These are the qualities of a true “COACH”.
+    </p>
+    <p>
+        I thank you, Coach Baylock, for all you have done for me !!!
+    </p>
+    <p>
+        Blessings to you and your Family !!!
+    </p>
+    <p>
+        With Respect & Admiration,
+    </p>
+    <p>
+        <b>
+            Wally Anderson     Class of 1970
+        </b>
+    </p>
+    <p>
+        <b>
+            299 Cutty Sark Way    Alpharetta, Georgia 30005
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Congratulations, Coach Baylock!
+    </p>
+    <p>
+        Thank you for always supporting me throughout my time at UConn and after. I wish you nothing but the best.
+    </p>
+    <p>
+        Thanks,
+    </p>
+    <p>
+        <b>
+            James Hargrave III     UConn 2002-2006
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I truly appreciate all that you do for UConn football and keeping us alumni connected to the program.  Through the years and program changes, you’ve been the rock to make UConn feel like home for us.  
+    </p>
+    <p>
+        Thank you, 
+    </p>
+    <p>
+        <b>
+            Darbs #68, 2000
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        Here I am 40 years old and still calling Coach, Coach. As loving and kind and selfless a person as I have been fortunate to be around. What do you need? How can I help you? How great is this life? Who has it better than me/us? Those were the things that always came from Coach Baylock and they always resonated with me because they always brought positivity in any and all situations. The story telling could change any mood you’re in and brought smiles and laughter to rooms always. Appreciate you Coach Baylock, you’re a great man and a great UConn Ambassador!”    </p>
+    <p>
+    </p>
+    <p>
+        <b>
+            Dan Orlovsky 2004
+        </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Andy,
+    </p>
+    <p>
+        Your impact on my life and countless others, who have played football at the University of Connecticut, is immeasurable!
+    </p>
+    <p>
+        Thank you.
+    </p>
+    <p>
+        <b>
+            Rasool Ahmed 1976
+       </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach B-
+    </p>
+    <p>
+        Thank you for your on-going support over the years, including your dedication to maintaining the camaraderie amongst the football alumni. There is no doubt that you are amongst the greatest in UConn athletics based on your achievements and continuous leadership. You deserve all the recognition coming your way!
+    </p>
+    <p>
+        <b>
+            Dan Cudgma
+       </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock! 
+    </p>
+    <p>
+        The G.O.A.T. There is no UConn football without you. Thank you for all you have done over the years keeping the family connected. I always look forward to your phone calls and newsletters. You are the best! Thank you for everything! 
+    </p>
+    <p>
+        Love you, Coach!
+    </p>
+    <p>
+        <b>
+            Lou Allen III, ’08
+      </b>
+    </p>
+</div>
+
+<div class="messagebox">
+    <p>
+        Coach Baylock,
+    </p>
+    <p>
+        I Got a lot of Love for you and you are very appreciated. Ever since I stepped foot on this campus you have been nothing but great to me. You are truly our Husky Football Grandfather. 
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+    </p>
+    <p>
+        <b>
+            ANewsome22
+        </b>
+    </p>
+    <p>
+        <b>
+            Arkeel Newsome, 2014-2017
+        </b>
+    </p>
+</div>
+
+
+
+@code
+{
+    [SupplyParameterFromForm(FormName = "EmailForm")]
+    EmailRequest EmailRequest { get; set; } = new();
+
+    int MIN_ROWS = 5;
+    int MAX_ROWS = 500;
+
+    int Rows = 5;
+
+    string emailStatus = "";
+
+    Timer? timer;
+
+    protected override void OnInitialized()
+    {
+        EmailRequest.SetCallback(CalculateSize);
+
+        base.OnInitialized();
+    }
+    private void Submit()
+    {
+        if (timer != null)
+        {
+            timer.Dispose();
+        }
+        if (EmailRequest.From.Length < 3)
+        {
+            emailStatus = "Enter a valid name";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            return;
+        }
+        if (EmailRequest.FromEmail.Length < 7)
+        {
+            emailStatus = "Enter a valid email address";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            return;
+        }
+        if (EmailRequest.FromEmail.Contains(".") == false)
+        {
+            emailStatus = "Enter a valid email address";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            return;
+        }
+        if (EmailRequest.FromEmail.Contains("@") == false)
+        {
+            emailStatus = "Enter a valid email address";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            return;
+        }
+        if (EmailRequest.Tribute.Length < 20)
+        {
+            emailStatus = "Enter a valid tribute";
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            return;
+        }
+        SendEmail();
+    }
+
+    void SendEmail()
+    {
+        try
+        {
+            // force TLS 1.2 connection if your application requires
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
+
+            string server = "mail5019.site4now.net";
+            int port = 587; // 587 for StartTls
+            string from = "kenny@andybleedblue.com";
+            string password = "UConnBleedBlue62$";
+            string to = "kenny@andybleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
+
+            var message = new MimeKit.MimeMessage();
+            message.From.Add(new MimeKit.MailboxAddress(EmailRequest.From, from)); // replace from_name with real name
+            message.To.Add(new MimeKit.MailboxAddress("kenny@andybleedblue.com", to)); // replace to_name with real name
+            message.Subject = EmailRequest.Subject;
+            message.Body = new MimeKit.TextPart("plain")
+            {
+                    Text = EmailRequest.From + " " + EmailRequest.FromEmail + " " + EmailRequest.Tribute
+            };
+
+            using (var client = new MailKit.Net.Smtp.SmtpClient())
+            {
+                client.Connect(server, port, MailKit.Security.SecureSocketOptions.StartTls); // for port 587
+                client.Authenticate(from, password);
+                client.Send(message);
+                client.Disconnect(true);
+            }
+            EmailRequest.From = "";
+            EmailRequest.FromEmail = "";
+            EmailRequest.Tribute = "";
+
+            emailStatus = "Tribute was successfully submitted";
+
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+        }
+        catch (Exception ex)
+        {
+            emailStatus = "Error - " + ex.Message;
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+        }
+    }
+
+    private void CalculateSize(string value)
+    {
+        Rows = Math.Max(value.Split('\n').Length, value.Split('\r').Length);
+        Rows = Math.Max(Rows, MIN_ROWS);
+        Rows = Math.Min(Rows, MAX_ROWS);
+    }
+    private void OnTimerEvent(object? state)
+    {
+        emailStatus = "";
+        InvokeAsync(StateHasChanged);
+    }
+
+}

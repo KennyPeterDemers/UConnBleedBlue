@@ -1,0 +1,66 @@
+﻿@page "/PlayersThatDonated"
+
+@using UConnBleedBlue.Models
+
+@inject NavigationManager NavigationManager;
+
+<style>
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 50px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+</style>
+
+<h1>Current Donation Total : @donationsService.TotalDonations.ToString("C")</h1>
+
+
+@if (donationsService == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped colorBlue">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var donation in @donationsService.DonationList)
+            {
+                <tr>
+                    <td>@donation.PlayerId</td>
+                    <td>@donation.PlayerName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public DonationsService donationsService = new DonationsService();
+
+    string err = "";
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+        }
+        catch (Exception ex)
+        {
+            err = ex.Message;
+        }
+    }
+
+}

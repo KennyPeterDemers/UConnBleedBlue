@@ -1,0 +1,106 @@
+﻿@page "/"
+
+@* Notes:
+   1rem = root font size (typically 16px). So:
+   2.5rem ≈ 40px
+   3.125rem ≈ 50px *@
+
+
+<ErrorBoundary>
+
+    <ChildContent>
+
+        <PageTitle>Football Alumni News</PageTitle>
+
+        <h2>
+            3nd Annual "Bleed Blue With Andy" UConn Football Alumni Tailgate!
+        </h2>
+
+        <h2>
+            Saturday November 1, 2025&nbsp;&nbsp;Opponent: UAB&nbsp;&nbsp;&nbsp;&nbsp;Game: 12 Noon&nbsp;&nbsp;Tailgate: 8:30 AM
+        </h2>
+    
+        <NavLink href="/menu">
+            <h2 class="row-header">Reserve Your Tickets To The Game & Check Out Our Tailgate Menu</h2>
+        </NavLink>
+
+        <a href="https://www.nhregister.com/sports/uconn/article/andy-baylock-uconn-baseball-football-20779937.php?taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer">
+            <h2 class="row-header">UConn 'treasure' Andy Baylock is still telling stories, still tossing pitches at age 87</h2>
+        </a>      
+
+        @if (imageSource1 is not null)
+        {
+            <div>
+                <img src="@imageSource1" asp-append-version="true" class="center" style="width: 90%"/>
+            </div>
+        }
+    </ChildContent>
+
+    <ErrorContent>
+        <p style="color:red;">Oops, something went wrong on this page.</p>
+    </ErrorContent>
+</ErrorBoundary>
+
+<style>
+
+    h0 {
+        color: red;
+        font-size: 2.5rem; /* ~40px */
+    }
+
+    .messageBoxXL {
+        width: 90%;
+        padding: 0.625rem; /* 10px */
+        border: 0.125rem solid blue; /* 2px */
+        margin: auto;
+        color: blue;
+        background-color: yellow;
+        text-align: center;
+        font-size: 1.25rem; /* x-large ~ 20px */
+        font-weight: bold;
+    }
+
+    h1 {
+        display: table;
+        margin: 0.625rem auto; /* 10px */
+        padding: 0.3125rem; /* 5px */
+        font-size: clamp(1.5rem, 6vw, 3.125rem); /* ~24px to 50px */
+        color: blue;
+        overflow: hidden;
+    }
+
+    h2 {
+        display: table;
+        margin: 0.625rem auto; /* 10px */
+        padding: 0.3125rem; /* 5px */
+        font-size: clamp(1.2rem, 5vw, 2.2rem); /* 35px */
+        font-weight: bold;
+        color: blue;
+        overflow: hidden;
+    }
+  
+    .link-header {
+        text-decoration: none;
+        color: #004aad;           /* strong blue */
+        cursor: pointer;
+    }
+
+    .link-header:hover h2 {
+        color: #d40000;           /* highlight color on hover */
+        text-decoration: underline;
+        background-color: #f0f0f0;
+        border-radius: 6px;
+    }
+
+    .row-header {
+        font-weight: pink;
+        font-size: 1.6em;
+        transition: all 0.2s ease-in-out;
+    }
+
+</style>
+
+@code {
+
+    private string imageSource1 = $"GroupPhoto2024.webp";
+}

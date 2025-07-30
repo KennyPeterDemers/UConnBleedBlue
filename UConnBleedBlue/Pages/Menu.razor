@@ -1,0 +1,168 @@
+﻿@page "/menu"
+
+@inject NavigationManager Navigation
+
+<div class="container">
+    <!-- Header for Row 1 -->
+    <div class="header-wrapper">
+        <h2 class="row-header">Master Chef Seamus Donagher (& me) In Action</h2>
+    </div>
+    <div class="row row-1 image-text-row">
+        <p class="side-paragraph">
+            Please donate to Andy's fund. The tailgate will cost around $2,500.00.
+
+            All donations above the tailgate costs go to Andy's Football Alumni Fund. 
+            So far, we have added over $50K to the fund from our 2 previous tailgates. 
+            Join us for a great day.
+        </p>
+
+        <img src="imagesMenu/Seamus.webp" alt="Image 1" class="image-large" />
+
+        <p class="side-paragraph">
+            You can donate by sending your donation to the Venmo, Cashapp, or Apple Pay accounts below:
+            <span class="donation-line"><strong>Venmo:</strong> https://venmo.com/KennyDemers</span>
+            <span class="donation-line"><strong>Cash App:</strong> 860-310-7141</span>
+            <span class="donation-line"><strong>Apple Pay:</strong> 860-310-7141</span>
+            As usual, you can expect a thank you call or hand written thank you note from Coach B
+        </p>
+    </div>
+
+    <div class="mailing-link-wrapper">
+        <NavLink href="/mailing-list-form" class="mailing-link">
+            Add your name to our mailing list &amp; request tickets to the game
+        </NavLink>
+    </div>
+
+    <!-- Header for Row 2 -->
+    <div class="header-wrapper">
+        <h2 class="row-header">Huskies - Bring Your Appetite For Our Tailgate Feast</h2>
+    </div>
+    <div class="row row-2">
+        <img src="imagesMenu/BaconEggs.webp" alt="Image 2" class="image-small" />
+        <img src="imagesMenu/PancakesBacon.webp" alt="Image 3" class="image-small" />
+        <img src="imagesMenu/SausageEggCheese.webp" alt="Image 4" class="image-small" />
+        <img src="imagesMenu/PancakesBaconEggs.webp" alt="Image 5" class="image-small" />
+        <img src="imagesMenu/BoxOfJoe.webp" alt="Image 6" class="image-small" />
+    </div>
+</div>
+
+<style>
+
+    /* menu page style*/
+    .container {
+        flex: 0 0 auto;
+    }
+
+    .header-wrapper {
+        text-align: center;
+        color:blue;
+    }
+
+    .link-header {
+        display: table;
+        margin: 0.625rem auto; /* 10px */
+        padding: 0.3125rem; /* 5px */
+        font-size: clamp(0.6rem, 5vw, 1.5rem);
+        font-weight: bold;
+        color: purple;
+        overflow: hidden;
+    }
+
+    .row-header {
+        display: inline-block; /* FIXED TYPO */
+        background-color: lightyellow;
+        color: blue;
+        padding: 8px 14px; /* smaller padding for tighter background */
+        border-radius: 6px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        margin: 40px 0 15px;
+        font-size: 1.75rem;
+        font-weight: bold;
+    }
+
+    .row-1 {
+        text-align: justify;
+    }
+
+    .row-2 {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .image-text-row {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        flex-wrap: nowrap;
+    }
+
+    .side-paragraph {
+        flex: 1 1 45%; /* ✅ allows it to grow up to 45% of the container */
+        max-width: 45%; /* ✅ increase from 30% or 33% to 45% */
+        font-size: 1.2rem; /* ✅ Slightly larger */
+        line-height: 1.7; /* ✅ More readable spacing */
+        text-align: left;
+        color: darkblue; /* ✅ Dark blue for better contrast */
+        font-weight: 500; /* ✅ Slightly bolder than normal */
+        background-color: #f0f8ff; /* ✅ Light background to make text pop */
+        padding: 12px; /* ✅ Space around text */
+        border-radius: 8px; /* ✅ Softens appearance */
+        box-shadow: 1px 1px 4px rgba(0,0,0,0.1); /* ✅ Adds subtle elevation */
+    }
+
+    .image-side-text {
+        flex: 1 1 300px;
+        font-size: 1.1rem;
+        line-height: 1.5;
+        max-width: 400px;
+    }
+
+    .donation-line {
+        display: block;
+        text-align: left;
+        font-weight: bold;
+        margin-bottom: 4px;
+    }
+
+    .image-large {
+        width: 450px;
+        height: auto;
+        display: block;
+    }
+
+    .image-small {
+        width: 18%;
+        min-width: 110px;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .mailing-link-wrapper {
+        text-align: center;
+        margin: 30px 0 10px;
+    }
+
+    .mailing-link {
+        font-size: 1.6rem; /* ✅ Bigger text */
+        font-weight: 700; /* ✅ Bold */
+        color: blue; 
+        text-decoration: underline;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .mailing-link:hover {
+        color: orangered; /* ✅ Darker red on hover */
+        text-decoration: none;
+    }
+
+</style>
+
+
+@code {
+        // Code-behind logic can be added here if needed
+}

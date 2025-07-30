@@ -1,0 +1,192 @@
+﻿@page "/photoGalleryTeams60-89"
+
+@*@inject IJSRuntime JS*@
+
+<style>
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 90%;
+        height: 90%;
+        border: 2px solid blue;
+    }
+
+    h1 {
+        display: table;
+        margin: 10px auto;
+        padding: 5px;
+        font-size: 20px;
+        color: #ffffff;
+        overflow: hidden;
+    }
+
+    h1 {
+        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+        padding: 20px;
+    }
+
+    .image-item {
+        text-align: center;
+        cursor: pointer;
+    }
+
+        .image-item img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.05);
+        }
+
+    .image-label {
+        margin-top: 8px;
+        font-size: 1rem;
+        color: #333;
+    }
+
+    .dialog-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    .dialog-content {
+        position: relative;
+        max-width: 90%;
+        max-height: 90%;
+    }
+
+    .dialog-image {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 10px;
+    }
+
+    .close-button {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1rem;
+        padding: 5px 10px;
+        cursor: pointer;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr); /* 👈 5 columns */
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .gallery-item {
+        text-align: center;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+</style>
+
+@if (nameUrlList.Count > 0)
+{
+    <div class="gallery-container">
+        <div class="gallery-grid" >
+            @foreach (var (name, url) in nameUrlList)
+            {
+                <div class="gallery-item" @onclick="() => OpenImage(url)">
+                    <img src="@url" alt="@name" />
+                    <p>@name</p>
+                </div>
+            }
+        </div>
+    </div>
+    @if (IsDialogOpen)
+    {
+        <div class="dialog-overlay" @onclick="CloseDialog">
+            <div class="dialog-content" @onclick:stopPropagation>
+                <img src="@DialogImageUrl" class="dialog-image" />
+                <button class="close-button" @onclick="CloseDialog">X</button>
+            </div>
+        </div>
+    }
+
+}
+
+@code {
+    List<Tuple<string, string>> nameUrlList = new List<Tuple<string, string>>();
+    string path60 = $"{Directory.GetCurrentDirectory()}{@"\wwwroot\imagesTeamPhotos60-89"}";
+    string err = "";
+    private bool IsDialogOpen = false;
+    private string DialogImageUrl = "";
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            foreach (var file in Directory.GetFiles(path60))
+            {
+                string path = Path.GetFileName(file);
+                Tuple<string, string> tuple = new Tuple<string, string>(path.Split('.')[0], "imagesTeamPhotos60-89/" + path);
+                nameUrlList.Add(tuple);
+            }
+        }
+        catch (Exception ex)
+        {
+            err = ex.Message;
+        }
+    }
+    @*protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            var urls = nameUrlList.Select(i => i.Item2).ToList();
+            await JS.InvokeVoidAsync("preloadImages", urls);
+        }
+    }*@
+    
+    public void LoadImages()
+    {
+        try
+        {
+        }
+        catch (Exception ex)
+        {
+            err = ex.Message;
+        }
+    }
+    private void OpenImage(string url)
+    {
+        DialogImageUrl = url;
+        IsDialogOpen = true;
+    }
+
+    private void CloseDialog()
+    {
+        IsDialogOpen = false;
+    }
+
+}

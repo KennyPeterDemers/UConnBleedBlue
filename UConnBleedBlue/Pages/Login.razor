@@ -1,0 +1,65 @@
+﻿@page "/login"
+
+@inject IJSRuntime JS
+@inject NavigationManager Navigation
+
+<h3>Login</h3>
+
+<input id="usernameLoginId" @bind="username" placeholder="Enter username" @onkeydown="HandleKeyDown" />
+<button @onclick="LoginUser">Login</button>
+<p style="color:red">@errorMessage</p>
+
+@code {
+    private string username = "";
+    private string errorMessage = "";
+
+    private async Task LoginUser()
+    {
+        if (string.IsNullOrWhiteSpace(username))
+        {
+            errorMessage = "Username is required.";
+            return;
+        }
+
+        try
+        {
+            // Call JS to post to /auth/login
+            var success = await JS.InvokeAsync<bool>("loginWithUsername", username);
+
+            if (success)
+            {
+                Navigation.NavigateTo("/login-redirect", forceLoad: true); // new request to pick up auth cookie
+            }
+            else
+            {
+                errorMessage = "Login failed.";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = "JS interop failed: " + ex.Message;
+        }
+    }
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await JS.InvokeVoidAsync("setFocus", "usernameLoginId");
+        }
+    }
+    private async Task HandleKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter")
+        {
+            if (string.IsNullOrEmpty(username))
+            {
+                return;
+            }
+            await Submit();
+        }
+    }
+    private Task Submit()
+    {
+        return Task.CompletedTask;
+    }
+}

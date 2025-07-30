@@ -1,0 +1,135 @@
+﻿@using UConnBleedBlue.Models
+
+
+<div class="top-row ps-3 navbar navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="">UConnBleedBlue</a>
+        <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</div>
+
+<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+    <nav class="flex-column">
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="playersAttending">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> @currentAlumniMembersPageLabel
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="mailing-list-form">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Mailing List Form
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="menu">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Tailgate Menu
+            </NavLink>
+        </div>
+        @*<div class="nav-item px-3">
+            <NavLink class="nav-link" href="obtainTicketsAndParking">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Tickets & Parking
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="tailgateLocation">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Tailgate Location Map
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Donate">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> @donatePageLabel
+            </NavLink>
+        </div>
+         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="Costs">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> @costsPageLabel
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="PlayersThatDonated">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> @playersThatDonatedPageLabel
+            </NavLink>
+        </div>*@
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="photoGallery1">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 1
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="photoGallery2">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 2
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="photoGallery3">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 3
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="photoGallery4">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 4
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="photoGalleryTeams60-89">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Teams 1960-1989
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="photoGalleryTeams90-24">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Teams 1990-2024
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="tributeToCoachB">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Tribute To Coach B
+            </NavLink>
+        </div>
+        @*<div class="nav-item px-3">
+            <NavLink class="nav-link" href="video-gallery">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Videos (Under Constuction)
+            </NavLink>
+        </div>*@
+    </nav>
+</div>
+
+@code {
+    private string currentAlumniMembersPageLabel = "";
+
+    private string playersThatDonatedPageLabel = "";
+
+    private bool collapseNavMenu = true;
+
+    private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private string err = "";
+
+    DonationsService donationsService = new DonationsService();
+
+    PlayersService playersService = new PlayersService();
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            currentAlumniMembersPageLabel = $"Alumni  - {playersService.PlayerList.Count}";
+
+            playersThatDonatedPageLabel = $"Current Donors  {donationsService.NumberOfPeopleDonating}";
+        }
+        catch (Exception ex)
+        {
+            err = ex.Message;
+        }
+    }
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}

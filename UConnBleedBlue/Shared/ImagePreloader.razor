@@ -1,0 +1,14 @@
+﻿@*@inject IJSRuntime JS
+
+@code {
+    [Parameter] public List<(string Name, string Url)> Images { get; set; } = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender && Images?.Any() == true)
+        {
+            var urls = Images.Select(i => i.Url).ToList();
+            await JS.InvokeVoidAsync("preloadImages", urls);
+        }
+    }
+}*@
