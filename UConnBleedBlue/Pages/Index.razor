@@ -12,11 +12,11 @@
 
         <PageTitle>Football Alumni News</PageTitle>
 
-        <h2>
+        <h2 class="top-header">
             3nd Annual "Bleed Blue With Andy" UConn Football Alumni Tailgate!
         </h2>
 
-        <h2>
+        <h2 class="top-header">
             Saturday November 1, 2025&nbsp;&nbsp;Opponent: UAB&nbsp;&nbsp;&nbsp;&nbsp;Game: 12 Noon&nbsp;&nbsp;Tailgate: 8:30 AM
         </h2>
     
@@ -43,21 +43,14 @@
 
 <style>
 
-    h0 {
-        color: red;
-        font-size: 2.5rem; /* ~40px */
-    }
-
-    .messageBoxXL {
-        width: 90%;
-        padding: 0.625rem; /* 10px */
-        border: 0.125rem solid blue; /* 2px */
-        margin: auto;
-        color: blue;
-        background-color: yellow;
+    .top-header {
+        font-size: clamp(1.4rem, 5.5vw, 2.4rem); /* Scales well across devices */
+        font-weight: 700;
+        color: mediumblue;
         text-align: center;
-        font-size: 1.25rem; /* x-large ~ 20px */
-        font-weight: bold;
+        text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 255, 0.15); /* very subtle blue glow */
+        padding: 0.25rem;
+        white-space: normal;
     }
 
     h1 {
@@ -93,8 +86,8 @@
     }
 
     .row-header {
-        font-weight: pink;
-        font-size: 1.6em;
+        font-weight: bold;
+        font-size: clamp(1.2rem, 5vw, 2.2rem);
         transition: all 0.2s ease-in-out;
     }
 

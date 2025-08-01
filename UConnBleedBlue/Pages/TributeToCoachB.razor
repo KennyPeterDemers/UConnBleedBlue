@@ -40,6 +40,58 @@
     }
 </style>
 
+<h1>2025 Messages</h1>
+
+<div class="verticalspacer"></div>
+
+<p style="color: blue;"><b><font size="4">Available To Everyone</font></b></p>
+
+<EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
+    <div>
+        <label style="color: blue;">
+            Author Name:
+            <InputText @bind-Value="EmailRequest.From" class="form-control mt-2" style="width: 350px;" />
+        </label>
+    </div>
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <label style="color: blue;">
+            Author Email Address:
+            <InputText @bind-Value="EmailRequest.FromEmail" class="form-control mt-2" style="width: 500px;" />
+        </label>
+    </div>
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <label style="color: blue;">
+            Your Tribute To Andy:
+        </label>
+    </div>
+
+    <div>
+        <textarea rows="@Rows"
+                  @bind-value=EmailRequest.Tribute
+                  @bind-value:event="oninput" style="width: 1000px;" />
+    </div>
+
+
+    <div class="verticalspacer"></div>
+
+    <div>
+        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+    </div>
+
+    <div>
+        <label class="labelError">
+            @emailStatus
+        </label>
+    </div>
+
+</EditForm>
+
 <h1>2024 Messages</h1>
 
 <div class="messagebox">
@@ -214,56 +266,6 @@
         </b>
     </p>
 </div>
-
-<div class="verticalspacer"></div>
-
-<p style="color: blue;"><b><font size="4">Available To Everyone</font></b></p>
-
-<EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
-    <div>
-        <label style ="color: blue;">
-            Author Name:
-            <InputText @bind-Value="EmailRequest.From" class="form-control mt-2" />
-        </label>
-    </div>
-
-    <div class="verticalspacer"></div>
-
-    <div>
-        <label style="color: blue;">
-            Author Email Address:
-            <InputText @bind-Value="EmailRequest.FromEmail"  class="form-control mt-2" />
-        </label>
-    </div>
-
-    <div class="verticalspacer"></div>
-
-    <div>
-        <label style="color: blue;">
-            Your Tribute To Andy:
-        </label>
-    </div>
-
-    <div>
-        <textarea rows="@Rows"
-                  @bind-value=EmailRequest.Tribute
-                  @bind-value:event="oninput" />
-    </div>
-
-
-    <div class="verticalspacer"></div>
-
-    <div>
-        <button type="submit" class="btn btn-primary mt-2">Submit</button>
-    </div>
-
-    <div>
-        <label class="labelError">
-            @emailStatus
-        </label>
-    </div>
-
-</EditForm>
 
 <div class="verticalspacer"></div>
 

@@ -93,25 +93,26 @@
 
     .image-text-row {
         display: flex;
-        flex-direction: row;
-        align-items: center;
+        flex-wrap: wrap; /* ✅ allow items to wrap */
         justify-content: center;
+        align-items: flex-start;
         gap: 1rem;
-        flex-wrap: nowrap;
     }
 
     .side-paragraph {
-        flex: 1 1 45%; /* ✅ allows it to grow up to 45% of the container */
-        max-width: 45%; /* ✅ increase from 30% or 33% to 45% */
-        font-size: 1.2rem; /* ✅ Slightly larger */
-        line-height: 1.7; /* ✅ More readable spacing */
+        flex: 1 1 300px; /* ✅ shrink and grow around 300px */
+        max-width: 500px;
+        min-width: 260px;
+        font-size: 1.2rem;
+        line-height: 1.7;
         text-align: left;
-        color: darkblue; /* ✅ Dark blue for better contrast */
-        font-weight: 500; /* ✅ Slightly bolder than normal */
-        background-color: #f0f8ff; /* ✅ Light background to make text pop */
-        padding: 12px; /* ✅ Space around text */
-        border-radius: 8px; /* ✅ Softens appearance */
-        box-shadow: 1px 1px 4px rgba(0,0,0,0.1); /* ✅ Adds subtle elevation */
+        color: darkblue;
+        font-weight: 500;
+        background-color: #f0f8ff;
+        padding: 12px;
+        border-radius: 8px;
+        box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+        box-sizing: border-box;
     }
 
     .image-side-text {
@@ -129,9 +130,13 @@
     }
 
     .image-large {
-        width: 450px;
+        flex: 1 1 300px;
+        max-width: 500px;
+        min-width: 260px;
+        width: 100%;
         height: auto;
         display: block;
+        border-radius: 8px;
     }
 
     .image-small {
@@ -160,6 +165,8 @@
         text-decoration: none;
     }
 
+
+ 
 </style>
 
 
