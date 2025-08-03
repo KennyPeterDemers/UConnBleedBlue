@@ -19,7 +19,7 @@
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="playersAttending">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> @currentAlumniMembersPageLabel
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Registered Alumni
             </NavLink>
         </div>
         <div class="nav-item px-3">
@@ -57,35 +57,44 @@
                 <span class="oi oi-list-rich" aria-hidden="true"></span> @playersThatDonatedPageLabel
             </NavLink>
         </div>*@
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="photoGallery1">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 1
-            </NavLink>
+        <div class="nav-item px-3" @onclick:stopPropagation>
+            <button class="nav-link btn btn-link w-100 text-start d-flex align-items-center"
+                    type="button"
+                    @onclick="TogglePhotos"
+                    @onclick:stopPropagation>
+                <span class="oi oi-image me-2" aria-hidden="true"></span>
+                Photo Gallery
+                <span class="ms-auto oi oi-chevron-bottom @(photosOpen ? "rotate-180" : "")"
+                      aria-hidden="true"></span>
+            </button>
+
+            @* NOTE: no 'collapse' class here *@
+            <div class="submenu" style="display:@(photosOpen ? "block" : "none")" @onclick:stopPropagation>
+                <NavLink class="nav-link nav-sublink ms-4" href="photoGallery1">Photo Gallery 1</NavLink>
+                <NavLink class="nav-link nav-sublink ms-4" href="photoGallery2">Photo Gallery 2</NavLink>
+                <NavLink class="nav-link nav-sublink ms-4" href="photoGallery3">Photo Gallery 3</NavLink>
+                <NavLink class="nav-link nav-sublink ms-4" href="photoGallery4">Photo Gallery 4</NavLink>
+            </div>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="photoGallery2">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 2
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="photoGallery3">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 3
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="photoGallery4">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Photo Gallery 4
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="photoGalleryTeams60-89">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Teams 1960-1989
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="photoGalleryTeams90-24">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Teams 1990-2024
-            </NavLink>
+            <button class="nav-link btn btn-link w-100 text-start d-flex align-items-center"
+                    type="button"
+                    @onclick="ToggleTeams"
+                    @onclick:stopPropagation>
+                <span class="oi oi-image me-2" aria-hidden="true"></span>
+                Team Photos
+                <span class="ms-auto oi oi-chevron-bottom @(teamsOpen ? "rotate-180" : "")" aria-hidden="true"></span>
+            </button>
+
+            @* We control visibility ourselves (no Bootstrap 'collapse' class) *@
+            <div class="submenu" style="display:@(teamsOpen ? "block" : "none")">
+                <NavLink class="nav-link nav-sublink ms-4" href="photoGalleryTeams60-89">
+                    Teams 1960–1989
+                </NavLink>
+                <NavLink class="nav-link nav-sublink ms-4" href="photoGalleryTeams90-24">
+                    Teams 1990–2024
+                </NavLink>
+            </div>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="tributeToCoachB">
@@ -100,9 +109,26 @@
     </nav>
 </div>
 
-@code {
-    private string currentAlumniMembersPageLabel = "";
+<style>
 
+    .submenu .nav-sublink {
+        font-size: 0.95rem;
+        padding-left: 0.25rem;
+    }
+
+    .rotate-180 {
+        transform: rotate(180deg);
+        transition: transform 180ms ease;
+    }
+
+    /* Make active sub-links stand out a bit */
+    .nav-sublink.active {
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+</style>
+@code {
     private string playersThatDonatedPageLabel = "";
 
     private bool collapseNavMenu = true;
@@ -115,12 +141,14 @@
 
     PlayersService playersService = new PlayersService();
 
+    private bool photosOpen = false;
+
+    private bool teamsOpen = false;
+
     protected override void OnInitialized()
     {
         try
         {
-            currentAlumniMembersPageLabel = $"Alumni  - {playersService.PlayerList.Count}";
-
             playersThatDonatedPageLabel = $"Current Donors  {donationsService.NumberOfPeopleDonating}";
         }
         catch (Exception ex)
@@ -131,5 +159,13 @@
     private void ToggleNavMenu()
     {
         collapseNavMenu = !collapseNavMenu;
+    }
+    private void TogglePhotos()
+    {
+        photosOpen = !photosOpen;
+    }
+    private void ToggleTeams()
+    {
+        teamsOpen = !teamsOpen;
     }
 }
