@@ -75,11 +75,11 @@ app.MapPost("/auth/login", async (HttpContext context, HttpRequest request, User
 
 app.MapGet("/login-redirect", (HttpContext context) =>
 {
-    return Results.Redirect("/video-gallery");
+    return Results.Redirect("/index");
 });
 
 app.MapControllers(); // Add this before MapBlazorHub
-
+app.MapRazorPages();          // ⬅️ add this
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 

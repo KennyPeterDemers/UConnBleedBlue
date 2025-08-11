@@ -5,7 +5,45 @@
 @using MailKit.Security
 
 @inject PlayersService PlayerService
-@inject NavigationManager Navigation
+@inject NavigationManager Nav
+
+<h2>Register To Our UConn Football Alumni Group</h2>
+<br />
+
+<h2 class="headline">
+    <span>All fields are required</span>
+</h2>
+
+<EditForm Model="@EmailRequest" OnSubmit="Submit" FormName="TributeToAndy">
+    <div class="form-section">
+
+        <label>
+            Name (First & Last):
+            <InputText @bind-Value="player.Name" class="text-input" />
+        </label>
+
+        <label>
+            Email Address:
+            <InputText @bind-Value="player.Email" class="text-input" type="email" />
+        </label>
+
+        <label>
+            Last Year (Fall) You Played:
+            <InputText @bind-Value="player.FinalYear" class="year-input" />
+        </label>
+
+        <br />
+
+        <!-- IMPORTANT: no @onclick here; let the form handle submit -->
+        <button type="submit" class="row-header ticket-btn center-btn" disabled="@isSubmitting">
+            @((isSubmitting) ? "Submitting..." : "Add me to the Football Alumni Group")
+        </button>
+
+        <br />
+
+        <label class="labelError">@emailStatus</label>
+    </div>
+</EditForm>
 
 <style>
     h1, h2 {
@@ -17,35 +55,41 @@
         color: blue;
     }
 
-    h1 {
-        font-size: 2rem;
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+
+    /* Keep all H2s after the button on one line and truly centered */
+    button ~ h2 {
+        display: inline-block;
+        white-space: nowrap;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        margin: 0.5rem 0;
+        padding-left: 0;
+        padding-right: 0;
     }
 
-    h2 {
-        font-size: 1.5rem;
+    /* Headline animation for the "All fields are required" line */
+    .headline { text-align: center; }
+
+    .headline span {
+        display: inline-block;
+        white-space: nowrap;
+        font-weight: bold;
+        color: purple;
+        font-size: clamp(1rem, 4vw, 2rem);
+        animation: fadeSlide 5s ease-in-out infinite alternate;
     }
 
-    h3 {
-        color: blue;
+    @@keyframes fadeSlide {
+        0%   { opacity: 0; transform: translateY(-10px); }
+        100% { opacity: 1; transform: translateY(0); }
     }
 
-    .custom-button {
-        color: blue;
-        font-weight: bolder;
-        border-radius: 10px;
-        padding: 6px 12px;
-        border: 1px solid #007BFF;
-        background-color: white;
-        cursor: pointer;
-    }
-
-    .custom-button:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-    }
-
+    /* Form layout */
     .form-section {
-        max-width: 800px;
+        width: min(92vw, 60rem);
         margin: 0 auto;
         padding: 0 1rem;
     }
@@ -66,146 +110,111 @@
         font-size: 1rem;
         color: blue;
         margin-bottom: 1rem;
+        box-sizing: border-box;
     }
 
-    .form-section input[type="checkbox"] {
-        width: 20px;
-        height: 20px;
-        margin-right: 0.5rem;
+    .year-input {
+        width: auto;
+        max-width: 6ch;
+        text-align: center;
     }
 
-    .form-section .checkbox-label {
-        display: flex;
-        align-items: center;
-        font-size: 1.2rem;
-        color: blue;
-        margin-bottom: 1rem;
-    }
-
-    .form-section button {
-        font-size: 1.2rem;
+    /* Button styles */
+    .ticket-btn {
+        background-color: #004aad; /* UConn blue */
+        color: #fff;
+        border: none;
+        border-radius: 8px;
         padding: 0.5rem 1rem;
+        cursor: pointer;
+        transition: background-color .2s ease-in-out, opacity .2s ease-in-out;
     }
+
+    .ticket-btn:hover,
+    .ticket-btn:focus { background-color: #002766; outline: none; }
+
+    .ticket-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    .center-btn { display: block; margin: 0.625rem auto; }
 
     .labelError {
-        color: red;
-        font-size: 1rem;
+        color: red !important; /* override .form-section label { color: blue; } */
+        font-size: clamp(1.8rem, 3.5vw, 2.4rem); /* responsive bigger font */
+        font-weight: bold;
         text-align: center;
         margin-top: 1rem;
     }
 
-    .year-input {
-        max-width: 100px;
+    /* Larger headings on desktop */
+    @@media (min-width: 1000px) {
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; }
+
+        /* shrink name & email inputs on desktop */
+        .text-input:not(.year-input) {
+            max-width: 50%;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+    }
+
+    .text-input {
         width: 100%;
+        max-width: none;
+        box-sizing: border-box;
     }
 
-    @@media (min-width: 768px) {
-        h1 {
-            font-size: 2.5rem;
+    /* Reduce vertical spacing for mobile devices */
+    @@media (max-width: 600px) {
+        h1, h2 { margin: 0.5rem 0; padding: 0.25rem; }
+
+        .form-section label { margin-bottom: 0.25rem; }
+
+        .form-section input[type="text"],
+        .form-section input[type="email"],
+        .form-section input[type="number"] {
+            margin-bottom: 0.5rem;
+            height: 2.2rem;
         }
 
-        h2 {
-            font-size: 2rem;
+        /* Let the post-button notes wrap and center normally */
+        button ~ h2 {
+            display: block;
+            white-space: normal;
+            left: auto;
+            transform: none;
+            text-align: center;
+            margin: 0.25rem auto;
+            padding: 0 0.5rem;
         }
-    }
 
-    @@media (min-width: 768px) {
-        .checkbox-label span {
-            white-space: nowrap;
+        button ~ h2 span {
+            overflow-wrap: anywhere;
+            word-break: normal;
         }
+
+        .form-section { padding-bottom: 4rem; }
+        html, body { overflow-x: hidden; }
+        br { display: none; }
+
     }
 </style>
 
-
-<h2>Please Register To Join Our UConn Football Alumni Group Mailing List</h2>
-<br />
-
-<body>
-    <EditForm Model=@EmailRequest OnSubmit="Submit" FormName="TributeToAndy">
-        <div class="form-section">
-
-            <label>
-                Name:
-                <InputText @bind-Value="player.Name" />
-            </label>
-
-            <label>
-                Email Address:
-                <InputText @bind-Value="player.Email" style="width: 500px;" />
-            </label>
-
-            <label>
-                Last Year (Fall) You Played:
-                <InputText @bind-Value="player.FinalYear" class="year-input" />
-            </label>
-
-            <h3>Are You Planning To Attend The Tailgate?</h3>
-
-            <label>
-                <input type="checkbox" checked="@isYes" @onchange="OnYesChanged" />
-                Yes
-            </label>
-
-            <label>
-                <input type="checkbox" checked="@isNo" @onchange="OnNoChanged" />
-                No
-            </label>
-
-            <button type="submit" class="btn btn-primary mt-2" @onclick="Submit" disabled="@(!CanSubmit)">Submit Your Information</button>
-
-            <label class="labelError">@emailStatus</label>
-        </div>
-    </EditForm>
-
-</body>
-
 @code {
-    [SupplyParameterFromForm(FormName = "EmailForm")]
+    // Match the EditForm's FormName
+    [SupplyParameterFromForm(FormName = "TributeToAndy")]
     EmailRequest EmailRequest { get; set; } = new();
 
-    [Parameter]
-    public bool IsChecked { get; set; } = false;
-
-    [Parameter]
-    public bool IsAttending { get; set; } = false;
+    [Parameter] public bool IsChecked { get; set; } = false;
+    [Parameter] public bool IsAttending { get; set; } = false;
 
     private string emailStatus = "";
+    private bool isSubmitting = false;   // re-entrancy guard
 
-    Timer? timer;
+    private Timer? timer;
 
     public Player player = new Player();
-
-    private bool isYes;
-    private bool isNo;
-
-    // Player data to be emailed & passed to next page
-    string userInput = "";
-
-    private bool CanSubmit => isYes || isNo;
-
-    private void OnYesChanged(ChangeEventArgs e)
-    {
-        if (e == null || e.Value == null)
-        {
-            return;
-        }
-        isYes = (bool)e.Value;
-        if (isYes) {
-            isNo = false;
-        }
-        player.AttendingTailgate = isYes;
-    }
-
-    private void OnNoChanged(ChangeEventArgs e)
-    {
-        if (e == null || e.Value == null)
-        {
-            return;
-        }
-        isNo = (bool)e.Value;
-        if (isNo)
-            isYes = false;
-    }
 
     private void OnTimerEvent(object? state)
     {
@@ -213,71 +222,43 @@
         IsChecked = false;
         InvokeAsync(StateHasChanged);
     }
+
     private void Submit()
     {
+        if (isSubmitting) return;     // prevent double-exec
+        isSubmitting = true;
+        StateHasChanged();
+
         try
         {
-            if (timer != null)
-            {
-                timer.Dispose();
-            }
-            if (player.Name == null)
+            if (timer != null) { timer.Dispose(); }
+
+            if (string.IsNullOrWhiteSpace(player.Name) || player.Name.Trim().Length < 3)
             {
                 emailStatus = "Enter a valid name";
                 timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
                 return;
             }
-            EmailRequest.From = player.Name;
-            if (EmailRequest.From.Length < 3)
-            {
-                emailStatus = "Enter a valid name";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
-                return;
-            }
-            if (player.Email == null)
+
+            if (string.IsNullOrWhiteSpace(player.Email) ||
+                player.Email.Length < 7 ||
+                !player.Email.Contains(".") ||
+                !player.Email.Contains("@"))
             {
                 emailStatus = "Enter a valid email address";
                 timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
                 return;
             }
-            EmailRequest.FromEmail = player.Email;
-            if (EmailRequest.FromEmail.Length < 7)
+
+            if (string.IsNullOrWhiteSpace(player.FinalYear) ||
+                !int.TryParse(player.FinalYear, out var year) ||
+                year < 1960)
             {
-                emailStatus = "Enter a valid email address";
+                emailStatus = "Last year played is invalid - must be 4 digits";
                 timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
                 return;
             }
-            if (EmailRequest.FromEmail.Contains(".") == false)
-            {
-                emailStatus = "Enter a valid email address";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
-                return;
-            }
-            if (EmailRequest.FromEmail.Contains("@") == false)
-            {
-                emailStatus = "Enter a valid email address";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
-                return;
-            }
-            if (player.FinalYear == null)
-            {
-                emailStatus = "Enter a valid year";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
-                return;
-            }
-            int year;
-            if (int.TryParse(player.FinalYear, out year) == false)
-            {
-                emailStatus = "Last year played is invalid";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
-                return;
-            }
-            if (year < 1960)
-            {
-                emailStatus = "Last year played is invalid";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
-                return;
-            }
+
             // force TLS 1.2 connection if your application requires
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
@@ -287,49 +268,40 @@
             string password = "UConnBleedBlue62$";
             string to = "kenny@andybleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
 
-            // Player data to be emailed & passed to next page
-            userInput = player.Name + " , " + player.Email + " , " + player.FinalYear + " , " + player.AttendingTailgate.ToString() + " , "
-                    + player.NumberOfTickets.ToString();
-
             var message = new MimeKit.MimeMessage();
-            message.From.Add(new MimeKit.MailboxAddress(EmailRequest.From, from)); // replace from_name with real name
-            message.To.Add(new MimeKit.MailboxAddress("kpdemers073.com", to)); // replace to_name with real name
+            message.From.Add(new MimeKit.MailboxAddress(EmailRequest.From, from));
+            message.To.Add(new MimeKit.MailboxAddress("kpdemers073.com", to));
             message.Subject = "Player Attending";
             message.Body = new MimeKit.TextPart("plain")
-                {
-                    Text = userInput
-                };
+            {
+                Text = $"{player.Name} , {player.Email} , {player.FinalYear} , {player.AttendingTailgate} , {player.NumberOfTickets}"
+            };
 
             using (var client = new MailKit.Net.Smtp.SmtpClient())
             {
-                client.Connect(server, port, MailKit.Security.SecureSocketOptions.StartTls); // for port 587
+                client.Connect(server, port, MailKit.Security.SecureSocketOptions.StartTls);
                 client.Authenticate(from, password);
                 client.Send(message);
                 client.Disconnect(true);
             }
+
             EmailRequest.From = "";
             EmailRequest.FromEmail = "";
             EmailRequest.Tribute = "";
 
-            if (isNo)
-            {
-                emailStatus = "Thanks! Your Information Was Successfully Submitted - We Hope You Can Come To Next Season's Tailgate";
-                timer = new Timer(OnTimerEvent, null, 8000, Timeout.Infinite);
-            }
-            else
-            {
-                emailStatus = "Thanks! Your Information Was Successfully Submitted";
+            emailStatus = "Thanks! Your Information Was Successfully Submitted";
+            StateHasChanged();
 
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
-
-                Navigation.NavigateTo($"/request-tickets/{Uri.EscapeDataString(userInput)}");
-            }
         }
         catch (Exception ex)
         {
-            emailStatus = "Error - " + ex.Message;
+            emailStatus = "Internal Error - " + ex.Message;
             timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
         }
     }
 }
-

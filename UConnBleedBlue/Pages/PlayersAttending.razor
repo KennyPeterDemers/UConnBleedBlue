@@ -37,13 +37,39 @@
         white-space: nowrap;
         padding: 0.5rem;
     }
+        .registration-btn {
+        display: table;
+        margin: 10px auto;
+        padding: 10px 20px;
+        font-size: 32px;
+        color: #ffffff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        text-align: center;
+        text-shadow: 0 0 5px blue, 0 0 5px blue, 0 0 5px blue, 0 0 5px blue;
+        transition: background-color 0.3s ease;
+    }
+
+    .registration-btn:hover {
+        background-color: #0056b3;
+    }
+
+    @@media (min-width: 768px) {
+        .registration-btn {
+            font-size: 50px;
+        }
+    }
 
 </style>
 
 <h1>UConn Football Players & Friends : @playersService.PlayerList.Count</h1>
 <br />
 
-<h1>Fill Out The Registration Form - To Keep Our Information Current</h1>
+<button class='registration-btn' @onclick='() => NavigationManager.NavigateTo("/mailing-list-form")'>
+    Click - If you're not on our Football Alumni mailing list
+</button>
 
 
 
@@ -89,7 +115,7 @@ else
                         <td>@player.Id</td>
                         <td>@player.Name</td>
                         <td>@player.FinalYear</td>
-                        <td></td>
+                        <td>@(player.AttendingTailgate ? "Yes" : "")</td>
                         <td></td>
                         <th></th>
                         <th></th>
@@ -111,6 +137,14 @@ else
                         <th>*</th>
                     </tr>
                 }
+                 <tr>
+                <td colspan="3" style="font-size:1.5em; font-weight:bold;">
+                    Total Players Attending:
+                </td>
+                <td style="font-size:1.5em; font-weight:bold;">
+                    @playersService.PlayerList.Count(p => p.AttendingTailgate)
+                </td>
+              </tr>  
             </tbody>
         </table>
     </div>
