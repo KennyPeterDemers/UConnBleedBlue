@@ -3,9 +3,12 @@
 @using UConnBleedBlue.Models
 @using MailKit.Net.Smtp
 @using MailKit.Security
+@using Microsoft.AspNetCore.Components.Web  // needed for FocusAsync
 
 @inject PlayersService PlayerService
 @inject NavigationManager Nav
+
+@implements IDisposable
 
 <h2>Register To Our UConn Football Alumni Group & Request Complementary Tickets To The Game</h2>
 <br />
@@ -14,50 +17,87 @@
     <span>All fields are required</span>
 </h2>
 
-<EditForm Model="@EmailRequest" OnSubmit="Submit" FormName="TributeToAndy">
-    <div class="form-section">
+<ErrorBoundary>
+    <ChildContent>
+        <EditForm Model="@EmailRequest" OnSubmit="Submit" FormName="TributeToAndy">
+            <div class="form-section">
 
-        <label>
-            Name (First & Last):
-            <InputText @bind-Value="player.Name" class="text-input" />
-        </label>
+                <label>
+                    Name (First & Last):
+                    <input class="text-input"
+                           @bind="player.Name"
+                           @bind:event="oninput"
+                           type="text"
+                            @ref="nameInput" />
+                </label>
 
-        <label>
-            Email Address:
-            <InputText @bind-Value="player.Email" class="text-input" type="email" />
-        </label>
+                <label>
+                    Email Address:
+                    <input class="text-input"
+                           @bind="player.Email"
+                           @bind:event="oninput"
+                           type="email" />
+                </label>
 
-        <label>
-            Last Year (Fall) You Played :
-            <InputText @bind-Value="player.FinalYear" class="year-input" />
-        </label>
+                <label>
+                    Last Year (Fall) You Played :
+                    <input class="year-input"
+                           @bind="player.FinalYear"
+                           @bind:event="oninput"
+                           inputmode="numeric"
+                           pattern="[0-9]*"
+                           type="text" />
+                </label>
 
-        <br />
+                <br />
 
-        <!-- IMPORTANT: no @onclick here; let the form handle submit -->
-        <button type="submit" class="row-header ticket-btn center-btn" disabled="@isSubmitting">
-            @((isSubmitting) ? "Submitting..." : "Request Tickets From UConn Ticket Office")
-        </button>
+                <button type="button"
+                        class="row-header ticket-btn center-btn"
+                        @onclick="OpenNotice"
+                        disabled="@(!CanRegister() || isSubmitting)">
+                    @((isSubmitting) ? "Submitting..." : "Register")
+                </button>
 
-        <br />
 
-        <h2>
-            <span>Pressing the button above will take you to the UConn Ticket Office Site</span>
-        </h2>
-        <h2>
-            <span>PSA - refers to Prospective Student Athlete</span>
-        </h2>
-        <h2>
-            <span>For the "Group" field: Enter "Bleed Blue With Andy"</span>
-        </h2>
-        <h2>
-            <span>Note: All tickets will be distributed at the tailgate</span>
-        </h2>
-        <br />
+                <label class="labelError">@emailStatus</label>
+            </div>
+        </EditForm>
+    </ChildContent>
+</ErrorBoundary>
 
-        <label class="labelError">@emailStatus</label>
+@* Modal: shows only when showNotice is true *@
+@if (showNotice)
+{
+    <div class="bb-modal-backdrop" @onclick="BackdropClick">
+        <div class="bb-modal" role="dialog" aria-modal="true" aria-labelledby="bbModalTitle" @onclick:stopPropagation>
+            <div class="bb-modal-header">
+                <h3 id="bbModalTitle">Before Continuing To The Ticket Office Site</h3>
+            </div>
+
+            <div class="bb-modal-body">
+                <ul class="bb-bullets">
+                    <li><strong>PSA</strong> = Prospective Student Athlete.</li>
+                    <li>For the <strong>Group</strong> field, enter <strong>“Bleed Blue With Andy”</strong>.</li>
+                    <li>For the <strong>Title</strong> field, enter <strong>“FB Alum”</strong>.</li>
+                    <li><strong>Note:</strong> All requested tickets will be distributed at the tailgate.</li>
+                </ul>
+            </div>
+
+            <div class="bb-modal-footer">
+                <button type="button"
+                        class="bb-btn-secondary"
+                        @onclick:preventDefault="true"
+                        @onclick="CloseNotice">Return To Registration Form</button>
+
+                <button type="button"
+                        class="bb-btn-primary"
+                        @onclick:preventDefault="true"
+                        @onclick="GoToTicketOffice">Continue To Ticket Office Site</button>
+            </div>                        
+        </div>
     </div>
-</EditForm>
+}
+
 
 <style>
     h1, h2 {
@@ -141,13 +181,19 @@
         border-radius: 8px;
         padding: 0.5rem 1rem;
         cursor: pointer;
-        transition: background-color .2s ease-in-out, opacity .2s ease-in-out;
+        transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     }
 
     .ticket-btn:hover,
     .ticket-btn:focus { background-color: #002766; outline: none; }
 
-    .ticket-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+    .ticket-btn:disabled {
+        background-color: #ccc !important; /* Light gray */
+        color: #666 !important; /* Darker text */
+        border: 2px solid #999 !important; /* Clear outline */
+        opacity: 1; /* Remove fade so text is crisp */
+        cursor: not-allowed;
+    }
 
     .center-btn { display: block; margin: 0.625rem auto; }
 
@@ -213,6 +259,112 @@
         br { display: none; }
 
     }
+
+    /* Modal backdrop */
+    .bb-modal-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+    }
+
+    /* Modal panel */
+    .bb-modal {
+        width: min(92vw, 720px);
+        max-height: 80vh;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Modal sections */
+    .bb-modal-header,
+    .bb-modal-footer {
+        padding: 12px 16px;
+        border-bottom: 1px solid #e6e6e6;
+    }
+
+    /* Modal header title */
+    .bb-modal-header h3 {
+        color: #004AAD; /* UConn blue */
+        font-size: clamp(1.2rem, 3vw, 1.8rem); /* min 19px, scales up, max ~29px */
+        margin: 0;
+        font-weight: bold;
+    }
+
+    .bb-modal-footer {
+        border-top: 1px solid #e6e6e6;
+        border-bottom: 0;
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+    }
+
+    .bb-modal-body {
+        padding: 16px;
+        overflow: auto;
+    }
+
+    /* Buttons in modal */
+    .bb-icon-btn {
+        background: transparent;
+        border: 0;
+        font-size: 24px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .bb-btn-primary, .bb-btn-secondary {
+        padding: 8px 14px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .bb-btn-primary {
+        background: #0a58ca;
+        color: #fff;
+    }
+
+    .bb-btn-secondary {
+        background: #f5f5f5;
+        color: #222;
+    }
+
+    /* List styling in modal */
+    .bb-bullets {
+        margin: 0;
+        padding-left: 1.2rem;
+    }
+
+        .bb-bullets li {
+            margin: 0.25rem 0;
+        }
+
+    /* Avoid tap highlight on iOS */
+    .bb-modal, .bb-modal * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    /* Popup body text */
+    .bb-modal-body {
+        color: #004AAD; /* UConn blue */
+        font-size: clamp(1rem, 2.5vw, 1.4rem); /* min 1rem, scales up, max 1.4rem */
+        line-height: 1.5;
+    }
+
+    /* Make list items inside modal match the style */
+    .bb-bullets li {
+        color: inherit;
+        font-size: inherit;
+        margin-bottom: 0.5rem;
+    }
+
 </style>
 
 @code {
@@ -227,18 +379,44 @@
     private bool isSubmitting = false;   // re-entrancy guard
 
     private Timer? timer;
+    private bool _isDisposed;
 
-    public Player player = new Player();
+    public Player? player;
+
+    private ElementReference nameInput;
 
     // UConn Ticket Request URL
     private const string TicketUrl =
         "https://tickets.armssoftware.com/ALPWa8E8?t=QP30mzW7&ae=N9oBgWwZ";
 
-    private void OnTimerEvent(object? state)
+    private bool showNotice = false;
+
+    protected override void OnInitialized()
     {
+        player = new Player();  // ensures not null before first render
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await nameInput.FocusAsync();
+        }
+    }
+
+    private async void OnTimerEvent(object? state)
+    {
+        if (_isDisposed) return;          // component is going away
         emailStatus = "";
         IsChecked = false;
-        InvokeAsync(StateHasChanged);
+        try
+        {
+            await InvokeAsync(StateHasChanged);
+        }
+        catch (ObjectDisposedException)
+        {
+            // ignore – happens if circuit/component is already gone
+        }
     }
 
     private async Task Submit()
@@ -254,7 +432,7 @@
             if (string.IsNullOrWhiteSpace(player.Name) || player.Name.Trim().Length < 3)
             {
                 emailStatus = "Enter a valid name";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+                SetOneShotTimer(5000);
                 return;
             }
 
@@ -264,7 +442,7 @@
                 !player.Email.Contains("@"))
             {
                 emailStatus = "Enter a valid email address";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+                SetOneShotTimer(5000);
                 return;
             }
 
@@ -273,7 +451,7 @@
                 year < 1960)
             {
                 emailStatus = "Last year played is invalid - must be 4 digits";
-                timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+                SetOneShotTimer(5000);
                 return;
             }
 
@@ -310,18 +488,68 @@
             emailStatus = "Thanks! Your Information Was Successfully Submitted";
             StateHasChanged();
 
-            await Task.Delay(2000);
+            StopTimer();                              // ✅ stop before navigation
             Nav.NavigateTo(TicketUrl, forceLoad: true);
         }
         catch (Exception ex)
         {
             emailStatus = "Internal Error - " + ex.Message;
-            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+            SetOneShotTimer(5000);
         }
         finally
         {
             isSubmitting = false;
             StateHasChanged();
         }
+    }
+    void OpenNotice() => showNotice = true;
+
+    void CloseNotice() => showNotice = false;
+
+    void BackdropClick() => CloseNotice();
+
+    private bool CanRegister()
+    {
+        // Name check
+        if (string.IsNullOrWhiteSpace(player.Name) || player.Name.Trim().Length < 3)
+            return false;
+
+        // Email check
+        if (string.IsNullOrWhiteSpace(player.Email) ||
+            player.Email.Length < 7 ||
+            !player.Email.Contains(".") ||
+            !player.Email.Contains("@"))
+            return false;
+
+        // Year check
+        if (string.IsNullOrWhiteSpace(player.FinalYear) ||
+            !int.TryParse(player.FinalYear, out var year) ||
+            year < 1960)
+            return false;
+
+        return true;
+    }
+    private void SetOneShotTimer(int ms)
+    {
+        StopTimer();
+        timer = new Timer(OnTimerEvent, null, ms, Timeout.Infinite);
+    }
+    private void StopTimer()
+    {
+        timer?.Dispose();
+        timer = null;
+    }
+    private void GoToTicketOffice()
+    {
+        showNotice = false;
+        StopTimer();                          // ✅ prevent post-nav callbacks
+        Nav.NavigateTo(TicketUrl, forceLoad: true);
+    }
+
+    public void Dispose()
+    {
+        _isDisposed = true;
+        timer?.Dispose();
+        timer = null;
     }
 }

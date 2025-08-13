@@ -37,43 +37,94 @@
         white-space: nowrap;
         padding: 0.5rem;
     }
+
+    /* optional: better keyboard focus */
+    .registration-btn:focus-visible {
+        outline: 2px solid #FFD700;
+        outline-offset: 2px;
+    }
+
+    /* desktop size */
+    @@media (min-width: 768px) {
         .registration-btn {
-        display: table;
-        margin: 10px auto;
+            font-size: 28px;
+        }
+    }
+
+    .registration-btn:hover {
+        background-color: #091A33; /* even darker on hover */
+    }
+
+    /* Make the counter a little bigger on larger screens */
+    @@media (min-width: 768px) {
+        .attending-count {
+            font-size: 1.5rem;
+        }
+    }
+
+    .registration-btn {
+        display: inline-block;
+        margin: 0;
         padding: 10px 20px;
-        font-size: 32px;
-        color: #ffffff;
-        background-color: #007bff;
+        font-size: 20px;
+        font-weight: 700;
+        color: #FFD700; /* yellow text */
+        background-color: #004aad; /* UConn blue */
         border: none;
         border-radius: 6px;
         cursor: pointer;
         text-align: center;
-        text-shadow: 0 0 5px blue, 0 0 5px blue, 0 0 5px blue, 0 0 5px blue;
+        text-shadow: 0 0 4px rgba(0,0,0,.4); /* subtle glow for legibility */
         transition: background-color 0.3s ease;
     }
 
-    .registration-btn:hover {
-        background-color: #0056b3;
-    }
-
+    /* Big button on larger screens */
     @@media (min-width: 768px) {
         .registration-btn {
-            font-size: 50px;
+            font-size: 28px;
         }
     }
 
+    /* Stack above the table */
+    .top-stack {
+        display: flex;
+        flex-direction: column;
+        align-items: center;   /* 👈 centers Row 2 & Row 3 horizontally */
+        row-gap: .75rem;
+        margin-bottom: 12px;
+    }
+
+    @@media (min-width: 768px) {
+        .top-stack { row-gap: 1rem; }
+    }
+
+    /* Row 2 text */
+    .attending-count {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: blue;
+        text-align: center;    /* 👈 center the text itself */
+    }
+    @@media (min-width: 768px) {
+        .attending-count { font-size: 1.5rem; }
+    }
 </style>
 
-<h1>UConn Football Players & Friends : @playersService.PlayerList.Count</h1>
+<h1>UConn Football Players & Friends : @PlayerService.PlayerList.Count</h1>
 <br />
 
-<button class='registration-btn' @onclick='() => NavigationManager.NavigateTo("/mailing-list-form")'>
-    Click - If you're not on our Football Alumni mailing list
-</button>
+<div class="top-stack">
+    <div class="attending-count">
+        <strong>Total Players Attending:</strong>
+        @PlayerService.PlayerList.Count(p => p.AttendingTailgate)
+    </div>
 
+    <button class="registration-btn" @onclick='() => NavigationManager.NavigateTo("/mailing-list-form")'>
+        Click - If you're not on our Football Alumni mailing list shown below
+    </button>
+</div>
 
-
-@if (playersService == null)
+@if (PlayerService?.PlayerList == null)
 {
     <p><em>Loading...</em></p>
 }
@@ -109,7 +160,7 @@ else
                 </tr>
             </thead>
             <tbody>
-                @foreach (var player in @playersService.PlayerList)
+                @foreach (var player in @PlayerService.PlayerList)
                 {
                     <tr>
                         <td>@player.Id</td>
@@ -137,22 +188,12 @@ else
                         <th>*</th>
                     </tr>
                 }
-                 <tr>
-                <td colspan="3" style="font-size:1.5em; font-weight:bold;">
-                    Total Players Attending:
-                </td>
-                <td style="font-size:1.5em; font-weight:bold;">
-                    @playersService.PlayerList.Count(p => p.AttendingTailgate)
-                </td>
-              </tr>  
             </tbody>
         </table>
     </div>
 }
 
 @code {
-    public PlayersService playersService = new PlayersService();
-
     public void ViewTeam(string? year, string? headCoach)
     {
         if ((year == null) || (headCoach == null))
@@ -187,7 +228,5 @@ else
         }
         // remove prefix
         PlayerService.ImageSource = PlayerService.ImageSource.Substring(8);
-
-        //NavigationManager.NavigateTo("TeamPhoto");
     }
 }
