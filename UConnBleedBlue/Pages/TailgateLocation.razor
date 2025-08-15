@@ -1,4 +1,4 @@
-﻿@page "/tailgateLocation"
+﻿@page "/tailgate-location"
 
 
 
@@ -9,8 +9,8 @@
     }
 
     .messageBoxXL {
-        width: 90%;
-        padding: 10px 10px 10px 10px;
+        width: 840px; /* just bigger than image */
+        padding: 10px;
         border: 2px solid blue;
         margin: auto;
         color: blue;
@@ -32,6 +32,12 @@
     h1 {
         text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
     }
+
+    .big-image {
+        width: 800px;
+        height: auto; /* keep aspect ratio */
+    }
+
 </style>
 
 
@@ -41,17 +47,19 @@
 
 <div class="verticalspacer"></div>
 
-<div class="messageBox">
-    <p>
-        Located At The Red Dot Below In Section 8
-    </p>
-    <p>
-        <div>
-            <img src="images2/TailgateLocation.png" class="center">
-        </div>
-    </p>
+<div style="text-align:center">
+    <div class="messageBoxXL">
+        <p>Located At The Red Dot Below In Section 8</p>
+        <img src="imagesMenu/TailgateLocation.webp" class="big-image">
+    </div>
 </div>
 
+<style>
+    .big-image {
+        width: 800px;
+        height: auto; /* keep aspect ratio */
+    }
+</style>
 
 @code {
 

@@ -1,0 +1,29 @@
+private const string _html = """
+    <p>Hi {{Name}},</p>
+
+    <p>Announcing the 3rd Annual Bleed Blue with Andy - Football Alumni Tailgate against UAB on Saturday November 1st.
+    I am planning our biggest and best “Bleed Blue with Andy Tailgate”.
+    In order to make that happen, I need you to: Go to &nbsp;&nbsp;www.UConnBleedBlue.com &nbsp;&nbsp;ASAP to register to our football alumni mailing list
+    and request your complementary tickets. Complementary tickets will be handed out at the tailgate.</p>
+
+    <p>Even if you can't make the tailgate, please register to our mailing list.
+    The site also contains a link to a great article about how Coach B is still going strong.</p>
+
+    <p>
+    The sooner I know how many of you are attending the game / tailgate, will allow me to better prepare the menu for our tailgate.
+    I’m trying to make it a real feast.</p>
+
+    <p>Don’t forget to donate to Andy’s Fund.
+    Just follow the directions on the web site or bring cash for our “cookie jar” on game day.
+    You can also mail me a check at: <br><br>Kenny Demers <br>16 Brookfield Rd. <br>West Hartford, CT 06107</p>
+    
+    <p>No donation is too small. Currently approximately $500.00 has been donated. My expenses usually run about $2500.00
+    All money donated above the cost of the tailgate goes directly into Andy's UConn Football Alumni Fund.
+    As usual, you can expect a thank you call or hand written thank you note from Coach B.
+    Currently, I accept online donations via Venmo, Cash App, and Apple Pay.
+    If you need another online method, let me know and I'll try to set it up.</p>
+
+    <p>I wish you all continued good health and look forward to sharing a great day with you.</p>
+
+    <p>— Kenny</p>
+    """;

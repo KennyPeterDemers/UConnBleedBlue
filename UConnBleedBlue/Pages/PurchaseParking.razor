@@ -1,0 +1,244 @@
+﻿@page "/purchase-parking"
+
+<style>
+  /* ===== UConn palette ===== */
+  :root {
+    --uconn-navy: #0C2340;   /* primary */
+    --uconn-blue: #0055A4;   /* accent */
+    --uconn-gray: #EBEEF2;   /* light background */
+    --uconn-white: #ffffff;
+    --uconn-red: #C8102E;    /* for subtle accents, not the CTA */
+  }
+
+  /* Page */
+  .parking-page {
+    min-height: 70vh;
+    background: linear-gradient(180deg, var(--uconn-navy) 0%, #091a32 60%, var(--uconn-navy) 100%);
+    padding: clamp(16px, 3vw, 40px) 16px 56px;
+    color: var(--uconn-white);
+  }
+
+  /* Header */
+  .title {
+    font-size: clamp(28px, 4.5vw, 48px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: 0.5px;
+    text-align: center;
+    margin: 0 auto 24px;
+    text-shadow: 0 2px 10px rgba(0,0,0,.35);
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: clamp(16px, 2.2vw, 20px);
+    opacity: .95;
+    margin-bottom: 28px;
+  }
+
+  /* Card */
+  .card {
+    width: min(960px, 92vw);
+    margin: 0 auto;
+    background: var(--uconn-white);
+    color: #0b1a2f;
+    border-radius: 18px;
+    box-shadow: 0 14px 38px rgba(0,0,0,.25);
+    overflow: hidden;
+  }
+
+  .card-header {
+    background: linear-gradient(90deg, var(--uconn-navy) 0%, var(--uconn-blue) 100%);
+    color: var(--uconn-white);
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: #7ec8ff;
+    box-shadow: 0 0 0 4px rgba(126,200,255,.25);
+  }
+
+  .card-body {
+    padding: clamp(18px, 3vw, 28px);
+    display: grid;
+    gap: 14px;
+  }
+
+  .kv {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 8px 12px;
+    align-items: start;
+    font-size: 16px;
+  }
+  .kv label {
+    color: #314157;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .6px;
+  }
+
+  /* CTA area */
+  .cta {
+    margin-top: 8px;
+    display: grid;
+    gap: 10px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 12px;
+    background: linear-gradient(90deg, var(--uconn-blue) 0%, #2476d3 100%);
+    color: var(--uconn-white);
+    font-weight: 800;
+    letter-spacing: .3px;
+    text-decoration: none;
+    transition: transform .06s ease-in-out, box-shadow .2s ease;
+    box-shadow: 0 10px 24px rgba(0, 85, 164, .35);
+  }
+  .btn-primary:hover { transform: translateY(-1px); }
+  .btn-primary:focus { outline: 3px solid #91c7ff; outline-offset: 2px; }
+
+  .btn-outline {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--uconn-blue);
+    border: 2px solid var(--uconn-blue);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .note {
+    color: #3a4a61;
+    font-size: 14px;
+    opacity: .9;
+  }
+
+  /* Small “badge” strip */
+  .badge-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .badge {
+    background: var(--uconn-gray);
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    color: #21324a;
+    border: 1px solid #d7dfea;
+  }
+
+  /* Responsive tweaks */
+  @@media (max-width: 520px) {
+    .kv { grid-template-columns: 1fr; }
+  }
+
+    .details-section {
+        max-width: 1100px; /* matches card width for alignment */
+        margin: 32px auto 0;
+        background-color: rgba(0, 85, 164, 0.15); /* UConn blue tint */
+        padding: 24px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* subtle shadow */
+    }
+
+    .details-section p {
+        display: block;
+        margin: 0 0 14px;
+        font-size: 26px; /* bigger */
+        font-weight: 800; /* bolder */
+        line-height: 1.6;
+        color: yellow; /* bright white text */
+        text-shadow: 0 1px 3px rgba(0,0,0,0.4); /* subtle glow */
+        white-space: nowrap;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .details-section p:last-child {
+        margin-bottom: 0;
+    }
+
+    @@media (max-width: 768px) {
+        .details-section p
+
+    {
+        white-space: normal;
+        overflow: visible;
+    }
+
+    }
+
+}
+</style>
+
+<div class="parking-page">
+  <h1 class="title">Bleed Blue with Andy - Tailgate Parking</h1>
+  <div class="subtitle">UConn Football vs UAB — Saturday, November&nbsp;1, 2025</div>
+
+  <section class="card">
+    <div class="card-header">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Purchase Parking</span>
+    </div>
+
+    <div class="card-body">
+      <div class="kv">
+        <label>Lot</label>
+        <div>Best Available</div>
+
+        <label>Opponent</label>
+        <div>UAB</div>
+
+        <label>Date</label>
+        <div>Nov 1, 2025</div>
+
+        <label>Vendor</label>
+        <div>Ticketmaster</div>
+      </div>
+
+      <div class="badge-row" role="list">
+        <span class="badge" role="listitem">Official partner link</span>
+        <span class="badge" role="listitem">Opens in new tab</span>
+        <span class="badge" role="listitem">Secure checkout</span>
+      </div>
+
+      <div class="cta">
+        <a
+          class="btn-primary"
+          href="https://www.ticketmaster.com/parking-uconn-football-vs-uab-east-hartford-connecticut-11-01-2025/event/1D0062D0BAC52E6D?artistid=3780279&majorcatid=10005&minorcatid=103"
+          target="_blank"
+          rel="noopener"
+          aria-label="Buy Pratt & Whitney Stadium Parking on Ticketmaster (opens in a new tab)">
+          Buy Pratt & Whitney Stadium Parking on Ticketmaster
+        </a>
+        <span class="note">You’ll complete your purchase on Ticketmaster. Prices and availability are subject to change.</span>
+        <a class="btn-outline" href="javascript:history.back()">← Back</a>
+      </div>
+    </div>
+  </section>
+
+    <!-- Details -->
+    <div class="details-section">
+        <p>Buy now - Parking passes are sold on a first-come, first-served basis.</p>
+    </div>
+
+</div>
