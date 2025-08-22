@@ -40,7 +40,7 @@
                 </label>
 
                 <label>
-                    Last Year (Fall) You Played :
+                    Last Year (Fall) You Played (4 digits):
                     <input class="year-input"
                            @bind="player.FinalYear"
                            @bind:event="oninput"
@@ -79,7 +79,8 @@
                     <li><strong>PSA</strong> = Prospective Student Athlete.</li>
                     <li>For the <strong>Group</strong> field, enter <strong>“Bleed Blue With Andy”</strong>.</li>
                     <li>For the <strong>Title</strong> field, enter <strong>“FB Alum”</strong>.</li>
-                    <li><strong>Note:</strong> All requested tickets will be distributed at the tailgate.</li>
+                    <li><strong>Note: All requested tickets will be distributed at the tailgate.</strong></li>
+                    <li><strong> Don't forget to purchase tailgate parking. Getting assigned to the 'Blue' lot is on a 1st come 1st served basis.</strong></li>
                 </ul>
             </div>
 
@@ -381,7 +382,7 @@
     private Timer? timer;
     private bool _isDisposed;
 
-    public Player? player;
+    public Player player = new Player();
 
     private ElementReference nameInput;
 
@@ -419,7 +420,7 @@
         }
     }
 
-    private async Task Submit()
+    private void Submit()
     {
         if (isSubmitting) return;     // prevent double-exec
         isSubmitting = true;
@@ -448,7 +449,7 @@
 
             if (string.IsNullOrWhiteSpace(player.FinalYear) ||
                 !int.TryParse(player.FinalYear, out var year) ||
-                year < 1960)
+                year < 1945 || year > 2024)
             {
                 emailStatus = "Last year played is invalid - must be 4 digits";
                 SetOneShotTimer(5000);
@@ -470,7 +471,7 @@
             message.Subject = "Player Attending";
             message.Body = new MimeKit.TextPart("plain")
             {
-                Text = $"{player.Name} , {player.Email} , {player.FinalYear} , {player.AttendingTailgate} , {player.NumberOfTickets}"
+                Text = $"{player.Name} , {player.Email} , {player.FinalYear} , {player.AttendingTailgate} , {player.ExtraTickets}"
             };
 
             using (var client = new MailKit.Net.Smtp.SmtpClient())
@@ -524,7 +525,7 @@
         // Year check
         if (string.IsNullOrWhiteSpace(player.FinalYear) ||
             !int.TryParse(player.FinalYear, out var year) ||
-            year < 1960)
+            year < 1945 || year > 2024)
             return false;
 
         return true;

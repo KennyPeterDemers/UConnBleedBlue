@@ -1,0 +1,201 @@
+﻿@page "/donations"
+@using System.Linq
+@inject DonationsService donationService
+
+<style>
+
+/* Base chip: allow wrapping so it doesn't overflow */
+.chip{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px;
+  border-radius:999px;
+  background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.18);
+  font-weight:700;
+  max-width:100%;
+  flex-wrap:wrap;
+  white-space:normal;
+}
+
+/* Combo chip (two rows + dot) */
+.chip--combo{ row-gap:6px; justify-content:center; text-align:center; }
+.chip-line{ display:inline-flex; align-items:baseline; gap:8px; flex-wrap:wrap; width:100%; justify-content:center; }
+.chip-sep{ opacity:.7; padding:0 4px; width:100%; text-align:center; }
+
+/* Emphasis */
+.chip .value{ font-weight:800; letter-spacing:.25px; line-height:1.05; }
+.chip--amount .value{ font-size:clamp(1.6rem,6vw,2.4rem); text-shadow:0 0 12px rgba(245,193,108,.55),0 0 2px rgba(255,255,255,.6); }
+.chip .label{ font-weight:700; font-size:clamp(.95rem,3.2vw,1.1rem); line-height:1.1; color:yellow; }
+
+/* Stats card + grid */
+.stats-card{
+  max-width:1000px; margin:0 auto 20px; border-radius:16px; padding:18px 20px;
+  background:linear-gradient(135deg,#0C2340,#0055A4); color:#fff;
+  box-shadow:0 6px 18px rgba(0,0,0,.22); border:1px solid rgba(255,255,255,.08); text-align:center;
+}
+.stats-title{ font-weight:800; font-size:1.75rem; margin:0 0 10px; }
+.stats-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; justify-items:center; align-items:center; }
+
+/* Make a single-child row center perfectly */
+.stats-row--single{ grid-template-columns:1fr !important; }
+.stats-row--single > *{ grid-column:1 / -1; justify-self:center; }
+
+/* Donors table + cards (unchanged) */
+.donors-table{ max-width:720px; width:100%; margin:16px auto 48px; border-collapse:separate; border-spacing:0 10px; background:transparent; border:none; }
+.donors-table th,.donors-table td{ padding:8px 10px; border-bottom:1px solid #EBEEF2; white-space:nowrap; }
+.donors-table th{ text-align:left; background:#f7f9fc; font-weight:700; }
+.donor-card{
+  padding:12px 14px; border-radius:12px; background:linear-gradient(180deg,#f2f7ff,#e9f1ff);
+  border:1px solid #dae6ff; font-weight:700; color:#0b3a8d; box-shadow:0 1px 0 rgba(0,0,0,.03);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+
+/* Middle info card (unchanged) */
+.mid-card{ max-width:900px; margin:12px auto 20px; padding:16px 20px; border-radius:14px; background:linear-gradient(180deg,#fff,#f7f9fc); border:1px solid #EBEEF2; box-shadow:0 6px 14px rgba(0,0,0,.06); }
+.mid-title{ font-weight:800; font-size:1.80rem; color:#0C2340; margin:0 0 8px; text-align:center; }
+.mid-body{ font-weight:600; font-size:1.50rem; color:blue; line-height:1.45; text-align:justify; }
+.mid-body p{ margin:6px 0; }
+
+/* Misc */
+.messageBoxXL{ width:90%; padding:10px; border:2px solid blue; margin:auto; color:blue; background:yellow; text-align:center; font-size:x-large; font-weight:bold; }
+.verticalspacer{ height:10px; }
+h1{ display:table; margin:10px auto; padding:5px; font-size:50px; color:#fff; text-shadow:0 0 5px blue,0 0 5px blue,0 0 5px blue,0 0 5px blue,0 0 5px blue,0 0 5px blue,0 0 5px blue,0 0 5px blue; }
+
+/* Mobile */
+@@media (max-width:640px){
+  .stats-row{ grid-template-columns:1fr; }
+  .chip-sep{ display:none; }
+  .donors-table th,.donors-table td{ white-space:normal; }
+  .donor-card{ white-space:normal; word-break:break-word; }
+}
+
+/* Bigger, clearer yellow labels inside the stats chip */
+.stats-card .chip .label{
+  font-size: clamp(1.25rem, 4.8vw, 1.9rem); /* larger on all screens */
+  color: #FFD54A;                            /* brighter gold for contrast */
+  text-shadow: 0 1px 0 rgba(0,0,0,.35),      /* subtle stroke for readability */
+               0 0 8px rgba(0,0,0,.25);
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+/* Optional: tiny extra bump on large screens */
+@@media (min-width: 1024px){
+  .stats-card .chip .label{ font-size: 2rem; }
+}
+
+</style>
+
+<div class="verticalspacer"></div>
+
+<div class="stats-card"><!-- stats-card -->
+  <div class="stats-title">
+    Every bit helps — thank you for supporting the tailgate and Coach B’s Football Alumni Fund.
+  </div><!-- /stats-title -->
+
+  <div class="stats-row stats-row--single"><!-- stats-row -->
+    <div class="chip chip--amount chip--combo"><!-- chip -->
+      <div class="chip-line">
+        <span class="value">@donationService.TotalDonations.ToString("C")</span>
+        <span class="label">currently donated</span>
+      </div><!-- /chip-line -->
+      <div class="chip-sep" aria-hidden="true">•</div><!-- /chip-sep -->
+      <div class="chip-line">
+        <span class="label">from</span>
+        <span class="value">@donationService.NumberOfPeopleDonating</span>
+        <span class="label">donors</span>
+      </div><!-- /chip-line -->
+    </div><!-- /chip -->
+  </div><!-- /stats-row -->
+</div><!-- /stats-card -->
+
+<div class="verticalspacer"></div>
+
+<h1>Please Donate</h1>
+
+<div class="mid-card">
+    <div class="mid-body">
+        <p>
+            <span class="donation-line"><strong>Venmo:</strong> https://venmo.com/KennyDemers</span>
+        </p>
+        <p>
+            <span class="donation-line"><strong>Cash App:</strong> 860-310-7141</span>
+        </p>
+        <p>
+            <span class="donation-line"><strong>Apple Pay:</strong> 860-310-7141</span>
+        </p>
+        <p>
+            <strong>Or Mail Check to:</strong>
+        </p>
+        <p>
+            <strong>Kenny Demers</strong>
+        </p>
+        <p>
+            <strong>16 Brookfield Road</strong>
+        </p>
+        <p>
+            <strong>West Hartford, CT 06107</strong>
+        </p>
+        <p>
+            <strong>Cash or Check at the tailgate will also accepted</strong>
+        </p>
+    </div>
+</div>
+
+<div class="verticalspacer"></div>
+
+@if (!string.IsNullOrEmpty(donationService.Error))
+{
+    <div class="messageBoxXL" style="background-color:#ffe0e0; color:#a00; border-color:#a00;">
+        Error: @donationService.Error
+    </div>
+}
+
+@if (donationService?.DonationList == null)
+{
+    <p style="text-align:center; font-weight:600;">Service not initialized.</p>
+}
+else if (donationService.DonationList.Count == 0)
+{
+    <p style="text-align:center; font-weight:600;">No donation data found.</p>
+}
+else
+{
+    <!-- Names only -->
+    <table class="donors-table">
+        <thead>
+            <tr>
+                <th>Player</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var d in donationService.DonationList.Where(x => x.Amount > 0))
+            {
+               @if (d.FinalYear == "2025")
+                {
+                    d.FinalYear = "";
+                }
+                <tr>
+                    <td class="donor-card">@d.PlayerName</td>
+                    <td class="donor-card">@d.FinalYear</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        await donationService.EnsureLoadedAsync(
+            fileName: "players.xlsx",
+            nameCol: 1,
+            finalYearCol: 3,
+            amountCol: 6,
+            headerRows: 1
+        );
+    }
+}

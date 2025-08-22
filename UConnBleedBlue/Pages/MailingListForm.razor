@@ -252,13 +252,36 @@
 
             if (string.IsNullOrWhiteSpace(player.FinalYear) ||
                 !int.TryParse(player.FinalYear, out var year) ||
-                year < 1960)
+                ((year > 25) && (year < 60)) ||
+                ((year > 99) && (year < 1960)) ||
+                year > 2024)
             {
-                emailStatus = "Last year played is invalid - must be 4 digits";
+                emailStatus = "Last year played is invalid";
                 timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
                 return;
             }
+            SendEmail();
+        }
+        catch (Exception ex)
+        {
+            emailStatus = "Internal Error - " + ex.Message;
+            timer = new Timer(OnTimerEvent, null, 5000, Timeout.Infinite);
+        }
+        finally
+        {
+            isSubmitting = false;
+            StateHasChanged();
+        }
+    }
 
+    private void SendEmail()
+    {
+        if (isSubmitting) return;     // prevent double-exec
+        isSubmitting = true;
+        StateHasChanged();
+
+        try
+        {
             // force TLS 1.2 connection if your application requires
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
@@ -274,7 +297,7 @@
             message.Subject = "Player Attending";
             message.Body = new MimeKit.TextPart("plain")
             {
-                Text = $"{player.Name} , {player.Email} , {player.FinalYear} , {player.AttendingTailgate} , {player.NumberOfTickets}"
+                Text = $"{player.Name} , {player.Email} , {player.FinalYear} , {player.AttendingTailgate} , {player.ExtraTickets}"
             };
 
             using (var client = new MailKit.Net.Smtp.SmtpClient())

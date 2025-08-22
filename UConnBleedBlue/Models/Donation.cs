@@ -4,6 +4,7 @@ namespace UConnBleedBlue.Models
     {
         public int PlayerId { get; set; }
         public string? PlayerName { get; set; }
+        public string? FinalYear { get; set; }
         public double Amount { get; set; }
     }
 }

@@ -13,6 +13,8 @@ builder.Services.AddServerSideBlazor()
         options.DetailedErrors = true;
     });
 builder.Services.AddScoped<PlayersService>();
+builder.Services.AddScoped<CostsService>();
+builder.Services.AddScoped<DonationsService>();
 
 builder.Services.AddSingleton<UserValidationService>();
 

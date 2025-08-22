@@ -1,111 +1,195 @@
 ﻿@page "/Costs"
 
-@inject NavigationManager NavigationManager;
+@using System.Globalization
+@inject NavigationManager Nav
+@inject CostsService CostsService
+@inject DonationsService DonationsService
 
 <style>
-
-    .verticalspacer {
-        height: 20px;
-    }
-
-    .messageBox {
-        width: 50%;
-        padding: 10px 10px 10px 10px;
-        border: 2px solid blue;
-        margin: auto;
-        color: blue;
-        text-align: center;
-        font-weight: bold;
-    }
-
-    .mbFontSize1 {
-        font-size: x-large;
-    }
-
-    .mbFontSize2 {
-        font-size: large;
-    }
-
-    .mbBackColor1 {
-        background-color: yellow;
-    }
-
-    .mbBackColor2 {
-        background-color: lawngreen;
-    }
-
-    .mbBackColor3 {
-        background-color: peachpuff;
+    :root {
+        --uconn-navy: #0C2340;
+        --uconn-blue: #0055A4;
+        --uconn-light: #EBEEF2;
+        --uconn-white: #fff;
+        --accent: #F5C16C;
     }
 
     h1 {
         display: table;
-        margin: 10px auto;
-        padding: 5px;
-        font-size: 50px;
-        color: #ffffff;
-        overflow: hidden;
+        margin: 10px auto 20px;
+        padding: 5px 10px;
+        font-size: 42px;
+        color: #fff;
+        text-shadow: 0 0 5px blue,0 0 5px blue,0 0 5px blue,0 0 5px blue;
     }
 
-    h1 {
-        text-shadow: 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue, 0 0 5px blue,0 0 5px blue;
+    .page-wrap {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 12px 40px;
+    }
+
+    .card {
+        background: var(--uconn-white);
+        border: 1px solid var(--uconn-light);
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0,0,0,.06);
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+
+    .card header {
+        font-weight: 800;
+        color: blue !important;
+        font-size: 1.25rem;
+        margin-bottom: 8px;
+        text-align: center;
+    }
+
+    /* Costs table */
+    .costs-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1rem;
+    }
+
+    .costs-table th, .costs-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid #ccc;
+        text-align: left;
+        white-space: nowrap;
+        color: blue !important;
+    }
+
+    .costs-table th {
+        background: #f8fafc;
+        font-weight: 700;
+    }
+
+    .costs-table td.amount,
+    .costs-table th.amount {
+        text-align: right !important;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .totals-row td {
+        border-top: 2px solid var(--uconn-blue);
+        font-weight: 800;
+        font-size: 1.05rem;
+        color: var(--uconn-navy);
+    }
+
+    /* Donations summary */
+    .donations-summary {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .donations-metric {
+        font-size: clamp(1.1rem, 3vw, 1.5rem);
+        font-weight: 700;
+        color: var(--uconn-navy);
+    }
+
+    .donations-total {
+        font-size: clamp(1.4rem, 5vw, 2rem);
+        font-weight: 900;
+        color: var(--uconn-blue);
+    }
+
+    /* Helpful banner (optional) */
+    .info-banner {
+        background: #fff7e0;
+        border: 1px solid #f5c16c;
+        border-radius: 10px;
+        padding: 10px 12px;
+        text-align: center;
+        color: #5b3b00;
+        font-weight: 600;
+        margin-bottom: 16px;
+    }
+
+    @@media (min-width: 720px) {
+        .split
+
+    {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 16px;
+        align-items: start;
+    }
+
     }
 </style>
 
 <h1>Current Tailgate Costs & Player Donations</h1>
 
-<div class="verticalspacer"></div>
+<div class="page-wrap">
 
-<div class="messageBox mbFontSize2 mbBackColor1">
-    <p>
-        @costsService.CostList[0].Description - $@costsService.CostList[0].Amount
-    </p>
-    <p>
-        @costsService.CostList[1].Description - $@costsService.CostList[1].Amount
-    </p>
-    <p>
-        @costsService.CostList[2].Description - $@costsService.CostList[2].Amount
-    </p>
-    <p>
-        @costsService.CostList[3].Description - $@costsService.CostList[3].Amount
-    </p>
-    <p>
-        @costsService.CostList[4].Description - $@costsService.CostList[4].Amount
-    </p>
-    <p>
-        Total Costs - @costsService.TotalCosts.ToString("C")
-    </p>
+    <!-- Optional note -->
+    <div class="info-banner">
+        Updated @DateTime.Now.ToString("MMMM d, yyyy")
+    </div>
+
+    <div class="split">
+        <!-- Costs -->
+        <section class="card">
+            <header>Costs</header>
+
+            @if (CostsService?.CostList is null || CostsService.CostList.Count == 0)
+            {
+                <div>No costs entered yet.</div>
+            }
+            else
+            {
+                <table class="costs-table">
+                    <thead>
+                        <tr>
+                            <th style="width:60%;">Item</th>
+                            <th class="amount" style="width:40%;">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in CostsService.CostList)
+                        {
+                            <tr>
+                                <td>@item.Description</td>
+                                <td class="amount">@item.Amount.ToString("C")</td>
+                            </tr>
+                        }
+                        <tr class="totals-row">
+                            <td>Total Costs</td>
+                            <td class="amount">@CostsService.TotalCosts.ToString("C")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            }
+        </section>
+
+        <!-- Donations -->
+        <aside class="card">
+            <header>Donations</header>
+            @if (DonationsService is null)
+            {
+                <div>Donations not available.</div>
+            }
+            else
+            {
+                <div class="donations-summary">
+                    <div class="donations-metric">
+                        <strong>@DonationsService.NumberOfPeopleDonating</strong> football alumni have donated a total of
+                    </div>
+                    <div class="donations-total">
+                        @DonationsService.TotalDonations.ToString("C")
+                    </div>
+                </div>
+            }
+        </aside>
+    </div>
 </div>
-
-<div class="verticalspacer"></div>
-
-<div class="messageBox mbFontSize1 mbBackColor2">
-    <p>
-        Current Donations To Andy's Fund & Football NIL
-    </p>
-    <p>
-        @donationsService.NumberOfPeopleDonating Football Alumni Have Donated A Total Of: @donationsService.TotalDonations.ToString("C")
-    </p>
-</div>
-
-
 
 @code {
-    public CostsService costsService = new CostsService();
-    public DonationsService donationsService = new DonationsService();
-
-    public string err = "";
-
-    string Today = DateTime.Now.ToLongDateString();
-
-    // protected override void OnInitialized()
-    // {
-    //     try
-    //     {
-    //     }
-    //     catch (Exception ex)
-    //     {
-    //         err = ex.Message;
-    //     }
-    // }
+    // Nothing needed here if services are injected.
 }
