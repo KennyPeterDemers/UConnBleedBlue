@@ -94,21 +94,24 @@
     }
 
     .side-paragraph {
-        flex: 1 1 300px; /* ✅ shrink and grow around 300px */
-        max-width: 500px;
+        flex: 1 1 320px; /* grows & shrinks nicely */
+        max-width: 550px; /* a bit wider on desktop */
         min-width: 260px;
-        font-size: 1.2rem;
-        line-height: 1.7;
+        font-size: clamp(1rem, 2.5vw, 1.35rem); /* scales with screen */
+        line-height: 1.8;
         text-align: left;
-        color: darkblue;
-        font-weight: 500;
-        background-color: #f0f8ff;
-        padding: 12px;
-        border-radius: 8px;
-        box-shadow: 1px 1px 4px rgba(0,0,0,0.1);
+        /* 🎨 stronger styling */
+        color: #0C2340; /* UConn navy for contrast */
+        font-weight: 600; /* bolder */
+        background: linear-gradient(135deg, #fef9e7, #f0f8ff);
+        border-left: 6px solid #0055A4; /* UConn blue accent bar */
+
+        padding: 16px 20px;
+        margin: 10px 0;
+        border-radius: 10px;
+        box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
         box-sizing: border-box;
     }
-
     .image-side-text {
         flex: 1 1 300px;
         font-size: 1.1rem;
@@ -118,11 +121,11 @@
 
     .donation-line {
         display: block;
-        text-align: left;
-        font-weight: bold;
-        margin-bottom: 4px;
+        margin: 8px 0;
+        font-weight: 700;
+        font-size: 1.1em;
+        color: #C8102E; /* UConn red highlight for donation info */
     }
-
     .image-large {
         flex: 1 1 300px;
         max-width: 500px;

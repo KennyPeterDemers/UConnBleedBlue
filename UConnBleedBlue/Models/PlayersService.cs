@@ -101,7 +101,11 @@ namespace UConnBleedBlue.Models
                                     continue;
                                 }
                             }
-                            PlayerList.Add(player);
+                            // I have some names that were not players but should get emails
+                            if(player.HeadCoach != "MAIL-ONLY")
+                            {
+                                PlayerList.Add(player);
+                            }
                         }
                     }
                 }
