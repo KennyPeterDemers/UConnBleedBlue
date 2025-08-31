@@ -166,7 +166,7 @@
     </div>
 }*@
 
-<h1>UConn Football Players : @PlayerService.PlayerList.Count</h1>
+<h1>UConn Football Alumni : @PlayerService.PlayerList.Count</h1>
 <br />
 
 <div class="top-stack">
@@ -283,7 +283,7 @@ else
             int previousYear = int.Parse(PlayerService.SelectedPlayerFinalYear) - 1;
             PlayerService.ImageSource = $"wwwroot/imagesTeamPhotos/{previousYear}.png";
 
-            // if that picture does not exist - get error message pgoto
+            // if that picture does not exist - get error message photo
             if (File.Exists(PlayerService.ImageSource) == false)
             {
                 PlayerService.ImageSource = "wwwroot/imagesTeamPhotos/MissingTeamPhoto.png";
