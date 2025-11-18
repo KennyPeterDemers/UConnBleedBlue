@@ -1,0 +1,281 @@
+﻿@page "/photoGallery2025"
+@inject IWebHostEnvironment Env
+
+<style>
+    .title {
+        display: table;
+        margin: 12px auto 20px;
+        padding: 10px 20px;
+        font-size: clamp(1.75rem, 3vw, 2.5rem); /* bigger than before */
+        text-align: center;
+        background: #0C2340; /* Husky Blue */
+        color: #FFD700; /* Yellow text/icon */
+        border-radius: 8px;
+    }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 14px;
+        padding: 16px;
+    }
+
+    .image-item {
+        position: relative; /* needed for overlay positioning */
+        text-align: center;
+        cursor: pointer;
+        user-select: none;
+    }
+
+    .enlarge-indicator {
+        position: absolute;
+        bottom: 6px;
+        right: 6px;
+        background: rgba(12, 35, 64, 0.85); /* Husky Blue with transparency */
+        color: #FFD700; /* Yellow text/icon */
+        font-size: 0.8rem;
+        font-weight: bold;
+        padding: 3px 6px;
+        border-radius: 6px;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        pointer-events: none; /* doesn’t block clicks */
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .image-item:hover .enlarge-indicator {
+        opacity: 1; /* fade in on hover */
+    }
+
+    .enlarge-indicator i {
+        font-style: normal; /* use plain text for icon */
+    }
+
+    .thumb {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: transform 0.2s ease;
+        display: block;
+    }
+
+    .image-item:hover .thumb {
+        transform: scale(1.04);
+    }
+
+    .image-label {
+        margin-top: 6px;
+        padding: 4px 6px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #FFD700; /* Yellow text */
+        background: #0C2340; /* Husky Blue background */
+        border-radius: 6px;
+        display: inline-block;
+        line-height: 1.3;
+        max-width: 95%;
+        white-space: normal; /* ✅ allow wrapping */
+        word-break: normal; /* break only at normal word boundaries */
+        overflow-wrap: break-word; /* if a word is too long, break gracefully */
+        text-overflow: clip; /* no ellipsis, just wrap */
+    }
+
+    /* Dialog caption should match */
+    .dialog-caption {
+        color: #FFD700;
+        background: #0C2340;
+        font-weight: bold;
+        padding: 6px 10px;
+        border-radius: 6px;
+        text-align: center;
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        line-height: 1.4;
+        display: inline-block;
+        max-width: 90vw;
+        white-space: normal;
+        word-break: normal;
+        overflow-wrap: break-word;
+    }
+
+    .dialog-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.92);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0; /* No padding at all */
+        margin: 0;
+        z-index: 9999;
+    }
+
+    .dialog-inner {
+        position: relative;
+        width: 100vw; /* Full viewport width */
+        height: 100vh; /* Full viewport height */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dialog-image {
+        width: 100vw; /* Force full width */
+        height: 100vh; /* Force full height */
+        object-fit: contain; /* Show whole image without distortion */
+        border-radius: 0; /* Edge-to-edge look */
+    }
+
+    .close-button {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        background: rgba(0,0,0,0.6);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.6rem;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+    }
+</style>
+
+<h1 class="title">Photo Gallery 2025</h1>
+
+@if (!string.IsNullOrEmpty(Error))
+{
+    <p style="color:#b00020; text-align:center;">@Error</p>
+}
+else if (Items.Count == 0)
+{
+    <p style="text-align:center;">No images found in <code>wwwroot/images2025</code>.</p>
+}
+else
+{
+    <div class="image-grid">
+        @foreach (var item in Items)
+        {
+            <div class="image-item" @onclick="@(() => Open(item))" title="Open">
+                <img class="thumb"
+                     src="@item.Url"
+                     alt=""
+                     loading="lazy" />
+
+                <div class="enlarge-indicator">
+                    <i>🔍</i> enlarge
+                </div>
+            </div>
+        }
+    </div>
+}
+
+@if (IsDialogOpen && Current is not null)
+{
+    <div class="dialog-overlay" @onclick="CloseDialog">
+        <div class="dialog-inner" @onclick:stopPropagation>
+            <img src="@Current.Url" alt="" class="dialog-image" />
+            <button class="close-button" aria-label="Close" @onclick="CloseDialog">✕</button>
+        </div>
+    </div>
+}
+
+@code {
+    private sealed record PhotoItem(string Caption, string Url);
+
+    private readonly List<PhotoItem> Items = new();
+    private string Error = "";
+    private bool IsDialogOpen;
+    private PhotoItem? Current;
+
+    // Configure your folder name here (under wwwroot/)
+    private const string FolderName = "images2025";
+
+    protected override void OnInitialized()
+    {
+        try
+        {
+            var webRoot = Env.WebRootPath ?? Directory.GetCurrentDirectory();
+            var folderFs = Path.Combine(webRoot, FolderName);
+
+            if (!Directory.Exists(folderFs))
+            {
+                Error = $"Folder not found: wwwroot/{FolderName}";
+                return;
+            }
+
+            // Allowed image extensions
+            var allow = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+            { ".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp" };
+
+            // Enumerate, filter, project to (Caption, Url)
+            var files = Directory
+                .EnumerateFiles(folderFs)
+                .Where(f => allow.Contains(Path.GetExtension(f)));
+
+            // Sort by filename (natural-ish: try to parse leading numbers if present)
+            var sorted = files
+                .Select(f => new
+                {
+                    Path = f,
+                    Name = Path.GetFileNameWithoutExtension(f),
+                    Num = TryLeadingNumber(Path.GetFileNameWithoutExtension(f))
+                })
+                .OrderBy(x => x.Num.HasValue ? 0 : 1)       // numeric first
+                .ThenBy(x => x.Num ?? int.MaxValue)
+                .ThenBy(x => x.Name, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            foreach (var f in sorted)
+            {
+                // URL for <img> (web path uses forward slashes)
+                var url = $"{FolderName}/{Path.GetFileName(f.Path)}".Replace("\\", "/");
+
+                // Caption from file name (without extension); tidy up underscores/dashes.
+                var caption = PrettyCaptionFromFileName(f.Name);
+
+                Items.Add(new PhotoItem(caption, url));
+            }
+        }
+        catch (Exception ex)
+        {
+            Error = ex.Message;
+        }
+    }
+
+    private static int? TryLeadingNumber(string name)
+    {
+        // If file name starts with a number (e.g., "001 Tailgate…"), sort by that first
+        var span = name.AsSpan();
+        int i = 0;
+        while (i < span.Length && char.IsDigit(span[i])) i++;
+        if (i == 0) return null;
+        if (int.TryParse(span[..i], out var n)) return n;
+        return null;
+    }
+
+    private static string PrettyCaptionFromFileName(string raw)
+    {
+        // Replace separators with spaces and collapse multiple spaces
+        var s = raw.Replace('_', ' ').Replace('-', ' ');
+        s = System.Text.RegularExpressions.Regex.Replace(s, @"\s+", " ").Trim();
+        // Optional: Title-case words (keeps numbers/acronyms)
+        return s;
+        //return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s);
+    }
+
+    private void Open(PhotoItem item)
+    {
+        Current = item;
+        IsDialogOpen = true;
+        StateHasChanged();
+    }
+
+    private void CloseDialog()
+    {
+        IsDialogOpen = false;
+        Current = null;
+    }
+}

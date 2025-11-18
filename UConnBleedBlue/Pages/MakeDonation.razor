@@ -1,6 +1,6 @@
-﻿@page "/donations"
+﻿@page "/make-donation"
 @using System.Linq
-@inject DonationsService donationService
+@inject DonationsService DonationsService
 
 <style>
 
@@ -92,19 +92,19 @@ h1{ display:table; margin:10px auto; padding:5px; font-size:50px; color:#fff; te
 
 <div class="stats-card"><!-- stats-card -->
   <div class="stats-title">
-    Every bit helps — thank you for supporting the tailgate and Coach B’s Football Alumni Fund.
+    Every bit helps — thank you for supporting the tailgate and Coach B’s Football Alumni Enhancement Fund.
   </div><!-- /stats-title -->
 
   <div class="stats-row stats-row--single"><!-- stats-row -->
     <div class="chip chip--amount chip--combo"><!-- chip -->
       <div class="chip-line">
-        <span class="value">@donationService.TotalDonations.ToString("C")</span>
+        <span class="value">@DonationsService.TotalDonations.ToString("C0")</span>
         <span class="label">currently donated</span>
       </div><!-- /chip-line -->
       <div class="chip-sep" aria-hidden="true">•</div><!-- /chip-sep -->
       <div class="chip-line">
         <span class="label">from</span>
-        <span class="value">@donationService.NumberOfPeopleDonating</span>
+        <span class="value">@DonationsService.NumberOfPeopleDonating</span>
         <span class="label">donors</span>
       </div><!-- /chip-line -->
     </div><!-- /chip -->
@@ -113,21 +113,21 @@ h1{ display:table; margin:10px auto; padding:5px; font-size:50px; color:#fff; te
 
 <div class="verticalspacer"></div>
 
-<h1>Please Donate</h1>
+<h1>Please Donate To Andy's Fund Via 1 Of The 4 Ways Shown Below</h1>
 
 <div class="mid-card">
     <div class="mid-body">
         <p>
-            <span class="donation-line"><strong>Venmo:</strong> https://venmo.com/KennyDemers</span>
+            <span class="donation-line"><strong style ="color: darkmagenta;">Venmo:</strong> https://venmo.com/KennyDemers</span>
         </p>
         <p>
-            <span class="donation-line"><strong>Cash App:</strong> 860-310-7141</span>
+            <span class="donation-line"><strong style="color: darkmagenta;">or Cash App:</strong> 860-310-7141</span>
         </p>
         <p>
-            <span class="donation-line"><strong>Apple Pay:</strong> 860-310-7141</span>
+            <span class="donation-line"><strong style="color: darkmagenta;">or Apple Pay:</strong> 860-310-7141</span>
         </p>
         <p>
-            <strong>Or Mail Check to:</strong>
+            <strong style="color: darkmagenta;">or Check Payable to: UConn Football Alumni Enhancement Fund"</strong>
         </p>
         <p>
             <strong>Kenny Demers</strong>
@@ -139,25 +139,25 @@ h1{ display:table; margin:10px auto; padding:5px; font-size:50px; color:#fff; te
             <strong>West Hartford, CT 06107</strong>
         </p>
         <p>
-            <strong>Cash or Check at the tailgate will also accepted</strong>
+            <strong style="color: purple ;">Cash or Check will also be accepted at the tailgate</strong>
         </p>
     </div>
 </div>
 
 <div class="verticalspacer"></div>
 
-@if (!string.IsNullOrEmpty(donationService.Error))
+@if (!string.IsNullOrEmpty(DonationsService.Error))
 {
     <div class="messageBoxXL" style="background-color:#ffe0e0; color:#a00; border-color:#a00;">
-        Error: @donationService.Error
+        Error: @DonationsService.Error
     </div>
 }
 
-@if (donationService?.DonationList == null)
+@if (DonationsService?.DonationList == null)
 {
     <p style="text-align:center; font-weight:600;">Service not initialized.</p>
 }
-else if (donationService.DonationList.Count == 0)
+else if (DonationsService.DonationList.Count == 0)
 {
     <p style="text-align:center; font-weight:600;">No donation data found.</p>
 }
@@ -172,12 +172,8 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (var d in donationService.DonationList.Where(x => x.Amount > 0))
+            @foreach (var d in DonationsService.DonationList.Where(x => x.Amount > 0))
             {
-               @if (d.FinalYear == "2025")
-                {
-                    d.FinalYear = "";
-                }
                 <tr>
                     <td class="donor-card">@d.PlayerName</td>
                     <td class="donor-card">@d.FinalYear</td>
@@ -190,7 +186,7 @@ else
 @code {
     protected override async Task OnInitializedAsync()
     {
-        await donationService.EnsureLoadedAsync(
+        await DonationsService.EnsureLoadedAsync(
             fileName: "players.xlsx",
             nameCol: 1,
             finalYearCol: 3,

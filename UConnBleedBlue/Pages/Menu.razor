@@ -1,72 +1,50 @@
 ﻿@page "/menu"
-
 @inject NavigationManager Navigation
 
 <div class="container">
-    <!-- Header for Row 1 -->
     <div class="header-wrapper">
         <h2 class="row-header">Master Chef Seamus Donagher (& me) In Action</h2>
     </div>
     <div class="row row-1 image-text-row">
-        <p class="side-paragraph">
-            Please donate to Andy's fund. The tailgate will cost around $2,500.00.
-
-            All donations above the tailgate costs go to Andy's Football Alumni Fund. 
-            So far, we have added over $50K to the fund from our 2 previous tailgates. 
-            Join us for a great day.
-        </p>
-
         <img src="imagesMenu/Seamus.webp" alt="Image 1" class="image-large" />
-
-        <p class="side-paragraph">
-            You can donate by sending your donation to the Venmo, Cashapp, or Apple Pay accounts below:
-            <span class="donation-line"><strong>Venmo:</strong> https://venmo.com/KennyDemers</span>
-            <span class="donation-line"><strong>Cash App:</strong> 860-310-7141</span>
-            <span class="donation-line"><strong>Apple Pay:</strong> 860-310-7141</span>
-            As usual, you can expect a thank you call or hand written thank you note from Coach B
-        </p>
     </div>
 
-    <!-- Header for Row 2 -->
-    <div class="header-wrapper">
-        <h2 class="row-header">Huskies - Bring Your Appetite For Our Tailgate Feast</h2>
+    <div class="header-wrapper" data-row="breakfast">
+        <h2 class="row-header">Huskies - Bring Your Appetite For Our Breakfast Tailgate Feast</h2>
     </div>
-    <div class="row row-2">
-        <img src="imagesMenu/BaconEggs.webp" alt="Image 2" class="image-small" />
-        <img src="imagesMenu/PancakesBacon.webp" alt="Image 3" class="image-small" />
-        <img src="imagesMenu/SausageEggCheese.webp" alt="Image 4" class="image-small" />
-        <img src="imagesMenu/PancakesBaconEggs.webp" alt="Image 5" class="image-small" />
-        <img src="imagesMenu/BoxOfJoe.webp" alt="Image 6" class="image-small" />
+    <div class="image-grid" aria-label="Breakfast Items" data-row="breakfast">
+        <img src="imagesMenu/BaconEggs.webp" alt="Bacon &amp; Eggs" />
+        <img src="imagesMenu/SausagePattiesAndEggs.webp" alt="Sausage Patties &amp; Eggs" />
+        <img src="imagesMenu/SausageEggCheese.webp" alt="Sausage, Egg &amp; Cheese" />
+        <img src="imagesMenu/BaconEggAndCheese.webp" alt="Bacon, Egg &amp; Cheese" />
+    </div>
+
+    <div class="header-wrapper wide-header" data-row="lunch">
+        <h2 class="row-header wide-row-header">
+            Donations by Strano's Bakery "King of the Grinder Roll" and Hall's Market "WeHa's Favorite Butcher &amp; Deli"
+        </h2>
+    </div>
+    <div class="image-grid" aria-label="Lunch Items" data-row="lunch">
+        <img src="imagesMenu/SmallRolls.webp" alt="Small Rolls" />
+        <img src="imagesMenu/Mixer.webp" alt="Mixer" />
+        <img src="imagesMenu/GrinderRolls.webp" alt="Grinder Rolls" />
+        <img src="imagesMenu/SausageBread.webp" alt="Sausage Bread" />
+        <img src="imagesMenu/Owners.webp" alt="Owners" />
+        <img src="imagesMenu/Meats.webp" alt="Meats" />
+        <img src="imagesMenu/Deli.webp" alt="Deli" />
+        <img src="imagesMenu/Yummie.webp" alt="Yummie" />
     </div>
 </div>
 
 <style>
-
-    /* menu page style*/
-    .container {
-        flex: 0 0 auto;
-    }
-
-    .header-wrapper {
-        text-align: center;
-        color:blue;
-    }
-
-    .link-header {
-        display: table;
-        margin: 0.625rem auto; /* 10px */
-        padding: 0.3125rem; /* 5px */
-        font-size: clamp(0.6rem, 5vw, 1.5rem);
-        font-weight: bold;
-        color: purple;
-        overflow: hidden;
-    }
+    .container { flex: 0 0 auto; }
+    .header-wrapper { text-align: center; color: blue; }
 
     .row-header {
-        display: inline-block; /* FIXED TYPO */
+        display: inline-block;
         background-color: lightyellow;
         color: blue;
-        padding: 8px 14px; /* smaller padding for tighter background */
+        padding: 8px 14px;
         border-radius: 6px;
         box-shadow: 0 2px 4px rgba(0,0,0,0.5);
         margin: 40px 0 15px;
@@ -74,58 +52,61 @@
         font-weight: bold;
     }
 
-    .row-1 {
-        text-align: justify;
+    .wide-row-header {
+        display: block !important;
+        width: 100%;
+        margin: 40px auto 15px;
+        text-align: center;
+        white-space: nowrap;
+        font-size: clamp(1rem, 2.2vw, 1.55rem);
     }
 
-    .row-2 {
-        display: flex;
+    @@media (max-width: 768px) {
+        .wide-row-header {
+            white-space: normal;
+            font-size: clamp(1rem, 3.5vw, 1.4rem);
+            line-height: 1.3;
+            padding: 6px 10px;
+        }
+    }
+
+    .row-1 { text-align: justify; }
+
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 12px;
         justify-content: center;
-        gap: 10px;
-        flex-wrap: wrap;
+        justify-items: center;
+        align-items: start;
+        padding: 0 6px;
+        margin-bottom: 18px;
+    }
+
+    .image-grid img {
+        width: 100%;
+        max-width: 250px;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 10px;
+        display: block;
+    }
+
+    @@media (max-width: 1000px) {
+        .image-grid { grid-template-columns: repeat(3, minmax(110px, 1fr)); }
+    }
+    @@media (max-width: 600px) {
+        .image-grid { grid-template-columns: repeat(2, minmax(110px, 1fr)); }
     }
 
     .image-text-row {
         display: flex;
-        flex-wrap: wrap; /* ✅ allow items to wrap */
+        flex-wrap: wrap;
         justify-content: center;
         align-items: flex-start;
         gap: 1rem;
     }
 
-    .side-paragraph {
-        flex: 1 1 320px; /* grows & shrinks nicely */
-        max-width: 550px; /* a bit wider on desktop */
-        min-width: 260px;
-        font-size: clamp(1rem, 2.5vw, 1.35rem); /* scales with screen */
-        line-height: 1.8;
-        text-align: left;
-        /* 🎨 stronger styling */
-        color: #0C2340; /* UConn navy for contrast */
-        font-weight: 600; /* bolder */
-        background: linear-gradient(135deg, #fef9e7, #f0f8ff);
-        border-left: 6px solid #0055A4; /* UConn blue accent bar */
-
-        padding: 16px 20px;
-        margin: 10px 0;
-        border-radius: 10px;
-        box-shadow: 2px 3px 8px rgba(0,0,0,0.2);
-        box-sizing: border-box;
-    }
-    .image-side-text {
-        flex: 1 1 300px;
-        font-size: 1.1rem;
-        line-height: 1.5;
-        max-width: 400px;
-    }
-
-    .donation-line {
-        display: block;
-        margin: 8px 0;
-        font-weight: 700;
-        font-size: 1.1em;
-        color: #C8102E; /* UConn red highlight for donation info */
-    }
     .image-large {
         flex: 1 1 300px;
         max-width: 500px;
@@ -136,37 +117,56 @@
         border-radius: 8px;
     }
 
-    .image-small {
-        width: 18%;
-        min-width: 110px;
-        height: auto;
-        border-radius: 8px;
+    .pulse-active {
+        animation: pulseGrow 3s ease-in-out;
+        will-change: transform;
+        transform-origin: center center;
     }
 
-    .mailing-link-wrapper {
-        text-align: center;
-        margin: 30px 0 10px;
+    @@keyframes headerPulse {
+      0%   { transform: scale(1);    color: blue;      background-color: lightyellow; }
+      50%  { transform: scale(1.08); color: orangered; background-color: #fff3b0;    }
+      100% { transform: scale(1);    color: blue;      background-color: lightyellow; }
     }
-
-    .mailing-link {
-        font-size: 1.6rem; /* ✅ Bigger text */
-        font-weight: 700; /* ✅ Bold */
-        color: blue; 
-        text-decoration: underline;
-        cursor: pointer;
-        transition: color 0.2s ease;
+    .header-pulse {
+      animation: headerPulse 3s ease-in-out;
+      will-change: transform, color, background-color;
+      transform-origin: center center;
     }
-
-    .mailing-link:hover {
-        color: orangered; /* ✅ Darker red on hover */
-        text-decoration: none;
-    }
-
-
- 
 </style>
 
+@code { }
 
-@code {
-        // Code-behind logic can be added here if needed
-}
+<script>
+(function () {
+  function startPulse() {
+    const grids = document.querySelectorAll(".image-grid");
+    if (!grids.length) { setTimeout(startPulse, 300); return; }
+
+    function randomPulse() {
+      const grid = grids[Math.floor(Math.random() * grids.length)];
+      const images = grid.querySelectorAll("img");
+      const img = images[Math.floor(Math.random() * images.length)];
+
+      img.classList.add("pulse-active");
+      setTimeout(() => img.classList.remove("pulse-active"), 3000);
+
+      const rowId = grid.dataset.row;
+      const header = document.querySelector(`.header-wrapper[data-row="${rowId}"] h2`);
+      if (header) {
+        header.classList.add("header-pulse");
+        setTimeout(() => header.classList.remove("header-pulse"), 3000);
+      }
+    }
+
+    randomPulse();
+    setInterval(randomPulse, 4000);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startPulse);
+  } else {
+    startPulse();
+  }
+})();
+</script>

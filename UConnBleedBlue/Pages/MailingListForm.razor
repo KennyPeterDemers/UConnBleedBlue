@@ -28,7 +28,7 @@
         </label>
 
         <label>
-            Last Year (Fall) You Played:
+            Last Year (Fall) You Played (4 digits):
             <InputText @bind-Value="player.FinalYear" class="year-input" />
         </label>
 
@@ -276,7 +276,6 @@
 
     private void SendEmail()
     {
-        if (isSubmitting) return;     // prevent double-exec
         isSubmitting = true;
         StateHasChanged();
 
@@ -287,9 +286,9 @@
 
             string server = "mail5019.site4now.net";
             int port = 587; // 587 for StartTls
-            string from = "kenny@andybleedblue.com";
+            string from = "kenny@uconnbleedblue.com";
             string password = "UConnBleedBlue62$";
-            string to = "kenny@andybleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
+            string to = "kenny@uconnbleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
 
             var message = new MimeKit.MimeMessage();
             message.From.Add(new MimeKit.MailboxAddress(EmailRequest.From, from));

@@ -3,14 +3,21 @@
 @using UConnBleedBlue.Models
 @using MailKit.Net.Smtp
 @using MailKit.Security
-@using Microsoft.AspNetCore.Components.Web  // needed for FocusAsync
+@{
+   //needed for FocusAsync
+    @using Microsoft.AspNetCore.Components.Web;
+}
 
 @inject PlayersService PlayerService
 @inject NavigationManager Nav
 
 @implements IDisposable
 
-<h2>Register To Our UConn Football Alumni Group & Request Complementary Tickets To The Game</h2>
+<h2>Request Your Complementary Tickets To The UAB Game</h2>
+<br />
+
+<h2>After You Have Requested Your Tickets,</h2>
+<h2>Don't Forget to Purchase Your Parking Pass!'</h2>
 <br />
 
 <h2 class="headline">
@@ -53,10 +60,7 @@
 
                 <button type="button"
                         class="row-header ticket-btn center-btn"
-                        @onclick="OpenNotice"
-                        disabled="@(!CanRegister() || isSubmitting)">
-                    @((isSubmitting) ? "Submitting..." : "Register")
-                </button>
+                        @onclick="OpenNotice">Request Free Tickets</button>
 
 
                 <label class="labelError">@emailStatus</label>
@@ -93,7 +97,7 @@
                 <button type="button"
                         class="bb-btn-primary"
                         @onclick:preventDefault="true"
-                        @onclick="GoToTicketOffice">Continue To Ticket Office Site</button>
+                        @onclick="Submit">Continue To Ticket Office Site</button>
             </div>                        
         </div>
     </div>
@@ -397,6 +401,7 @@
         player = new Player();  // ensures not null before first render
     }
 
+
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
@@ -459,11 +464,13 @@
             // force TLS 1.2 connection if your application requires
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
 
-            string server = "mail5019.site4now.net";
+            //string server = "mail5019.site4now.net";
+            string server = "mail5006.site4now.net";
             int port = 587; // 587 for StartTls
-            string from = "kenny@andybleedblue.com";
+            //string from = "kenny@AndyBleedBlue.com";
+            string from = "kenny@UConnBleedBlue.com";
             string password = "UConnBleedBlue62$";
-            string to = "kenny@andybleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
+            string to = "kenny@uconnbleedblue.com";  // SharkAsp.net will forward it to kpdemers073@gmail.com
 
             var message = new MimeKit.MimeMessage();
             message.From.Add(new MimeKit.MailboxAddress(EmailRequest.From, from));
@@ -487,6 +494,7 @@
             EmailRequest.Tribute = "";
 
             emailStatus = "Thanks! Your Information Was Successfully Submitted";
+            showNotice = false; // close the modal if open
             StateHasChanged();
 
             StopTimer();                              // ✅ stop before navigation
@@ -511,23 +519,6 @@
 
     private bool CanRegister()
     {
-        // Name check
-        if (string.IsNullOrWhiteSpace(player.Name) || player.Name.Trim().Length < 3)
-            return false;
-
-        // Email check
-        if (string.IsNullOrWhiteSpace(player.Email) ||
-            player.Email.Length < 7 ||
-            !player.Email.Contains(".") ||
-            !player.Email.Contains("@"))
-            return false;
-
-        // Year check
-        if (string.IsNullOrWhiteSpace(player.FinalYear) ||
-            !int.TryParse(player.FinalYear, out var year) ||
-            year < 1945 || year > 2024)
-            return false;
-
         return true;
     }
     private void SetOneShotTimer(int ms)

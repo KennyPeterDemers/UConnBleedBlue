@@ -1,5 +1,7 @@
 ﻿@using UConnBleedBlue.Models
-@inject DonationsService donationsService
+
+@inject DonationsService DonationsService
+@inject PlayersService PlayersService
 
 <div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
@@ -18,8 +20,18 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
+            <NavLink class="nav-link" href="tributeToCoachB">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Tributes To Coach B
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link yellow-link" href="photoGallery2025">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> 2025 Photo Gallery
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
             <NavLink class="nav-link" href="playersAttending">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> 2025 Attendance List
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Attendance List  ( @PlayersService.PlayerList.Count(p => p.AttendingTailgate) )
             </NavLink>
         </div>
         <div class="nav-item px-3">
@@ -28,30 +40,10 @@
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="purchase-parking">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Purchase Parking
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
             <NavLink class="nav-link" href="tailgate-location">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Tailgate Location Map
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Tailgate Location
             </NavLink>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="donations">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Current Donations
-            </NavLink>
-        </div>
-         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="Costs">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Estimated Costs
-            </NavLink>
-        </div>
-        @*<div class="nav-item px-3">
-            <NavLink class="nav-link" href="PlayersThatDonated">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> @playersThatDonatedPageLabel
-            </NavLink>
-        </div>*@
         <div class="nav-item px-3" @onclick:stopPropagation>
             <button class="nav-link btn btn-link w-100 text-start d-flex align-items-center"
                     type="button"
@@ -64,7 +56,8 @@
             </button>
 
             @* NOTE: no 'collapse' class here *@
-            <div class="submenu" style="display:@(photosOpen ? "block" : "none")" @onclick:stopPropagation>
+            <div class="submenu" style="@(photosOpen ? "display:block;" : "display:none;")" @onclick:stopPropagation>
+                <NavLink class="nav-link nav-sublink ms-4" href="photoGallery2025">Photo Gallery 2025</NavLink>
                 <NavLink class="nav-link nav-sublink ms-4" href="photoGallery1">Photo Gallery 1</NavLink>
                 <NavLink class="nav-link nav-sublink ms-4" href="photoGallery2">Photo Gallery 2</NavLink>
                 <NavLink class="nav-link nav-sublink ms-4" href="photoGallery3">Photo Gallery 3</NavLink>
@@ -82,7 +75,7 @@
             </button>
 
             @* We control visibility ourselves (no Bootstrap 'collapse' class) *@
-            <div class="submenu" style="display:@(teamsOpen ? "block" : "none")">
+            <div class="submenu" style="@(teamsOpen ? "display:block;" : "display:none;")">
                 <NavLink class="nav-link nav-sublink ms-4" href="photoGalleryTeams60-89">
                     Teams 1960–1989
                 </NavLink>
@@ -91,18 +84,35 @@
                 </NavLink>
             </div>
         </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="tributeToCoachB">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Tributes To Coach B
-            </NavLink>
-        </div>
-        @*<div class="nav-item px-3">
-            <NavLink class="nav-link" href="video-gallery">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Videos (Under Constuction)
-            </NavLink>
-        </div>*@
     </nav>
+
+    <!-- Sponsor (plain text) -->
+    <div class="sponsor-section" @onclick:stopPropagation>
+        <h3 class="sponsor-title">Tailgate Sponsors</h3>
+        <ul class="sponsor-list">
+            <li>Strano's' Bakery</li>
+            <li>255 Broad St.</li>
+            <li>Manchester CT</li>
+            <li>860 646-3354</li>
+        </ul>
+        <div class="sponsor-logo">
+            <img src="imagesMenu/StranoBakery.webp" alt="Strano Bakery" />
+        </div>
+    </div>
+    <!-- Sponsor (plain text) -->
+    <div class="sponsor-section" @onclick:stopPropagation>
+        <ul class="sponsor-list">
+            <li>Hall's Market'</li>
+            <li>331 Park Rd.</li>
+            <li>West Hartford CT</li>
+            <li>860 232-1075</li>
+        </ul>
+        <div class="sponsor-logo">
+            <img src="imagesMenu/HallsMarket.webp" alt="Strano Bakery" />
+        </div>
+    </div>
 </div>
+
 
 <style>
 
@@ -122,9 +132,37 @@
         text-decoration: underline;
     }
 
+    .sponsor-section {
+        margin-top: 0.75rem;
+        padding: 0.5rem 0.75rem 0.75rem;
+        border-top: 1px solid rgba(255,255,255,0.25);
+        color: #fff; /* ensure visible on blue */
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .sponsor-title {
+        margin: 0 0 0.4rem 0;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #ff8844;
+    }
+
+    .sponsor-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ffcc00;
+    }
+
+    .sponsor-list li {
+        margin-bottom: 0.25rem;
+    }
 </style>
 @code {
-    private string playersThatDonatedPageLabel = "";
+    //private string playersThatDonatedPageLabel = "";
 
     private bool collapseNavMenu = true;
 
@@ -132,7 +170,9 @@
 
     private string err = "";
 
-    PlayersService playersService = new PlayersService();
+    //PlayersService playersService = new PlayersService();
+
+    //DonationsService donationsService = new DonationsService();
 
     private bool photosOpen = false;
 
@@ -142,7 +182,7 @@
     {
         try
         {
-            playersThatDonatedPageLabel = $"Current Donors  {donationsService.NumberOfPeopleDonating}";
+            //playersThatDonatedPageLabel = $"Current Donors  {DonationsService.TotalDonations}";
         }
         catch (Exception ex)
         {

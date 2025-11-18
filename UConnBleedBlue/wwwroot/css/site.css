@@ -168,3 +168,90 @@ h2 {
     font-family: "Times New Roman", Times, serif;
 }
 
+/* Make the nav menu a column so the sponsors naturally appear below the links */
+.nav-menu,
+.sidebar {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Sponsors block */
+.sponsor-section {
+    margin-top: 1rem;
+    padding: 0.75rem 0.75rem 1rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.sponsor-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: .2px;
+    color: #ffcc00; /* UConn gold accent */
+}
+
+/* Text list */
+.sponsor-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0 0 0.5rem 0;
+}
+
+    .sponsor-list li {
+        margin-bottom: 0.35rem;
+    }
+
+    .sponsor-list a {
+        color: #cfe5ff; /* readable on navy */
+        text-decoration: none;
+    }
+
+        .sponsor-list a:hover {
+            text-decoration: underline;
+        }
+
+/* Logos grid (optional) */
+.sponsor-logos {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 0.5rem;
+}
+
+.sponsor-logo {
+    text-align: center;
+    margin-top: 0.5rem;
+}
+
+    .sponsor-logo img {
+        width: 100%;
+        max-width: 150px; /* control size */
+        height: auto;
+        border-radius: 8px; /* optional rounded corners */
+        background: rgba(255,255,255,0.1); /* subtle contrast box */
+        padding: 4px;
+    }
+
+    /* Small screens: stack nicely */
+    @media (max-width: 640px) {
+        .sponsor-logos {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+
+    /* used in Menu.razor */
+    @keyframes pulseGrow {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.12);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }

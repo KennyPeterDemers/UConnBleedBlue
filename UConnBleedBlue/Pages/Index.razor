@@ -1,6 +1,7 @@
 ﻿@page "/"
 
 @inject NavigationManager Nav
+@inject UConnBleedBlue.Models.DonationsService Donations
 
 @* Notes:
    1rem = root font size (typically 16px). So:
@@ -14,28 +15,73 @@
 
         <PageTitle>Football Alumni News</PageTitle>
 
-        <h2 class="top-header">
-            3nd Annual "Bleed Blue With Andy" UConn Football Alumni Tailgate!
-        </h2>
+        <div class="top-layout">
+            <aside class="donate-card">
+                <div class="donate-title">Please Donate</div>
+                <div class="donate-sub">Current Donations</div>
+                <div class="donate-amount">@($"{Donations.TotalDonations:C0}")</div>
 
-        <h2 class="top-header">
-            Saturday November 1, 2025&nbsp;&nbsp;Opponent: UAB&nbsp;&nbsp;&nbsp;&nbsp;Game: 12 Noon&nbsp;&nbsp;Tailgate: 9:00 AM
-        </h2>
-    
-        <a href="https://www.nhregister.com/sports/uconn/article/andy-baylock-uconn-baseball-football-20779937.php?taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer">
-            <h2 class="row-header">UConn 'treasure' Andy Baylock is still telling stories, still tossing pitches at age 87</h2>
-        </a>
+                @if (!string.IsNullOrWhiteSpace(Donations.Error))
+                {
+                    <div class="donate-error">@Donations.Error</div>
+                }
 
-        <button class="row-header ticket-btn center-btn" @onclick="GotoTicketForm">
-            Reserve Your Complementary Tickets To The Game
-        </button>
+                @if (!string.IsNullOrWhiteSpace(_loadError))
+                {
+                    <div class="donate-error">@_loadError</div>
+                }
+                <button class="donate-btn" @onclick="GotoDonation" type="button">
+                    Make a Donation
+                </button>
+                <button class="donate-btn" @onclick="GotoDonation" type="button">
+                    View List
+                </button>
+            </aside>
+
+            <!-- RIGHT: your 3 top lines + ticket button -->
+            <section class="top-content">
+                <h2 class="top-header">
+                    3nd Annual "Bleed Blue With Andy" UConn Football Alumni Tailgate!
+                </h2>
+
+                <h2 class="top-header">
+                    Was a Huge Success – Click on
+                    "<NavLink class="photo-link" href="photoGallery2025">2025 Photo Gallery</NavLink>"
+                    link
+                </h2>
+
+                <a href="https://www.nhregister.com/sports/uconn/article/andy-baylock-uconn-baseball-football-20779937.php?taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer" class="link-header">
+                    <h2 class="row-header">UConn 'treasure' Andy Baylock is still telling stories, still tossing pitches at age 87</h2>
+                </a>
+
+                <h2 class="top-header-standout">
+                    A Great Time Was Had By All - We Are Truly "Brothers Forever"
+                </h2>
+            </section>
+
+        </div>
+
 
         <br />
 
         @if (imageSource1 is not null)
         {
-            <div>
-                <img src="@imageSource1" asp-append-version="true" class="center" style="width: 90%"/>
+            <div class="hero-grid">
+                <!-- Left image -->
+                <img src="@imageSource1" asp-append-version="true" class="hero-img1" />
+
+                <!-- Right column: image + blurb -->
+                <div class="right-col">
+                    @if (!string.IsNullOrWhiteSpace(imageSource2))
+                    {
+                        <img src="@imageSource2" asp-append-version="true" class="hero-img2" />
+                    }
+
+                    @if (!string.IsNullOrWhiteSpace(rightBlurb))
+                    {
+                        <p class="right-blurb">@rightBlurb</p>
+                    }
+                </div>
             </div>
         }
     </ChildContent>
@@ -53,6 +99,16 @@
         color: mediumblue;
         text-align: center;
         text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 255, 0.15); /* very subtle blue glow */
+        padding: 0.25rem;
+        white-space: normal;
+    }
+
+    .top-header-standout {
+        font-size: clamp(1.4rem, 5.5vw, 2.4rem);
+        font-weight: 700;
+        color: blue;
+        text-align: center;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         padding: 0.25rem;
         white-space: normal;
     }
@@ -75,18 +131,33 @@
         color: blue;
         overflow: hidden;
     }
-  
-    .link-header {
-        text-decoration: none;
-        color: #004aad;           /* strong blue */
+
+    .link-header h2 {
+        text-decoration: underline;
+        color: #004aad; /* strong UConn blue */
+        transition: all .2s ease-in-out;
         cursor: pointer;
     }
 
     .link-header:hover h2 {
-        color: #d40000;           /* highlight color on hover */
-        text-decoration: underline;
-        background-color: #f0f0f0;
+        color: #d40000; /* bright attention red */
+        background-color: #f2f2f2; /* slight highlight */
         border-radius: 6px;
+        transform: scale(1.02);
+    }
+
+    .photo-link {
+        color: #004aad; /* strong UConn blue */
+        text-decoration: underline;
+        transition: all .2s ease-in-out;
+        cursor: pointer;
+    }
+
+    .photo-link:hover {
+        color: #d40000; /* bright attention red */
+        background-color: #f2f2f2; /* slight highlight */
+        border-radius: 6px;
+        transform: scale(1.02);
     }
 
     .row-header {
@@ -97,36 +168,237 @@
 
     .ticket-btn {
         background-color: #004aad; /* UConn blue */
-        color: #fff;
-        border: none;
+        color: orange;
+        border: thick solid gold;
         border-radius: 8px;
+        border-color: gold;
         padding: 0.5rem 1rem;
         cursor: pointer;
         transition: background-color .2s ease-in-out;
     }
 
-    .ticket-btn:hover,
-    .ticket-btn:focus {
-        background-color: #002766; /* darker on hover/focus */
-        outline: none;
-    }
+        .ticket-btn:hover,
+        .ticket-btn:focus {
+            background-color: #002766; /* darker on hover/focus */
+            outline: none;
+        }
 
     .center-btn {
         display: block; /* lets margin auto work */
         margin: 0.625rem auto; /* centers horizontally, keeps same top/bottom spacing */
     }
 
-</style>
+    /* two-up hero layout */
+    .hero-grid {
+        max-width: 90%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1.4fr 1fr; /* left wider */
+        gap: 0.75rem;
+        align-items: start;
+    }
+
+    /* images */
+    .hero-img1,
+    .hero-img2 {
+        width: 100%;
+        height: auto; /* let the browser pick the height */
+        max-height: 60vh; /* never taller than 60% of the viewport height */
+        object-fit: cover;
+        border: 2px solid #004aad;
+        border-radius: 8px;
+        display: block;
+    }
+
+    /* right column container */
+    .right-col {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    /* styled blurb under right image */
+    .right-blurb {
+        margin: 0;
+        padding: 0.8rem 1rem;
+        background: #004aad; /* solid Husky blue */
+        border-radius: 8px;
+        font-size: clamp(1.1rem, 2.8vw, 1.35rem);
+        line-height: 1.45;
+        color: #ffde59; /* UConn gold/yellow accent */
+        font-weight: 600;
+        text-align: center;
+        box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+    }
+
+    /* stack on phones */
+    @@media (max-width: 768px) {
+        .hero-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* center column expands and keeps content centered */
+    .top-content {
+        flex: 1 1 auto; /* take remaining width */
+        min-width: 280px; /* prevents squish */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertical balance vs the side cards */
+        gap: .35rem;
+    }
+
+        .top-content .top-header,
+        .top-content .row-header {
+            text-align: center; /* keep headers centered */
+        }
+
+    /* space items left/center/right neatly on desktop */
+    .top-layout {
+        display: flex;
+        align-items: stretch; /* same heights feel balanced */
+        justify-content: space-between;
+        gap: 1rem;
+        margin: 0 1rem 0.75rem 1rem;
+    }
+
+
+    /* Shared palette look for both cards */
+    .donate-card,
+    .parking-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.6rem;
+        padding: 1rem 1.1rem;
+        width: 260px;
+        flex: 0 0 260px;
+        border: 2px solid #004aad; /* UConn blue border */
+        border-radius: 12px;
+        background: linear-gradient(145deg, #f3f7ff, #e7efff); /* soft blue background */
+        box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.08);
+        text-align: center;
+    }
+
+    /* Titles (both) */
+    .donate-title,
+    .parking-title {
+        font-weight: 900;
+        font-size: clamp(1.25rem, 3vw, 1.6rem);
+        color: #0057d8;
+        text-shadow: 0 0 2px rgba(0, 90, 255, 0.15);
+        letter-spacing: 0.5px;
+    }
+
+    /* Subheads (both) */
+    .donate-sub,
+    .parking-sub {
+        position: relative;
+        font-weight: 700;
+        font-size: clamp(1.1rem, 2.8vw, 1.35rem);
+        color: #004aad;
+        letter-spacing: 0.4px;
+        padding-bottom: 0.35rem;
+        margin-bottom: 0.35rem;
+    }
+
+        .donate-sub::after,
+        .parking-sub::after {
+            content: "";
+            display: block;
+            width: 60%;
+            height: 2px;
+            background: rgba(0, 74, 173, 0.25);
+            margin: 0.35rem auto 0 auto;
+            border-radius: 1px;
+        }
+
+    /* donation amount */
+    .donate-amount {
+        font-size: clamp(1.4rem, 3.5vw, 1.9rem);
+        font-weight: 800;
+        color: #005cff;
+        letter-spacing: 0.4px;
+        margin-top: 0.2rem;
+    }
+
+    .donate-error {
+        color: #b30000;
+        font-size: 0.95rem;
+    }
+
+    /* Buttons (both) */
+    .donate-btn,
+    .parking-btn {
+        margin-top: 0.7rem;
+        background-color: #0057d8;
+        color: #fffbf2;
+        border: none;
+        border-radius: 10px;
+        padding: 0.7rem 1.2rem;
+        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        font-weight: 700;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s;
+        box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .donate-btn:hover, .donate-btn:focus,
+    .parking-btn:hover, .parking-btn:focus {
+        background-color: #003ea8;
+        color: #ffffff;
+        transform: translateY(-1px);
+        box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.15);
+        outline: none;
+    }
+
+    /* Buttons in center column */
+    .ticket-btn {
+        margin-inline: auto;
+    }
+
+    /* Phone & small tablets: stack L/C/R vertically */
+    @@media (max-width: 768px) {
+        .top-layout {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .donate-card, .parking-card {
+            width: 100%;
+            flex: 0 0 auto;
+        }
+    }
+
+ </style>
 
 @code {
 
-    private string imageSource1 = $"GroupPhoto2024.webp";
+    private string imageSource1 = $"GroupPhoto2025.webp";
+    private string imageSource2 = $"GlassEtching2025.webp";
+    private string rightBlurb = "This glass etching created by Skip Gorski (1971) & won by Rich Foye (1973)";
+
+    private string? _loadError;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            await Donations.EnsureLoadedAsync(); // harmless if already loaded
+        }
+        catch (Exception ex)
+        {
+            _loadError = $"Error loading donations: {ex.Message}";
+        }
+    }
 
     private void GotoTicketForm()
     {
-        //   ↳ adjust this route string to match the @page directive
-        //     in TicketRequestForm.razor (e.g., "/ticket-request-form")
         Nav.NavigateTo("/ticket-request-form");
     }
 
+    private void GotoDonation() => Nav.NavigateTo("/make-donation");
+
+    private void GotoParking() => Nav.NavigateTo("/purchase-parking");
 }

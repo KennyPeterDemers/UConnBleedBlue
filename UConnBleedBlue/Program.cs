@@ -3,44 +3,104 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using System.Security.Claims;
 using UConnBleedBlue.Models;
+using Serilog;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// =====  LOG PATH (robust)  =====
+var preferredLogsDir = Path.Combine(builder.Environment.ContentRootPath, "App_Data", "logs");
+string logsDir;
+try
+{
+    Directory.CreateDirectory(preferredLogsDir);
+    logsDir = preferredLogsDir;
+}
+catch
+{
+    var temp = Path.Combine(Path.GetTempPath(), "uconnbleedblue", "logs");
+    Directory.CreateDirectory(temp);
+    logsDir = temp;
+}
+
+// =====  SERVICES  =====
 builder.Services.AddRazorPages();
-builder.Services.AddServerSideBlazor()
-    .AddCircuitOptions(options => {
-        options.DetailedErrors = true;
-    });
+builder.Services.AddServerSideBlazor().AddCircuitOptions(o => o.DetailedErrors = true);
 builder.Services.AddScoped<PlayersService>();
 builder.Services.AddScoped<CostsService>();
-builder.Services.AddScoped<DonationsService>();
-
+builder.Services.AddSingleton<DonationsService>();
 builder.Services.AddSingleton<UserValidationService>();
 
 builder.Services.AddScoped(sp =>
 {
     var navigationManager = sp.GetRequiredService<NavigationManager>();
-    return new HttpClient
-    {
-        BaseAddress = new Uri(navigationManager.BaseUri)
-    };
+    return new HttpClient { BaseAddress = new Uri(navigationManager.BaseUri) };
 });
 
-builder.Services.AddAuthentication("MyCookieAuth")
-    .AddCookie("MyCookieAuth", options =>
+builder.Services.AddAuthentication("MyCookieAuth").AddCookie("MyCookieAuth", o => o.LoginPath = "/login");
+builder.Services.AddAuthorization();
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddControllers();
+
+// =====  SERILOG (defensive)  =====
+try
+{
+    // Serilog internal troubles -> write here (never throws)
+    Serilog.Debugging.SelfLog.Enable(msg =>
     {
-        options.LoginPath = "/login";
+        try
+        {
+            var selfLogPath = Path.Combine(Path.GetTempPath(), "uconnbleedblue", "serilog-selflog.txt");
+            Directory.CreateDirectory(Path.GetDirectoryName(selfLogPath)!);
+            File.AppendAllText(selfLogPath, $"{DateTime.UtcNow:O} {msg}{Environment.NewLine}");
+        }
+        catch { /* swallow */ }
     });
 
-builder.Services.AddAuthorization();
+    Log.Logger = new LoggerConfiguration()
+        .MinimumLevel.Information()
+        .Enrich.FromLogContext()
+        .WriteTo.Async(a => a.File(
+            path: Path.Combine(logsDir, "uconn-.log"),
+            rollingInterval: RollingInterval.Day,
+            retainedFileCountLimit: 10,
+            fileSizeLimitBytes: 10_000_000,
+            rollOnFileSizeLimit: true,
+            shared: true,               // OK on IIS
+            encoding: Encoding.UTF8))   // no 'buffered' param
+        .CreateLogger();
 
-builder.Services.AddHttpContextAccessor();
-
-builder.Services.AddControllers();
+    Log.Information("App starting in {Environment}; logsDir={LogsDir}", builder.Environment.EnvironmentName, logsDir);
+    builder.Host.UseSerilog();
+}
+catch (Exception ex)
+{
+    // If Serilog fails, DO NOT crash the app.
+    // Fall back to default console logging so the site still runs.
+    builder.Logging.ClearProviders();
+    builder.Logging.AddConsole();
+    Console.WriteLine($"[Startup] Serilog init failed: {ex}");
+}
 
 var app = builder.Build();
 
+// PRELOAD donations once at startup (before the app starts serving requests)
+using (var scope = app.Services.CreateScope())
+{
+    var donations = scope.ServiceProvider.GetRequiredService<DonationsService>();
+    await donations.EnsureLoadedAsync();  // calls your method
+
+    // Optional: log a quick summary to verify it ran
+    if (!string.IsNullOrWhiteSpace(donations.Error))
+    {
+        Log.Warning("Donations preload completed with Error: {Error}", donations.Error);
+    }
+    else
+    {
+        Log.Information("Donations preload OK. Rows: {Count}, Total: {Total}",
+            donations.DonationList.Count, donations.TotalDonations);
+    }
+}
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -99,4 +159,12 @@ app.Use(async (context, next) =>
     }
 });
 
-app.Run();
+try
+{
+    app.Run();
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+
