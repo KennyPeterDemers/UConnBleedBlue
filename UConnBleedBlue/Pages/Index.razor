@@ -38,25 +38,31 @@
                 </button>
             </aside>
 
-            <!-- RIGHT: your 3 top lines + ticket button -->
-            <section class="top-content">
-                <h2 class="top-header">
-                    3nd Annual "Bleed Blue With Andy" UConn Football Alumni Tailgate!
-                </h2>
-
-                <h2 class="top-header">
-                    Was a Huge Success – Click on
+            <section class="top-content top-mini">
+                <h1 class="top-header">
+                    3nd Annual 'Bleed Blue With Andy' - 
                     "<NavLink class="photo-link" href="photoGallery2025">2025 Photo Gallery</NavLink>"
-                    link
-                </h2>
+                </h1>
+
+                <a href="https://youtu.be/IxwKho5wkDE?si=tyPSWcZT0gPNufK5taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer" class="link-header">
+                    <h2 class="row-header">Watch the Video of This Year's 'Bleed Blue With Andy Tailgate</h2>
+                </a>
 
                 <a href="https://www.nhregister.com/sports/uconn/article/andy-baylock-uconn-baseball-football-20779937.php?taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer" class="link-header">
                     <h2 class="row-header">UConn 'treasure' Andy Baylock is still telling stories, still tossing pitches at age 87</h2>
                 </a>
 
-                <h2 class="top-header-standout">
-                    A Great Time Was Had By All - We Are Truly "Brothers Forever"
-                </h2>
+                <a href="/1965webeatyale" class="link-header top-mini">
+                    <h2 class="row-header">
+                        We Beat Yale - The Story of the 1965 UConn Football Team
+                    </h2>
+                </a>
+ 
+                <a href="https://youtu.be/lyoyFSUPG3w?si=yxaf4nDRBf5Ujgoo" target="_blank" rel="noopener noreferrer" class="link-header">
+                    <h2 class="row-header">Season's Greetings From Two of UConn's GOATs</h2>
+                </a>
+
+
             </section>
 
         </div>
@@ -92,9 +98,8 @@
 </ErrorBoundary>
 
 <style>
-
     .top-header {
-        font-size: clamp(1.4rem, 5.5vw, 2.4rem); /* Scales well across devices */
+        font-size: clamp(1.4rem, 5.5vw, 2.4rem);
         font-weight: 700;
         color: mediumblue;
         text-align: center;
@@ -112,6 +117,27 @@
         padding: 0.25rem;
         white-space: normal;
     }
+
+    /* Smaller, tighter headers for the very top area */
+    .top-mini h2 {
+        font-size: clamp(1.05rem, 3.8vw, 1.75rem);
+        padding: 0.15rem;
+    }
+
+    /* Center column expands and keeps content centered */
+    .top-content {
+        flex: 1 1 auto; /* take remaining width */
+        min-width: 280px; /* prevents squish */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* vertical balance vs the side cards */
+        gap: 0.2rem; /* NOTE: this was the final value previously */
+    }
+
+        .top-content .top-header,
+        .top-content .row-header {
+            text-align: center; /* keep headers centered */
+        }
 
     h1 {
         display: table;
@@ -139,13 +165,6 @@
         cursor: pointer;
     }
 
-    .link-header:hover h2 {
-        color: #d40000; /* bright attention red */
-        background-color: #f2f2f2; /* slight highlight */
-        border-radius: 6px;
-        transform: scale(1.02);
-    }
-
     .photo-link {
         color: #004aad; /* strong UConn blue */
         text-decoration: underline;
@@ -153,16 +172,18 @@
         cursor: pointer;
     }
 
-    .photo-link:hover {
-        color: #d40000; /* bright attention red */
-        background-color: #f2f2f2; /* slight highlight */
-        border-radius: 6px;
-        transform: scale(1.02);
-    }
+        /* Shared hover look */
+        .link-header:hover h2,
+        .photo-link:hover {
+            color: #d40000; /* bright attention red */
+            background-color: #f2f2f2; /* slight highlight */
+            border-radius: 6px;
+            transform: scale(1.02);
+        }
 
     .row-header {
         font-weight: bold;
-        font-size: clamp(1.2rem, 5vw, 2.2rem);
+        font-size: clamp(1.05rem, 3.8vw, 1.75rem); /* match top-header */
         transition: all 0.2s ease-in-out;
     }
 
@@ -175,6 +196,7 @@
         padding: 0.5rem 1rem;
         cursor: pointer;
         transition: background-color .2s ease-in-out;
+        margin-inline: auto; /* Buttons in center column */
     }
 
         .ticket-btn:hover,
@@ -231,28 +253,6 @@
         box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     }
 
-    /* stack on phones */
-    @@media (max-width: 768px) {
-        .hero-grid {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    /* center column expands and keeps content centered */
-    .top-content {
-        flex: 1 1 auto; /* take remaining width */
-        min-width: 280px; /* prevents squish */
-        display: flex;
-        flex-direction: column;
-        justify-content: center; /* vertical balance vs the side cards */
-        gap: .35rem;
-    }
-
-        .top-content .top-header,
-        .top-content .row-header {
-            text-align: center; /* keep headers centered */
-        }
-
     /* space items left/center/right neatly on desktop */
     .top-layout {
         display: flex;
@@ -261,7 +261,6 @@
         gap: 1rem;
         margin: 0 1rem 0.75rem 1rem;
     }
-
 
     /* Shared palette look for both cards */
     .donate-card,
@@ -344,22 +343,21 @@
         box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.1);
     }
 
-    .donate-btn:hover, .donate-btn:focus,
-    .parking-btn:hover, .parking-btn:focus {
-        background-color: #003ea8;
-        color: #ffffff;
-        transform: translateY(-1px);
-        box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.15);
-        outline: none;
-    }
+        .donate-btn:hover, .donate-btn:focus,
+        .parking-btn:hover, .parking-btn:focus {
+            background-color: #003ea8;
+            color: #ffffff;
+            transform: translateY(-1px);
+            box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.15);
+            outline: none;
+        }
 
-    /* Buttons in center column */
-    .ticket-btn {
-        margin-inline: auto;
-    }
-
-    /* Phone & small tablets: stack L/C/R vertically */
+    /* stack on phones */
     @@media (max-width: 768px) {
+        .hero-grid {
+            grid-template-columns: 1fr;
+        }
+
         .top-layout {
             flex-direction: column;
             align-items: stretch;
@@ -370,8 +368,8 @@
             flex: 0 0 auto;
         }
     }
+</style>
 
- </style>
 
 @code {
 

@@ -1,0 +1,94 @@
+﻿@page "/1965WeBeatYale"
+
+<PageTitle>We Beat Yale</PageTitle>
+
+<div class="documents-container">
+
+    <h1 class="documents-title">
+        We Beat Yale
+    </h1>
+
+    <ul class="documents-list">
+        <li>
+            <a href="/Data/_1966NutmegYearbook.pdf"
+               target="_1966NutmegYearbook"
+               rel="noopener noreferrer">
+                Nutmeg Yearbook – 1966
+            </a>
+        </li>
+
+        <li>
+            <a href="/Data/_SilverAnniversaryRatPack.pdf"
+               target="_SilverAnniversaryRatPack"
+               rel="noopener noreferrer">
+                Silver Anniversary Rat Pack
+            </a>
+        </li>
+
+        <li>
+            <a href="/Data/_StorrsCentralArticle.pdf"
+               target="_StorrsCentralArticle"
+               rel="noopener noreferrer">
+                Storrs Central Article
+            </a>
+        </li>
+    </ul>
+
+    <img src="/Data/WeBeatYale.jpg"
+         alt="We Beat Yale - 1965"
+         class="documents-image" />
+
+</div>
+
+<style>
+    .documents-container {
+        max-width: 1100px; /* wider on desktop */
+        margin: 3rem auto;
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .documents-title {
+        font-size: clamp(2.6rem, 5.5vw, 4.2rem); /* bigger */
+        font-weight: 900;
+        color: #004aad;
+        margin-bottom: 2.2rem;
+        line-height: 1.1;
+    }
+
+    .documents-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .documents-list li {
+            margin: 1.8rem 0; /* more spacing */
+        }
+
+        .documents-list a {
+            font-size: clamp(1.6rem, 3.8vw, 2.2rem); /* bigger */
+            font-weight: 800;
+            color: #004aad;
+            text-decoration: underline;
+            padding: 0.8rem 1.1rem; /* larger tap/click target */
+            display: inline-block;
+            transition: all 0.2s ease-in-out;
+        }
+
+            .documents-list a:hover {
+                color: #d40000;
+                background-color: #f2f2f2;
+                border-radius: 10px;
+                transform: scale(1.06);
+            }
+
+    .documents-image {
+        margin-top: 3.5rem;
+        max-width: 100%;
+        width: min(100%, 980px); /* big on desktop, safe on phone */
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+    }
+</style>
