@@ -1,4 +1,4 @@
-﻿@page "/"
+@page "/"
 
 @inject NavigationManager Nav
 @inject UConnBleedBlue.Models.DonationsService Donations
@@ -18,7 +18,7 @@
         <div class="top-layout">
             <aside class="donate-card">
                 <div class="donate-title">Please Donate</div>
-                <div class="donate-sub">Current Donations</div>
+                <div class="donate-sub">Current 2026 Donations</div>
                 <div class="donate-amount">@($"{Donations.TotalDonations:C0}")</div>
 
                 @if (!string.IsNullOrWhiteSpace(Donations.Error))
@@ -30,45 +30,32 @@
                 {
                     <div class="donate-error">@_loadError</div>
                 }
-                <button class="donate-btn" @onclick="GotoDonation" type="button">
-                    Make a Donation
-                </button>
-                <button class="donate-btn" @onclick="GotoDonation" type="button">
-                    View List
-                </button>
+                <div class="donate-buttons">
+                    <button class="donate-btn" @onclick="GotoDonation" type="button">Donate</button>
+                    <button class="donate-btn" @onclick="GotoDonation" type="button">View List</button>
+                </div>
             </aside>
 
             <section class="top-content top-mini">
-                <h1 class="top-header">
-                    3nd Annual 'Bleed Blue With Andy' - 
-                    "<NavLink class="photo-link" href="photoGallery2025">2025 Photo Gallery</NavLink>"
-                </h1>
+                <NavLink class="event-banner-link" href="detailsFourthAnnual">
+                    <div class="event-banner" aria-label="4th Annual Bleed Blue With Andy - October 3rd 2026 vs. Syracuse">
+                        <div class="event-banner-line event-banner-main">4th Annual</div>
+                        <div class="event-banner-line event-banner-title">'Bleed Blue With Andy'</div>
+                        <div class="event-banner-line event-banner-date">
+                            October 3rd 2026 <span class="event-banner-vs">vs.</span> <span class="event-banner-syracuse">Syracuse</span>
+                        </div>
+                    </div>
+                </NavLink>
 
-                <a href="https://youtu.be/IxwKho5wkDE?si=tyPSWcZT0gPNufK5taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer" class="link-header">
-                    <h2 class="row-header">Watch the Video of This Year's 'Bleed Blue With Andy Tailgate</h2>
-                </a>
+                <div class="banner-click-note">
+                    Click banner for Syracuse game details
+                </div>
 
-                <a href="https://www.nhregister.com/sports/uconn/article/andy-baylock-uconn-baseball-football-20779937.php?taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer" class="link-header">
-                    <h2 class="row-header">UConn 'treasure' Andy Baylock is still telling stories, still tossing pitches at age 87</h2>
-                </a>
-
-                <a href="/1965webeatyale" class="link-header top-mini">
-                    <h2 class="row-header">
-                        We Beat Yale - The Story of the 1965 UConn Football Team
-                    </h2>
-                </a>
  
-                <a href="https://youtu.be/lyoyFSUPG3w?si=yxaf4nDRBf5Ujgoo" target="_blank" rel="noopener noreferrer" class="link-header">
-                    <h2 class="row-header">Season's Greetings From Two of UConn's GOATs</h2>
-                </a>
-
-
             </section>
 
         </div>
 
-
-        <br />
 
         @if (imageSource1 is not null)
         {
@@ -76,19 +63,19 @@
                 <!-- Left image -->
                 <img src="@imageSource1" asp-append-version="true" class="hero-img1" />
 
-                <!-- Right column: image + blurb -->
+                <!-- Right column: image only -->
                 <div class="right-col">
                     @if (!string.IsNullOrWhiteSpace(imageSource2))
                     {
                         <img src="@imageSource2" asp-append-version="true" class="hero-img2" />
                     }
-
-                    @if (!string.IsNullOrWhiteSpace(rightBlurb))
-                    {
-                        <p class="right-blurb">@rightBlurb</p>
-                    }
                 </div>
             </div>
+
+            @if (!string.IsNullOrWhiteSpace(rightBlurb))
+            {
+                <p class="right-blurb">@rightBlurb</p>
+            }
         }
     </ChildContent>
 
@@ -98,22 +85,102 @@
 </ErrorBoundary>
 
 <style>
+
+    .banner-click-note {
+        text-align: center;
+        color: #0033cc;
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-top: -0.25rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .event-banner-link {
+        display: block;
+        text-decoration: none;
+        margin: 0.5rem auto 1rem auto;
+        width: min(96%, 1180px);
+    }
+
+    .event-banner {
+        position: relative;
+        margin: 0 auto;
+        padding: 1.1rem 1.4rem;
+        border: 5px solid #0033cc;
+        border-radius: 8px;
+        background: linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+        box-shadow: 0 0 14px rgba(0, 51, 204, 0.55), 0 4px 10px rgba(0, 0, 0, 0.22);
+        text-align: center;
+        transition: transform 0.18s ease-in-out, box-shadow 0.18s ease-in-out;
+    }
+
+    .event-banner::before,
+    .event-banner::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        width: 42px;
+        height: 5px;
+        background: #0033cc;
+        border-radius: 999px;
+        box-shadow: 0 -18px 0 #0033cc, 0 18px 0 #0033cc;
+    }
+
+    .event-banner::before {
+        left: -58px;
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    .event-banner::after {
+        right: -58px;
+        transform: translateY(-50%) rotate(0deg);
+    }
+
+    .event-banner-link:hover .event-banner,
+    .event-banner-link:focus .event-banner {
+        transform: scale(1.015);
+        box-shadow: 0 0 22px rgba(0, 51, 204, 0.8), 0 5px 14px rgba(0, 0, 0, 0.28);
+    }
+
+    .event-banner-line {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        font-weight: 900;
+        text-transform: uppercase;
+        line-height: 0.98;
+        letter-spacing: 0.04em;
+        color: #001e5a;
+        text-shadow: 2px 3px 4px rgba(0, 0, 0, 0.22);
+    }
+
+    .event-banner-main {
+        font-size: clamp(2.5rem, 6vw, 5.2rem);
+    }
+
+    .event-banner-title {
+        font-size: clamp(2.2rem, 5.4vw, 4.7rem);
+    }
+
+    .event-banner-date {
+        font-size: clamp(1.9rem, 4.8vw, 4rem);
+        margin-top: 0.25rem;
+    }
+
+    .event-banner-vs {
+        color: #001e5a;
+    }
+
+    .event-banner-syracuse {
+        color: #f76900;
+        -webkit-text-stroke: 2px #0033cc;
+        paint-order: stroke fill;
+        text-shadow: 2px 2px 0 #0033cc, -1px -1px 0 #0033cc, 3px 4px 5px rgba(0, 0, 0, 0.25);
+    }
     .top-header {
         font-size: clamp(1.4rem, 5.5vw, 2.4rem);
         font-weight: 700;
         color: mediumblue;
         text-align: center;
         text-shadow: 0.5px 0.5px 0.5px rgba(0, 0, 255, 0.15); /* very subtle blue glow */
-        padding: 0.25rem;
-        white-space: normal;
-    }
-
-    .top-header-standout {
-        font-size: clamp(1.4rem, 5.5vw, 2.4rem);
-        font-weight: 700;
-        color: blue;
-        text-align: center;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
         padding: 0.25rem;
         white-space: normal;
     }
@@ -187,29 +254,6 @@
         transition: all 0.2s ease-in-out;
     }
 
-    .ticket-btn {
-        background-color: #004aad; /* UConn blue */
-        color: orange;
-        border: thick solid gold;
-        border-radius: 8px;
-        border-color: gold;
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        transition: background-color .2s ease-in-out;
-        margin-inline: auto; /* Buttons in center column */
-    }
-
-        .ticket-btn:hover,
-        .ticket-btn:focus {
-            background-color: #002766; /* darker on hover/focus */
-            outline: none;
-        }
-
-    .center-btn {
-        display: block; /* lets margin auto work */
-        margin: 0.625rem auto; /* centers horizontally, keeps same top/bottom spacing */
-    }
-
     /* two-up hero layout */
     .hero-grid {
         max-width: 90%;
@@ -241,15 +285,19 @@
 
     /* styled blurb under right image */
     .right-blurb {
-        margin: 0;
-        padding: 0.8rem 1rem;
-        background: #004aad; /* solid Husky blue */
-        border-radius: 8px;
-        font-size: clamp(1.1rem, 2.8vw, 1.35rem);
-        line-height: 1.45;
-        color: #ffde59; /* UConn gold/yellow accent */
+        margin: 0.4rem auto 0 auto;
+        max-width: 90%;
+        padding: 0.35rem 1rem;
+        background: #004aad;
+        border-radius: 6px;
+        font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+        line-height: 1.2;
+        color: #ffde59;
         font-weight: 600;
         text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
         box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
     }
 
@@ -268,15 +316,24 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.6rem;
-        padding: 1rem 1.1rem;
-        width: 260px;
-        flex: 0 0 260px;
-        border: 2px solid #004aad; /* UConn blue border */
+        gap: 0.3rem;
+        padding: 0.5rem 1rem;
+        width: 220px;
+        flex: 0 0 220px;
+        border: 2px solid #004aad;
         border-radius: 12px;
-        background: linear-gradient(145deg, #f3f7ff, #e7efff); /* soft blue background */
+        background: linear-gradient(145deg, #f3f7ff, #e7efff);
         box-shadow: 2px 3px 6px rgba(0, 0, 0, 0.08);
         text-align: center;
+    }
+
+    .donate-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 0.3rem;
     }
 
     /* Titles (both) */
@@ -329,13 +386,13 @@
     /* Buttons (both) */
     .donate-btn,
     .parking-btn {
-        margin-top: 0.7rem;
+        margin-top: 0;
         background-color: #0057d8;
         color: #fffbf2;
         border: none;
         border-radius: 10px;
-        padding: 0.7rem 1.2rem;
-        font-size: clamp(1rem, 2.5vw, 1.25rem);
+        padding: 0.45rem 0.8rem;
+        font-size: clamp(0.85rem, 2vw, 1rem);
         font-weight: 700;
         letter-spacing: 0.3px;
         cursor: pointer;
@@ -354,6 +411,19 @@
 
     /* stack on phones */
     @@media (max-width: 768px) {
+        .event-banner::before,
+        .event-banner::after {
+            display: none;
+        }
+
+        .event-banner {
+            padding: 0.9rem 0.8rem;
+        }
+
+        .event-banner-syracuse {
+            -webkit-text-stroke: 1px #0033cc;
+        }
+
         .hero-grid {
             grid-template-columns: 1fr;
         }
@@ -375,7 +445,7 @@
 
     private string imageSource1 = $"GroupPhoto2025.webp";
     private string imageSource2 = $"GlassEtching2025.webp";
-    private string rightBlurb = "This glass etching created by Skip Gorski (1971) & won by Rich Foye (1973)";
+    private string rightBlurb = "Glass etching created by Skip Gorski (1971) — won by Rich Foye (1973)";
 
     private string? _loadError;
 

@@ -17,7 +17,7 @@ namespace UConnBleedBlue.Models
             {
                 string filePath = Directory.GetCurrentDirectory() + @"\\wwwroot\Data\Players.xlsx";
                 FileInfo fileInfo = new FileInfo(filePath);
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                ExcelPackage.License.SetNonCommercialPersonal("Kenny Demers");
                 using (ExcelPackage excelPackage = new ExcelPackage(fileInfo))
                 {
                     ExcelWorksheet? excelWorksheet = excelPackage.Workbook.Worksheets.FirstOrDefault();

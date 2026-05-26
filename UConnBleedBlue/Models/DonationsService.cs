@@ -32,7 +32,7 @@ namespace UConnBleedBlue.Models
 
             try
             {
-                ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+                ExcelPackage.License.SetNonCommercialPersonal("Kenny Demers");
 
                 var path = Path.Combine(_env.WebRootPath, "Data", fileName);
                 if (!File.Exists(path))

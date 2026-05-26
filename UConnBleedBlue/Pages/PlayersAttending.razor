@@ -84,6 +84,14 @@
         }
     }
 
+    .syracuse-label {
+        color: #f76900;
+        -webkit-text-stroke: 2px #0033cc;
+        paint-order: stroke fill;
+        text-shadow: 1px 1px 0 #0033cc, -1px -1px 0 #0033cc, 2px 3px 4px rgba(0,0,0,0.25);
+        font-style: italic;
+    }
+
     .registration-btn {
         display: inline-block;
         margin: 0;
@@ -228,7 +236,7 @@
 
 <div class="top-stack">
     <div class="attending-count">
-        <strong>Total Players Attending:</strong>
+        <strong>Players Attending 2026 <span class="syracuse-label">Syracuse</span> Tailgate:</strong>
         @PlayerService.PlayerList.Count(p => p.AttendingTailgate)
     </div>
 

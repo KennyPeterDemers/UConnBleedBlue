@@ -16,32 +16,47 @@
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="oi oi-home" aria-hidden="true"></span> Home
+                <span class="nav-bullet">›</span> Home
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="tributeToCoachB">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Tributes To Coach B
+                <span class="nav-bullet">›</span> Tributes To Coach B
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link yellow-link" href="photoGallery2025">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> 2025 Photo Gallery
+                <span class="nav-bullet">›</span> 2025 Photo Gallery
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="playersAttending">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Attendance List  ( @PlayersService.PlayerList.Count(p => p.AttendingTailgate) )
+                <span class="nav-bullet">›</span> Attendance List  ( @PlayersService.PlayerList.Count(p => p.AttendingTailgate) )
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="menu">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Tailgate Menu
+                <span class="nav-bullet">›</span> Tailgate Menu
             </NavLink>
         </div>
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="tailgate-location">
-                <span class="oi oi-list-rich" aria-hidden="true"></span> Tailgate Location
+                <span class="nav-bullet">›</span> Tailgate Location
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link nav-external" href="https://youtu.be/IxwKho5wkDE?si=tyPSWcZT0gPNufK5taid=68823c8385489b00010acfa9&utm_campaign=trueanthem&utm_medium=social&utm_source=twitter" target="_blank" rel="noopener noreferrer">
+                <span class="nav-bullet">›</span> Tailgate Video
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <a class="nav-link nav-external" href="https://www.nhregister.com/sports/uconn/article/andy-baylock-uconn-baseball-football-20779937.php" target="_blank" rel="noopener noreferrer">
+                <span class="nav-bullet">›</span> Andy Baylock Article
+            </a>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="1965webeatyale">
+                <span class="nav-bullet">›</span> We Beat Yale - 1965
             </NavLink>
         </div>
         <div class="nav-item px-3" @onclick:stopPropagation>
@@ -49,7 +64,7 @@
                     type="button"
                     @onclick="TogglePhotos"
                     @onclick:stopPropagation>
-                <span class="oi oi-image me-2" aria-hidden="true"></span>
+                <span class="nav-bullet">›</span>
                 Photo Gallery
                 <span class="ms-auto oi oi-chevron-bottom @(photosOpen ? "rotate-180" : "")"
                       aria-hidden="true"></span>
@@ -69,7 +84,7 @@
                     type="button"
                     @onclick="ToggleTeams"
                     @onclick:stopPropagation>
-                <span class="oi oi-image me-2" aria-hidden="true"></span>
+                <span class="nav-bullet">›</span>
                 Team Photos
                 <span class="ms-auto oi oi-chevron-bottom @(teamsOpen ? "rotate-180" : "")" aria-hidden="true"></span>
             </button>
@@ -90,18 +105,6 @@
     <div class="sponsor-section" @onclick:stopPropagation>
         <h3 class="sponsor-title">Tailgate Sponsors</h3>
         <ul class="sponsor-list">
-            <li>Strano's' Bakery</li>
-            <li>255 Broad St.</li>
-            <li>Manchester CT</li>
-            <li>860 646-3354</li>
-        </ul>
-        <div class="sponsor-logo">
-            <img src="imagesMenu/StranoBakery.webp" alt="Strano Bakery" />
-        </div>
-    </div>
-    <!-- Sponsor (plain text) -->
-    <div class="sponsor-section" @onclick:stopPropagation>
-        <ul class="sponsor-list">
             <li>Hall's Market'</li>
             <li>331 Park Rd.</li>
             <li>West Hartford CT</li>
@@ -115,6 +118,44 @@
 
 
 <style>
+
+    .nav-bullet {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #ffcc00;
+        margin-right: 0.3rem;
+        line-height: 1;
+    }
+
+    /* Bright white, larger font for all nav items */
+    .nav-scrollable .nav-link,
+    .nav-scrollable .btn-link {
+        color: #ffffff !important;
+        font-size: 1.05rem;
+        font-weight: 500;
+    }
+
+    .nav-scrollable .nav-link:hover,
+    .nav-scrollable .btn-link:hover {
+        color: #ffcc00 !important;
+        background-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .nav-scrollable .nav-link.active {
+        color: #ffcc00 !important;
+        font-weight: 700;
+        background-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .nav-external {
+        color: #ffffff;
+        white-space: nowrap;
+    }
+
+    .nav-external:hover {
+        color: #ffcc00;
+        text-decoration: none;
+    }
 
     .submenu .nav-sublink {
         font-size: 0.95rem;
